@@ -3,6 +3,8 @@
  */
 package dominio;
 
+import enums.Unidad;
+
 /**
  * @author esteb
  *

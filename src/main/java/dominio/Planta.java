@@ -5,7 +5,6 @@ package dominio;
 
 import java.util.ArrayList;
 
-import died.parcial02.ejercicio02.Ciudad;
 
 /**
  * @author esteb
@@ -28,6 +27,7 @@ public class Planta {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
