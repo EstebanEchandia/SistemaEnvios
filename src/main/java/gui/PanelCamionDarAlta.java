@@ -9,8 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-public class PanelCamion extends JPanel{
+public class PanelCamionDarAlta extends JPanel {
 	
 	private JLabel lblPatente = new JLabel("Patente:");
 	private JTextField txtPatente;
@@ -37,7 +36,7 @@ public class PanelCamion extends JPanel{
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	
-	public void PanelCamiones(){
+	public void PanelCamionesDarAlta(){
 	}
 	
 	public void armarPanel() {
@@ -74,6 +73,7 @@ public class PanelCamion extends JPanel{
 		
 		this.btnCancelar = new JButton("Cancelar");
 		this.add(btnCancelar);
+
 	}
 
 	public JLabel getLblPatente() {
@@ -211,5 +211,4 @@ public class PanelCamion extends JPanel{
 	public void setBtnCancelar(JButton btnCancelar) {
 		this.btnCancelar = btnCancelar;
 	}
-
 }

@@ -39,7 +39,7 @@ public class PanelInsumo extends JPanel{
 		this.add(txtDescripcion);
 		
 		this.txtUnidadDeMedida = new JTextField(20);
-		this.add(lblDescripcion);
+		this.add(lblUnidadDeMedida);
 		this.add(txtUnidadDeMedida);
 		
 		this.txtCosto = new JTextField(20);
