@@ -4,12 +4,17 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
+
 
 import gui.PanelAyuda;
 import gui.PanelCamionDarAlta;
@@ -18,6 +23,7 @@ import gui.PanelCamionEditar;
 import gui.PanelGrafoPlanta;
 import gui.PanelInsumo;
 import gui.PanelPlanta;
+import dao.utils.DB;
 
 public class App extends JFrame{
 	JMenuBar menuBar;
@@ -144,13 +150,20 @@ public class App extends JFrame{
 			};
 		});
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		App app = new App();
 		app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		app.armarApp();
 		app.setPreferredSize(new Dimension(1020, 750));
 		app.setSize(1020, 750);
 		app.setVisible(true);
-		System.out.println("app creada");
+		
+		
+		Connection conn = DB.get();
+		Statement st = conn.createStatement();
+		int res = st.executeUpdate("SELECT * FROM trabajopractico.camion where camion.id::integer = " + 1);
+
+		
+		
 	}
 }
