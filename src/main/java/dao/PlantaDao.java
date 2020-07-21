@@ -1,5 +1,12 @@
 package dao;
 
-public class PlantaDao {
+import dominio.Planta;
+
+public interface PlantaDao {
+	
+	public Planta saveOrUpdatePlanta();
+	public Planta buscarPlanta();
+	
+	
 
 }
