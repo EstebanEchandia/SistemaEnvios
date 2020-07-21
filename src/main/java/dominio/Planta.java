@@ -5,6 +5,10 @@ package dominio;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> baseDeDatos
 /**
  * @author esteb
  *
@@ -26,6 +30,7 @@ public class Planta {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

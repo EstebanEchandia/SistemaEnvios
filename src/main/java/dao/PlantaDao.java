@@ -7,6 +7,5 @@ public interface PlantaDao {
 	public Planta saveOrUpdatePlanta();
 	public Planta buscarPlanta();
 	
-	
 
 }
