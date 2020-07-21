@@ -5,10 +5,6 @@ package dominio;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> baseDeDatos
 /**
  * @author esteb
  *
