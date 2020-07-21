@@ -3,11 +3,13 @@
  */
 package dominio;
 
+import estructuras.Arista;
+
 /**
  * @author esteb
  *
  */
-public class Ruta {
+public class Ruta  extends Arista{
 	
 	private Double distanciaEnKm;
 	private Double distanciaEnM;

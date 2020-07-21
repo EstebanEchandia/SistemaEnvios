@@ -3,6 +3,8 @@
  */
 package dominio;
 
+import estructuras.Grafo;
+
 /**
  * @author esteb
  *

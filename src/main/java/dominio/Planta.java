@@ -5,8 +5,6 @@ package dominio;
 
 import java.util.ArrayList;
 
-import died.parcial02.ejercicio02.Ciudad;
-
 /**
  * @author esteb
  *

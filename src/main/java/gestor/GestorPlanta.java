@@ -2,6 +2,7 @@ package gestor;
 
 import java.util.ArrayList;
 
+import dominio.GrafoPlantas;
 import dominio.Planta;
 
 public class GestorPlanta {

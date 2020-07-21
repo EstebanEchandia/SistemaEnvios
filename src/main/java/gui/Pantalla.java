@@ -1,5 +1,5 @@
 package gui;
 
-public class Pantalla {
+public class Pantalla{
 
 }
