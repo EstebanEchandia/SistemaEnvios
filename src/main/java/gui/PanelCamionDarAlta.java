@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -40,6 +41,9 @@ public class PanelCamionDarAlta extends JPanel {
 	}
 	
 	public void armarPanel() {
+		
+		this.setBackground(Color.yellow);
+		
 		this.txtPatente = new JTextField(20);
 		this.add(lblPatente);
 		this.add(txtPatente);

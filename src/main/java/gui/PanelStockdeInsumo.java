@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,4 +26,13 @@ public class PanelStockdeInsumo  extends JPanel{
 	
 	private JButton btnGuardar;
 	private JButton btnCancelar;
+	
+	public void PanelInsumo(){
+	}
+
+	public void armarPanel() {
+		
+		this.setBackground(Color.orange);
+		
+	}
 }

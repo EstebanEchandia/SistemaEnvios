@@ -21,15 +21,17 @@ import gui.PanelCamionDarAlta;
 import gui.PanelCamionDarBaja;
 import gui.PanelCamionEditar;
 import gui.PanelGrafoPlanta;
-import gui.PanelInsumo;
+import gui.PanelInsumoDarAlta;
+import gui.PanelInsumoDarBaja;
+import gui.PanelInsumoEditar;
 import gui.PanelPlanta;
+import gui.PanelStockdeInsumo;
 import dao.utils.DB;
 
 public class App extends JFrame{
 	JMenuBar menuBar;
-	JMenu menuEntidades;
 	JMenu menuCamion;
-	JMenu menuPedido;
+	JMenu menuPlanta;
 	JMenu menuInsumo;
 	JMenu menuEnvio;
 	JMenu menuAyuda;
@@ -39,22 +41,18 @@ public class App extends JFrame{
 	JMenuItem menuItemCamionEditar;
 	JMenuItem menuItemCamionBaja;
 	
+	JMenuItem menuItemInsumoAlta;
+	JMenuItem menuItemInsumoEditar;
+	JMenuItem menuItemInsumoBaja;
+	JMenuItem menuItemInsumoStock;
+	
 	JMenuItem menuItemPlanta;
-	JMenuItem menuItemInsumo;
-
-	private void armarApp() {
-		this.menuBar = new JMenuBar();
-		/*  Creo todos los menus desplegables de la barra  */
-		this.menuEntidades = new JMenu("Entidades");
-		this.menuCamion = new JMenu("Camion");
-		this.menuAyuda = new JMenu("Ayuda");
-
-
-		
+	JMenuItem menuItemPlantaGrafo;
+	
+	private void armarMenuCamion() {
 		/*	Panel AltaCamion  */
 		this.menuItemCamionAlta = new JMenuItem("Dar de alta Camion");
 		this.menuItemCamionAlta.addActionListener( e -> {
-			System.out.println("Panel alta Camion");
 			PanelCamionDarAlta a = new PanelCamionDarAlta();
 			a.armarPanel();
 			this.setContentPane(a);
@@ -67,7 +65,6 @@ public class App extends JFrame{
 		/*	Panel EditarCamion  */
 		this.menuItemCamionEditar = new JMenuItem("Editar Camion");
 		this.menuItemCamionEditar.addActionListener( e -> {
-			System.out.println("Panel editar Camion");
 			PanelCamionEditar a = new PanelCamionEditar();
 			a.armarPanel();
 			this.setContentPane(a);
@@ -79,7 +76,6 @@ public class App extends JFrame{
 		/*	Panel BajaCamion  */
 		this.menuItemCamionBaja = new JMenuItem("Baja Camion");
 		this.menuItemCamionBaja.addActionListener( e -> {
-			System.out.println("Panel baja Camion");
 			PanelCamionDarBaja a = new PanelCamionDarBaja();
 			a.armarPanel();
 			this.setContentPane(a);
@@ -87,50 +83,88 @@ public class App extends JFrame{
 		});
 
 		this.menuCamion.add(menuItemCamionBaja);
-		
+	}
+	private void armarMenuPlanta() {
 		
 		/*  Panel Planta  */
 		this.menuItemPlanta = new JMenuItem("Planta");
 		this.menuItemPlanta.addActionListener( e -> {
-			System.out.println("Panel Planta");
 			PanelPlanta a = new PanelPlanta();
 			a.armarPanel();
 			this.setContentPane(a);
 			this.pack();
 		});
 
-		this.menuEntidades.add(menuItemPlanta);
-		
-		
-		/*  Panel Insumo  */
-		this.menuItemInsumo = new JMenuItem("Insumo");
-		this.menuItemInsumo.addActionListener( e -> {
-			System.out.println("Panel Insumo");
-			PanelInsumo a = new PanelInsumo();
-			a.armarPanel();
-			this.setContentPane(a);
-			this.pack();
-		});
-
-		this.menuEntidades.add(menuItemInsumo);
+		this.menuPlanta.add(menuItemPlanta);
 		
 		
 		/*  Panel GrafoPlanta  */
-		this.menuItemInsumo = new JMenuItem("Grafo Plantas");
-		this.menuItemInsumo.addActionListener( e -> {
-			System.out.println("Panel GrafoPlanta");
+		this.menuItemPlantaGrafo = new JMenuItem("Grafo Plantas");
+		this.menuItemPlantaGrafo.addActionListener( e -> {
 			PanelGrafoPlanta a = new PanelGrafoPlanta();
 			a.armarPanel();
 			this.setContentPane(a);
 			this.pack();
 		});
 
-		this.menuEntidades.add(menuItemInsumo);
+		this.menuPlanta.add(menuItemPlantaGrafo);
 		
+	}
+	private void armarMenuInsumo() {
+		
+		/*  Panel AltaInsumo  */
+		this.menuItemInsumoAlta = new JMenuItem("Dar de alta Insumo");
+		this.menuItemInsumoAlta.addActionListener( e -> {
+			PanelInsumoDarAlta a = new PanelInsumoDarAlta();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
+
+		this.menuInsumo.add(menuItemInsumoAlta);
+		
+		
+		/*	Panel EditarInsumo  */
+		this.menuItemInsumoEditar = new JMenuItem("Editar Insumo");
+		this.menuItemInsumoEditar.addActionListener( e -> {
+			PanelInsumoEditar a = new PanelInsumoEditar();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
+
+		this.menuInsumo.add(menuItemInsumoEditar);
+		
+		/*	Panel BajaInsumo  */
+		this.menuItemInsumoBaja = new JMenuItem("Baja Insumo");
+		this.menuItemInsumoBaja.addActionListener( e -> {
+			PanelInsumoDarBaja a = new PanelInsumoDarBaja();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
+
+		this.menuInsumo.add(menuItemInsumoBaja);
+		
+		
+		/*  Panel StockInsumo  */
+		this.menuItemInsumoStock = new JMenuItem("Cambiar el stock de un insumo en todas las platas");
+		this.menuItemInsumoStock.addActionListener( e -> {
+			PanelStockdeInsumo a = new PanelStockdeInsumo();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
+
+		this.menuInsumo.add(menuItemInsumoStock);
+	}
+	private void armarMenuEnvio() {
+		
+	}
+	private void armarMenuAyuda() {
 		/*  Panel Ayuda  */
 		this.menuItemAyuda = new JMenuItem("Manual");
 		this.menuItemAyuda.addActionListener( e -> {
-			System.out.println("Panel Ayuda");
 			PanelAyuda a = new PanelAyuda();
 			a.armarPanel();
 			this.setContentPane(a);
@@ -138,10 +172,30 @@ public class App extends JFrame{
 		});
 		this.menuItemAyuda.setMnemonic(KeyEvent.VK_F1);
 		this.menuAyuda.add(menuItemAyuda);
+	}
+
+	private void armarApp() {
+		this.menuBar = new JMenuBar();
+		/*  Creo todos los menus desplegables de la barra  */
+		this.menuCamion = new JMenu("Camion");
+		this.menuPlanta = new JMenu("Planta");
+		this.menuInsumo = new JMenu("Insumo");
+		this.menuEnvio = new JMenu("Envio");
+		this.menuAyuda = new JMenu("Ayuda");
+
+
+		armarMenuCamion();
+		armarMenuPlanta();
+		armarMenuInsumo();
+		armarMenuEnvio();
+		armarMenuAyuda();
+		
 
 		/*  Aniadimos los menus a la barra de menus   */
-		menuBar.add(this.menuEntidades);
 		menuBar.add(this.menuCamion);
+		menuBar.add(this.menuPlanta);
+		menuBar.add(this.menuInsumo);
+		menuBar.add(this.menuEnvio);
 		menuBar.add(this.menuAyuda);
 		this.setJMenuBar(menuBar);
 		this.addWindowListener( new WindowAdapter() {

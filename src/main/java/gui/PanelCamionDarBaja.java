@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -10,6 +12,9 @@ public class PanelCamionDarBaja extends JPanel {
 	}
 	
 	public void armarPanel() {
+		
+		this.setBackground(Color.yellow);
+		
 		this.add(lblDarDeBajaCamion);
 	}
 }

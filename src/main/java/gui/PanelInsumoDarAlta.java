@@ -1,15 +1,13 @@
 package gui;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.awt.Color;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PanelInsumo extends JPanel{
+public class PanelInsumoDarAlta extends JPanel {
 	
 	private JLabel lblDescripcion = new JLabel("Descripcion:");
 	private JTextField txtDescripcion;
@@ -33,6 +31,8 @@ public class PanelInsumo extends JPanel{
 	}
 	
 	public void armarPanel() {
+		
+		this.setBackground(Color.orange);
 		
 		this.txtDescripcion = new JTextField(20);
 		this.add(lblDescripcion);
