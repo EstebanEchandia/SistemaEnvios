@@ -11,7 +11,7 @@ import enums.Unidad;
  */
 public class Insumo {
 	
-	private String id;
+	private Integer id;
 	private String descripcion;
 	private Double costo;
 	private Unidad unidad;

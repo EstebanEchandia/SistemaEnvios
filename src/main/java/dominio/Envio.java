@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Envio {
 	private Double costo;
-	private String id;
+	private Integer id;
 	private ArrayList<Ruta> rutas;
 	private Camion camion;
 	private Pedido pedido;

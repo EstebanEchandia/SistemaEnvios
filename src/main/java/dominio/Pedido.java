@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import enums.EstadoPedido;
 
 public class Pedido {
-	private String numeroDeOrden;
+	private Integer numeroDeOrden;
 	private LocalDateTime fechaSolicitud;
 	private LocalDateTime fechaEntrega;
 	private EstadoPedido estado;

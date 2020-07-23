@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Planta {
 	
-	private String id;
+	private Integer id;
 	private String nombre;
 	private ArrayList<Insumo> listaInsumos = new ArrayList<Insumo>();
 	private ArrayList<Pedido> listaPedidosEntrantes = new ArrayList<Pedido>();
@@ -40,5 +40,9 @@ public class Planta {
 		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
+	}
+
+	public Integer getId() {
+			return id;
 	}
 }

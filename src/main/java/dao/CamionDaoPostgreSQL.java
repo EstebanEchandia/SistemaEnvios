@@ -1,14 +1,14 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import dao.utils.DB;
 import dominio.Camion;
 
 public class CamionDaoPostgreSQL implements CamionDao{
 
-	@Override
-	public Camion altaCamion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Camion recuperarCamion() {
@@ -16,10 +16,63 @@ public class CamionDaoPostgreSQL implements CamionDao{
 		return null;
 	}
 
-	@Override
-	public Camion modificarCamion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	private static final String TABLA_CREATE = 
+//			"CREATE TABLE  IF NOT EXISTS `died`.`camion` ( "+
+//			"		  `ID` INT NOT NULL AUTO_INCREMENT, "+
+//			"		  `PATENTE` VARCHAR(14) NULL, "+
+//			"		  `MARCA` VARCHAR(45) NULL, "+
+//			"		  `MODELO` VARCHAR(45) NULL, "+
+//			"		  `KM` VARCHAR(45) NULL, "+
+//			"		  `CAMIONcol` INT NULL, "+
+//			"		  PRIMARY KEY (`ID`)) ";
+
+			private static final String INSERT_CAMION =
+					"INSERT INTO CAMION (MODELO,KMRECORRIDOS,COSTOPORKM,COSTOPORHORA,FECHADECOMPRA,IDPLANTA) VALUES (?,?,?,?,?,?)";
+			
+			private static final String UPDATE_CAMION =
+					" UPDATE CAMION SET MODELO = ?, KMRECORRIDOS = ?, COSTOPORKM = ?,COSTOPORHORA = ?,FECHADECOMPRA = ?, IDPLANTA = ?"
+					+ " WHERE ID = ?";
+			
+//			private void verificarTablas() {
+//				TABLA_CREATE
+//			}
+			
+			@Override
+			public Camion altaOModificacionCamion(Camion c) {
+				Connection conn = DB.get();
+				PreparedStatement pstmt = null;
+				try {
+					if(c.getId()!=null && c.getId()>0) {
+						pstmt= conn.prepareStatement(UPDATE_CAMION);
+						pstmt.setString(1, c.getModelo());
+						pstmt.setDouble(2, c.getKmRecorridos());
+						pstmt.setDouble(3, c.getCostoPorKm());
+						pstmt.setDouble(4, c.getCostoPorHora());
+						pstmt.setObject(5, c.getFechaDeCompra());
+						pstmt.setInt(6, c.getPlanta());
+						pstmt.setInt(7, c.getId());
+					}else {
+						pstmt= conn.prepareStatement(INSERT_CAMION);
+						
+						pstmt.setString(1, c.getModelo());
+						pstmt.setDouble(2, c.getKmRecorridos());
+						pstmt.setDouble(3, c.getCostoPorKm());
+						pstmt.setDouble(4, c.getCostoPorHora());
+						pstmt.setObject(5, c.getFechaDeCompra());
+						pstmt.setInt(6, c.getPlanta());
+					}
+					pstmt.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					try {
+						if(pstmt!=null) pstmt.close();
+						if(conn!=null) conn.close();				
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				return c;
+			}
 
 }
