@@ -84,6 +84,7 @@ public class App extends JFrame{
 
 		this.menuCamion.add(menuItemCamionBaja);
 	}
+	
 	private void armarMenuPlanta() {
 		
 		/*  Panel Planta  */
@@ -215,7 +216,7 @@ public class App extends JFrame{
 		
 		Connection conn = DB.get();
 		Statement st = conn.createStatement();
-		int res = st.executeUpdate("SELECT * FROM trabajopractico.camion where camion.id::integer = " + 1);
+		int res = st.executeUpdate("SELECT * FROM trabajopractico.camion where camion.id::varchar =" + (String)" 1");
 
 		
 		

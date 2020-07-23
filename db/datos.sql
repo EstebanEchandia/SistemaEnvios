@@ -1,15 +1,19 @@
 
-insert into trabajopractico.planta (id, nombre) values (1, 'Lyaskelya');
-insert into trabajopractico.planta (id, nombre) values (2, 'Moravská Třebová');
-insert into trabajopractico.planta (id, nombre) values (3, 'Mercedes');
-insert into trabajopractico.planta (id, nombre) values (4, 'Pulaukijang');
-insert into trabajopractico.planta (id, nombre) values (5, 'Ajasse Ipo');
-insert into trabajopractico.planta (id, nombre) values (6, 'Chigorodó');
-insert into trabajopractico.planta (id, nombre) values (7, 'Langtang');
-insert into trabajopractico.planta (id, nombre) values (8, 'Säffle');
-insert into trabajopractico.planta (id, nombre) values (9, 'Bakersfield');
-insert into trabajopractico.planta (id, nombre) values (10, 'Betioky');
-
+insert into trabajopractico.planta (nombre) values ('Yangxi');
+insert into trabajopractico.planta (nombre) values ('Cumaná');
+insert into trabajopractico.planta (nombre) values ('Derbent');
+insert into trabajopractico.planta (nombre) values ('Tagoloan');
+insert into trabajopractico.planta (nombre) values ('Nobinobi');
+insert into trabajopractico.planta (nombre) values ('Deskle');
+insert into trabajopractico.planta (nombre) values ('Parung');
+insert into trabajopractico.planta (nombre) values ('Sosnovka');
+insert into trabajopractico.planta (nombre) values ('Uddevalla');
+insert into trabajopractico.planta (nombre) values ('El Fureidīs');
+insert into trabajopractico.planta (nombre) values ('Zhongfang');
+insert into trabajopractico.planta (nombre) values ('Salaš Crnobarski');
+insert into trabajopractico.planta (nombre) values ('Masindi');
+insert into trabajopractico.planta (nombre) values ('Anao');
+insert into trabajopractico.planta (nombre) values ('Corrientes');
 
 insert into trabajopractico.camion (id, nombre, modelo, kmrecorridos, costoporkm, costoporhora, fechadecompra, idplanta) values (1, 'Greenfelder and Sons', 'xB', 286143.34, 135.64, 20020.22, '2020-06-07 05:49:31', 5);
 insert into trabajopractico.camion (id, nombre, modelo, kmrecorridos, costoporkm, costoporhora, fechadecompra, idplanta) values (2, 'Hamill Group', 'Range Rover', 419440.098, 590.78, 48551.45, '2020-06-02 15:29:51', 2);

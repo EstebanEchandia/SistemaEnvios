@@ -3,7 +3,7 @@ CREATE SCHEMA trabajoPractico
 	CREATE TABLE trabajoPractico.planta
 	
 			(
-			id varchar(32),
+			id SERIAL,
 			nombre varchar(100),
 
 			CONSTRAINT pk_idPlanta PRIMARY KEY (id)
@@ -12,14 +12,14 @@ CREATE SCHEMA trabajoPractico
 	CREATE TABLE trabajoPractico.camion
 		(	
 			
-			id varchar(32),
-			nombre varchar(100),
+			id SERIAL,
+			nombre varchar(100) NOT NULL,
 			modelo varchar(100),
 			kmRecorridos numeric(20,2),
 			costoPorKm numeric(20,2),
 			costoPorHora numeric(20,2),
-			fechaDeCompra date,
-			idPlanta varchar(32),
+			fechaDeCompra date NOT NULL,
+			idPlanta integer ,
 
 			CONSTRAINT pk_idCamion PRIMARY KEY (id),
 			
@@ -30,12 +30,11 @@ CREATE SCHEMA trabajoPractico
 
 
 
-
 	CREATE TABLE trabajoPractico.envio
 			(
-			id varchar(32),
-			costo numeric(20,2),
-			idCamion varchar(32),
+			id SERIAL,
+			costo numeric(20,2) NOT NULL,
+			idCamion integer NOT NULL,
 
 			CONSTRAINT pk_idEnvio PRIMARY KEY (id),
 			CONSTRAINT fk_idCamion FOREIGN KEY (idCamion)
@@ -47,13 +46,13 @@ CREATE SCHEMA trabajoPractico
 
 	CREATE TABLE trabajoPractico.pedido
 			(
-			numeroDeOrden varchar(32),
+			numeroDeOrden SERIAL,
 			fechaSolicitud date,
 			fechaEntrega date,
-			estado estados,
-			idEnvio varchar(32),
-			plantaOrigen varchar(32),
-			plantaDestino varchar(32),
+			estado estados NOT NULL,
+			idEnvio integer,
+			plantaOrigen integer,
+			plantaDestino integer,
 			
 
 			CONSTRAINT pk_nroOrden PRIMARY KEY (numeroDeOrden),
@@ -76,10 +75,10 @@ CREATE SCHEMA trabajoPractico
 	CREATE TABLE trabajoPractico.insumo
 	(
 
-			id varchar(32),
+			id SERIAL,
 			descripcion varchar(100),
-			unidadDeMedida unidad,
-			costo numeric(20,2),
+			unidadDeMedida unidad NOT NULL,
+			costo numeric(20,2) NOT NULL,
 
 			CONSTRAINT pk_idInsumo PRIMARY KEY (id)
 		);
@@ -87,10 +86,10 @@ CREATE SCHEMA trabajoPractico
 		
 	CREATE TABLE trabajoPractico.itempedido
 			(
-			id varchar(32),
+			id SERIAL,
 			cantidad numeric(20,2),
-			numeroDeOrden varchar(32),
-			idInsumo varchar(32),
+			numeroDeOrden integer,
+			idInsumo integer,
 
 			CONSTRAINT pk_idItemPedido PRIMARY KEY (id),
 
@@ -106,8 +105,8 @@ CREATE SCHEMA trabajoPractico
 
 	CREATE TABLE trabajoPractico.insumoLiquido
 		(
-			id varchar(32),
-			densidad numeric(20,2),
+			id integer,
+			densidad numeric(20,2) NOT NULL,
 
 			CONSTRAINT pk_idInsumoLiquido PRIMARY KEY (id),
 
@@ -117,8 +116,8 @@ CREATE SCHEMA trabajoPractico
 
 	CREATE TABLE trabajoPractico.insumoGeneral
 		(
-			id varchar(32),
-			peso numeric(20,2),
+			id integer,
+			peso numeric(20,2) NOT NULL,
 
 			CONSTRAINT pk_idInsumoGeneral PRIMARY KEY (id),
 
@@ -131,11 +130,11 @@ CREATE SCHEMA trabajoPractico
 
 	CREATE TABLE trabajoPractico.stock
 		(
-			id varchar(32),
+			id SERIAL,
 			cantidad numeric(20,2),
-			ptoMinimoDePedido numeric(20,2),
-			idInsumo varchar(32),
-			idPlanta varchar(32),
+			ptoMinimoDePedido numeric(20,2) ,
+			idInsumo integer,
+			idPlanta integer,
 
 			CONSTRAINT pk_idStock PRIMARY KEY (id),
 
