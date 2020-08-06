@@ -39,7 +39,7 @@ public class CamionDaoPostgreSQL implements CamionDao{
 			
 			@Override
 			public Camion altaOModificacionCamion(Camion c) {
-				Connection conn = DB.get();
+				Connection conn = DB.getConnection();
 				PreparedStatement pstmt = null;
 				try {
 					if(c.getId()!=null && c.getId()>0) {
