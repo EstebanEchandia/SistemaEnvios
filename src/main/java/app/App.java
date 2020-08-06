@@ -1,6 +1,8 @@
 package app;
 
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -9,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -48,6 +51,8 @@ public class App extends JFrame{
 	
 	JMenuItem menuItemPlanta;
 	JMenuItem menuItemPlantaGrafo;
+	
+	Point centro = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 	
 	private void armarMenuCamion() {
 		/*	Panel AltaCamion  */
@@ -209,8 +214,10 @@ public class App extends JFrame{
 		App app = new App();
 		app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		app.armarApp();
-		app.setPreferredSize(new Dimension(1020, 750));
-		app.setSize(1020, 750);
+		app.setPreferredSize(new Dimension(900, 560));
+		app.setSize(900, 600);
+		app.setLocation(app.centro.x - (int) app.getSize().getWidth()/2,app.centro.y - (int)app.getSize().getHeight()/2);
+		app.setIconImage(new ImageIcon(app.getClass().getResource("/imagenes/COVID19.png")).getImage());
 		app.setVisible(true);
 		
 		
