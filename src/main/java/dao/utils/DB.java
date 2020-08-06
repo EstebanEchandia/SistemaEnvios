@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DB {
 	
-	private static final String url ="jdbc:postgresql://tpdied.cquiwsbyjbxy.sa-east-1.rds.amazonaws.com:5432/postgres";
+	private static final String url ="jdbc:postgresql://tpdied.cquiwsbyjbxy.sa-east-1.rds.amazonaws.com:5432/DIED-Estenan-Santiago";
 	private static final String user="root";
 	private static final String pass="trabajopracticodied";
 

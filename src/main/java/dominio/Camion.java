@@ -19,7 +19,7 @@ public class Camion {
 	
 	
 	public Camion(Integer id, String patente, String modelo, Double kmRecorridos, Double costoPorKm,
-			Double costoPorHora, LocalDate fechaDeCompra, Integer idPlanta) {
+			Double costoPorHora, LocalDate fechaDeCompra) {
 		
 		super();
 		this.id = id;
@@ -29,7 +29,6 @@ public class Camion {
 		this.costoPorKm = costoPorKm;
 		this.costoPorHora = costoPorHora;
 		this.fechaDeCompra = fechaDeCompra;
-		this.planta = planta.getPlantaConId(idPlanta);
 		
 	}
 	
@@ -84,11 +83,11 @@ public class Camion {
 	public void setEnvios(ArrayList<Envio> envios) {
 		this.envios = envios;
 	}
-	public Integer getPlanta() {
-		return planta.getId();
-	}
-	public void setPlanta(Planta planta) {
-		this.planta = planta;
-	}
+//	public Integer getPlanta() {
+//		return planta.getId();
+//	}
+//	public void setPlanta(Planta planta) {
+//		this.planta = planta;
+//	}
 	
 }

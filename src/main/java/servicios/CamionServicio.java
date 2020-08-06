@@ -5,6 +5,7 @@ import dao.CamionDaoPostgreSQL;
 import dominio.Camion;
 
 public class CamionServicio {
+	
 	private CamionDao camionDao = new CamionDaoPostgreSQL();
 
 	public Camion altaCamion(Camion c) {

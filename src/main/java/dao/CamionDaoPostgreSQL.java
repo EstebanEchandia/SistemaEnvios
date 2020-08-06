@@ -1,10 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 
 import dao.utils.DB;
 import dominio.Camion;
@@ -29,7 +31,8 @@ public class CamionDaoPostgreSQL implements CamionDao{
 //			"		  PRIMARY KEY (`ID`)) ";
 
 			private static final String INSERT_CAMION =
-					"INSERT INTO CAMION (PATENTE,MODELO,KMRECORRIDOS,COSTOPORKM,COSTOPORHORA,FECHADECOMPRA,IDPLANTA) VALUES (?,?,?,?,?,?)";
+					"INSERT INTO trabajopractico.CAMION (PATENTE,MODELO,KMRECORRIDOS,COSTOPORKM,COSTOPORHORA,FECHADECOMPRA,IDPLANTA)"+""
+							+ " VALUES (?,?,?,?,?,?,?)";
 			
 			private static final String UPDATE_CAMION =
 					" UPDATE CAMION SET PATENTE = ?,MODELO = ?, KMRECORRIDOS = ?, COSTOPORKM = ?,COSTOPORHORA = ?,FECHADECOMPRA = ?, IDPLANTA = ?"
@@ -66,7 +69,6 @@ public class CamionDaoPostgreSQL implements CamionDao{
 				}
 				return null;
 				
-				
 			}
 			
 			@Override
@@ -82,9 +84,13 @@ public class CamionDaoPostgreSQL implements CamionDao{
 					pstmt.setDouble(3, c.getKmRecorridos());
 					pstmt.setDouble(4, c.getCostoPorKm());
 					pstmt.setDouble(5, c.getCostoPorHora());
-					pstmt.setObject(6, c.getFechaDeCompra());
-					pstmt.setInt(7, c.getPlanta());
+					pstmt.setDate(6, Date.valueOf(c.getFechaDeCompra()));
+					pstmt.setInt(7, 1); //ACA AGARRA LA PLANTA NO UN UNO
+					pstmt.executeUpdate();
+					System.out.println("Termine de crear");
 					
+					
+					System.out.println(c.getFechaDeCompra().format(DateTimeFormatter.ofPattern("dd-MM-uuuu")));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				
@@ -96,6 +102,7 @@ public class CamionDaoPostgreSQL implements CamionDao{
 						e.printStackTrace();
 					}
 				}
+				System.out.println("Devuelvo camion");
 				return c;
 				
 			}

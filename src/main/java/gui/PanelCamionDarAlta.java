@@ -5,12 +5,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import gestor.GestorCamion;
 
 public class PanelCamionDarAlta extends JPanel {
 	
@@ -38,6 +41,8 @@ public class PanelCamionDarAlta extends JPanel {
 	
 	private JButton btnGuardar;
 	private JButton btnCancelar;
+	
+	private GestorCamion gestorCamion = new GestorCamion();
 	
 	public void PanelCamionDarAlta(){
 	}
@@ -67,7 +72,7 @@ public class PanelCamionDarAlta extends JPanel {
 		this.add(lblMarca);
 		this.add(txtMarca);
 		
-		this.txtFechaCompra = new JFormattedTextField(80);
+		this.txtFechaCompra = new JFormattedTextField();
 		this.txtFechaCompra.setBounds(130, 120, 100, 20);
 		this.lblFechaDeCompra.setBounds(10, 120, 120, 20);
 		this.add(lblFechaDeCompra);
@@ -83,7 +88,7 @@ public class PanelCamionDarAlta extends JPanel {
 		this.txtCostoPorKm.setBounds(130, 180, 100, 20);
 		this.lblCostoPorKm.setBounds(10, 180, 100, 20);
 		this.add(lblCostoPorKm);
-		this.add(txtCostoPorKm);
+		this.add(txtCostoPorKm);  
 		
 		this.txtCostoPorHora = new JTextField(30);
 		this.txtCostoPorHora.setBounds(130, 210, 100, 20);
@@ -92,6 +97,12 @@ public class PanelCamionDarAlta extends JPanel {
 		this.add(txtCostoPorHora);
 		
 		this.btnGuardar = new JButton("Dar Alta");
+		this.btnGuardar.addActionListener( e -> gestorCamion.altaCamion(this.getTxtPatente().getText(),
+																	this.getTxtModelo().getText(),
+																	Double.parseDouble(this.getTxtKmRecorridos().getText()),
+																	Double.parseDouble(this.getTxtCostoPorKm().getText()),
+																	Double.parseDouble(this.getTxtCostoPorHora().getText()),
+																	LocalDate.parse(this.getTxtFechaCompra().getText()),1));
 		this.btnGuardar.setBounds(300, 400, 100, 40);
 		this.add(btnGuardar);
 		
