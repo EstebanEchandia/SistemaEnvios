@@ -214,7 +214,7 @@ public class App extends JFrame{
 		app.setVisible(true);
 		
 		
-		Connection conn = DB.get();
+		Connection conn = DB.crearConnection();
 		Statement st = conn.createStatement();
 	//	int res = st.executeUpdate("SELECT * FROM trabajopractico.camion where camion.id::varchar equals" + ' 1');
 
