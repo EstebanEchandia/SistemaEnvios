@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PanelAyuda extends JPanel{
+	
 	private JLabel lblAyuda = new JLabel("Tu vieja en tanga");
 	
 	public void PanelAyuda(){
