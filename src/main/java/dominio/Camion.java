@@ -17,6 +17,23 @@ public class Camion {
 	private Planta planta;
 	
 	
+	
+	public Camion(Integer id, String patente, String modelo, Double kmRecorridos, Double costoPorKm,
+			Double costoPorHora, LocalDate fechaDeCompra, Integer idPlanta) {
+		
+		super();
+		this.id = id;
+		this.patente = patente;
+		this.modelo = modelo;
+		this.kmRecorridos = kmRecorridos;
+		this.costoPorKm = costoPorKm;
+		this.costoPorHora = costoPorHora;
+		this.fechaDeCompra = fechaDeCompra;
+		this.planta = planta.getPlantaConId(idPlanta);
+		
+	}
+	
+
 	public String getPatente() {
 		return patente;
 	}

@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import dao.utils.DB;
 import dominio.Camion;
@@ -38,12 +40,78 @@ public class CamionDaoPostgreSQL implements CamionDao{
 //			}
 			
 			@Override
-			public Camion altaOModificacionCamion(Camion c) {
+			public Integer getUltimoId() {
+				
+				String GET_LAST_ID = "select max(id) from trabajopractico.camion;";
+						
+				Connection conn = DB.getConnection();
+				Statement pstmt = null;
+				
+				try{
+					
+					System.out.println("Buscando ultimo ID");
+					Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery(GET_LAST_ID);
+					return rs.getInt(1);
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					try {
+						if(pstmt!=null) pstmt.close();
+						if(conn!=null) conn.close();				
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				return null;
+				
+				
+			}
+			
+			@Override
+			public Camion altaCamion(Camion c) {
 				Connection conn = DB.getConnection();
 				PreparedStatement pstmt = null;
+				
+				System.out.println("Cree camion");
 				try {
-					if(c.getId()!=null && c.getId()>0) {
-						pstmt= conn.prepareStatement(UPDATE_CAMION);
+					pstmt = conn.prepareStatement(INSERT_CAMION);
+					pstmt.setString(1, c.getPatente());
+					pstmt.setString(2, c.getModelo());
+					pstmt.setDouble(3, c.getKmRecorridos());
+					pstmt.setDouble(4, c.getCostoPorKm());
+					pstmt.setDouble(5, c.getCostoPorHora());
+					pstmt.setObject(6, c.getFechaDeCompra());
+					pstmt.setInt(7, c.getPlanta());
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				
+				}finally {
+					try {
+						if(pstmt!=null) pstmt.close();
+						if(conn!=null) conn.close();				
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				return c;
+				
+			}
+			
+			
+			@Override
+			public Camion updateCamion(Camion c) {
+				
+				Connection conn = DB.getConnection();
+				PreparedStatement pstmt = null;
+				
+				try {
+						System.out.println("updatie");
+						
+						pstmt = conn.prepareStatement(UPDATE_CAMION);
+						
 						pstmt.setString(1, c.getPatente());
 						pstmt.setString(2, c.getModelo());
 						pstmt.setDouble(3, c.getKmRecorridos());
@@ -51,20 +119,12 @@ public class CamionDaoPostgreSQL implements CamionDao{
 						pstmt.setDouble(5, c.getCostoPorHora());
 						pstmt.setObject(6, c.getFechaDeCompra());
 						pstmt.setInt(7, c.getPlanta());
+						
 						pstmt.setInt(8, c.getId());
 
 						pstmt.executeUpdate();
-					}else {
-						pstmt= conn.prepareStatement(INSERT_CAMION);
-						pstmt.setString(1, c.getPatente());
-						pstmt.setString(2, c.getModelo());
-						pstmt.setDouble(3, c.getKmRecorridos());
-						pstmt.setDouble(4, c.getCostoPorKm());
-						pstmt.setDouble(5, c.getCostoPorHora());
-						pstmt.setObject(6, c.getFechaDeCompra());
-						pstmt.setInt(7, c.getPlanta());
-					}
-					pstmt.executeUpdate();
+		
+					
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}finally {
@@ -77,5 +137,7 @@ public class CamionDaoPostgreSQL implements CamionDao{
 				}
 				return c;
 			}
+			
+		
 
 }

@@ -27,6 +27,6 @@ public class DB {
 	}
 	
 	public static Connection getConnection() {
-			return crearConexion();
+			return crearConnection();
 		}
 }
