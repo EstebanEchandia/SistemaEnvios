@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 public class PanelAyuda extends JPanel{
 	
-	private JLabel lblAyuda = new JLabel("Tu vieja en tanga");
+	private JLabel lblAyuda = new JLabel("Ayuda");
 	
 	public void PanelAyuda(){
 	}

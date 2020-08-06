@@ -52,7 +52,7 @@ public class CamionDaoPostgreSQL implements CamionDao{
 						pstmt.setObject(6, c.getFechaDeCompra());
 						pstmt.setInt(7, c.getPlanta());
 						pstmt.setInt(8, c.getId());
-						
+
 						pstmt.executeUpdate();
 					}else {
 						pstmt= conn.prepareStatement(INSERT_CAMION);
