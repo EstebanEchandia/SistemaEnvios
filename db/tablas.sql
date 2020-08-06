@@ -13,7 +13,8 @@ CREATE SCHEMA trabajoPractico
 		(	
 			
 			id SERIAL,
-			nombre varchar(100) NOT NULL,
+			
+			patente varchar(20),
 			modelo varchar(100),
 			kmRecorridos numeric(20,2),
 			costoPorKm numeric(20,2),
