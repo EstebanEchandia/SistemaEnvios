@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -12,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import gestor.GestorCamion;
 
 public class PanelCamionDarBaja extends JPanel {
 	
@@ -22,6 +25,8 @@ public class PanelCamionDarBaja extends JPanel {
 	private JButton btnCancelar;
 	
 	private JTextArea txtAreaExplicacion = new JTextArea("Escriba el ID del Camion a dar de baja y oprima Dar Baja");
+	
+	private GestorCamion gestorCamion = new GestorCamion();
 	
 	public void PanelCamionDarBaja(){
 	}
@@ -55,10 +60,16 @@ public class PanelCamionDarBaja extends JPanel {
 		this.txtAreaExplicacion.setEditable(false);
 		this.add(txtAreaExplicacion);
 		
+		this.btnGuardar.addActionListener( e -> gestorCamion.bajaCamion(Integer.parseInt(this.getTxtId().getText())));
+		
 	}
 
 	public JButton getBtnGuardar() {
 		return btnGuardar;
+	}
+	
+	public JTextField getTxtId() {
+		return txtId;
 	}
 
 	public void setBtnGuardar(JButton btnGuardar) {

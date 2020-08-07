@@ -93,7 +93,7 @@ public class PanelCamionDarAlta extends JPanel {
 																	Double.parseDouble(this.getTxtKmRecorridos().getText()),
 																	Double.parseDouble(this.getTxtCostoPorKm().getText()),
 																	Double.parseDouble(this.getTxtCostoPorHora().getText()),
-																	LocalDate.parse(this.getTxtFechaCompra().getText()),1));
+																	LocalDate.parse(this.getTxtFechaCompra().getText())));
 		this.btnGuardar.setBounds(300, 400, 100, 40);
 		this.add(btnGuardar);
 		

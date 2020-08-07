@@ -242,18 +242,6 @@ public class App extends JFrame{
 		app.setResizable(false);
 		app.setVisible(true);
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-		
-		
-		Connection conn = DB.crearConnection();
-		Statement st = conn.createStatement();
-	//	int res = st.executeUpdate("SELECT * FROM trabajopractico.camion where camion.id::varchar equals" + ' 1');
->>>>>>> 4cc8ec1c85155f4f7ca8e3d95e031937b2224767
-=======
-
->>>>>>> 0fce221afc300cd7639a481a29f6455185ede254
 
 		
 		

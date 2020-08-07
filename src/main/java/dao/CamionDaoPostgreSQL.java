@@ -15,11 +15,6 @@ import dominio.Camion;
 public class CamionDaoPostgreSQL implements CamionDao{
 
 
-	@Override
-	public Camion recuperarCamion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 //	private static final String TABLA_CREATE = 
 //			"CREATE TABLE  IF NOT EXISTS `died`.`camion` ( "+
@@ -168,6 +163,8 @@ public class CamionDaoPostgreSQL implements CamionDao{
 					pstmt.setInt(1, c.getId());
 
 					pstmt.executeUpdate();
+					
+					System.out.println("Camion borrado con exito");
 	
 				
 			} catch (SQLException e) {

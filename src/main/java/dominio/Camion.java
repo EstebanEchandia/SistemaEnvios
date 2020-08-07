@@ -1,8 +1,7 @@
 package dominio;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Camion {
