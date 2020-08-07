@@ -23,9 +23,6 @@ public class PanelCamionDarAlta extends JPanel {
 	private JLabel lblModelo = new JLabel("Modelo:");
 	private JTextField txtModelo;
 	
-	private JLabel lblMarca = new JLabel("Marca:");
-	private JTextField txtMarca;
-	
 	private JLabel lblFechaDeCompra = new JLabel("Fecha de  compra:");
 	private DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 	private JFormattedTextField txtFechaCompra = new JFormattedTextField(df);	
@@ -66,33 +63,27 @@ public class PanelCamionDarAlta extends JPanel {
 		this.add(lblModelo);
 		this.add(txtModelo);
 		
-		this.txtMarca = new JTextField(50);
-		this.txtMarca.setBounds(60, 80, 100, 20);
-		this.lblMarca.setBounds(10, 80, 100, 20);
-		this.add(lblMarca);
-		this.add(txtMarca);
-		
 		this.txtFechaCompra = new JFormattedTextField();
-		this.txtFechaCompra.setBounds(130, 120, 100, 20);
-		this.lblFechaDeCompra.setBounds(10, 120, 120, 20);
+		this.txtFechaCompra.setBounds(130, 80, 100, 20);
+		this.lblFechaDeCompra.setBounds(10, 80, 120, 20);
 		this.add(lblFechaDeCompra);
 		this.add(txtFechaCompra);
 		
 		this.txtKmRecorridos = new JTextField(30);
-		this.txtKmRecorridos.setBounds(130, 150, 100, 20);
-		this.lblKmRecorridos.setBounds(10, 150, 100, 20);
+		this.txtKmRecorridos.setBounds(130, 110, 100, 20);
+		this.lblKmRecorridos.setBounds(10, 110, 100, 20);
 		this.add(lblKmRecorridos);
 		this.add(txtKmRecorridos);
 		
 		this.txtCostoPorKm = new JTextField(30);
-		this.txtCostoPorKm.setBounds(130, 180, 100, 20);
-		this.lblCostoPorKm.setBounds(10, 180, 100, 20);
+		this.txtCostoPorKm.setBounds(130, 140, 100, 20);
+		this.lblCostoPorKm.setBounds(10, 140, 100, 20);
 		this.add(lblCostoPorKm);
 		this.add(txtCostoPorKm);  
 		
 		this.txtCostoPorHora = new JTextField(30);
-		this.txtCostoPorHora.setBounds(130, 210, 100, 20);
-		this.lblCostoPorHora.setBounds(10, 210, 100, 20);
+		this.txtCostoPorHora.setBounds(130, 170, 100, 20);
+		this.lblCostoPorHora.setBounds(10, 170, 100, 20);
 		this.add(lblCostoPorHora);
 		this.add(txtCostoPorHora);
 		
@@ -107,6 +98,7 @@ public class PanelCamionDarAlta extends JPanel {
 		this.add(btnGuardar);
 		
 		this.btnCancelar = new JButton("Cancelar");
+		//this.btnCancelar.addActionListener(e -> this.get);
 		this.btnCancelar.setBounds(430, 400, 100, 40);
 		this.add(btnCancelar);
 
@@ -142,22 +134,6 @@ public class PanelCamionDarAlta extends JPanel {
 
 	public void setTxtModelo(JTextField txtModelo) {
 		this.txtModelo = txtModelo;
-	}
-
-	public JLabel getLblMarca() {
-		return lblMarca;
-	}
-
-	public void setLblMarca(JLabel lblMarca) {
-		this.lblMarca = lblMarca;
-	}
-
-	public JTextField getTxtMarca() {
-		return txtMarca;
-	}
-
-	public void setTxtMarca(JTextField txtMarca) {
-		this.txtMarca = txtMarca;
 	}
 
 	public JLabel getLblFechaDeCompra() {
