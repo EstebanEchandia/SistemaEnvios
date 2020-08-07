@@ -20,10 +20,12 @@ import javax.swing.WindowConstants;
 
 
 import gui.PanelAyuda;
+import gui.PanelCamionBuscarPorAtributos;
 import gui.PanelCamionDarAlta;
 import gui.PanelCamionDarBaja;
 import gui.PanelCamionEditar;
 import gui.PanelGrafoPlanta;
+import gui.PanelInicio;
 import gui.PanelInsumoDarAlta;
 import gui.PanelInsumoDarBaja;
 import gui.PanelInsumoEditar;
@@ -43,6 +45,7 @@ public class App extends JFrame{
 	JMenuItem menuItemCamionAlta;
 	JMenuItem menuItemCamionEditar;
 	JMenuItem menuItemCamionBaja;
+	JMenuItem menuItemCamionBuscarPorAtributos;
 	
 	JMenuItem menuItemInsumoAlta;
 	JMenuItem menuItemInsumoEditar;
@@ -88,6 +91,17 @@ public class App extends JFrame{
 		});
 
 		this.menuCamion.add(menuItemCamionBaja);
+		
+		/*	Panel BuscarPorAtributos CAMION  */
+		this.menuItemCamionBuscarPorAtributos = new JMenuItem("Buscar Por Atributos");
+		this.menuItemCamionBuscarPorAtributos.addActionListener( e -> {
+			PanelCamionBuscarPorAtributos a = new PanelCamionBuscarPorAtributos();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
+
+		this.menuCamion.add(menuItemCamionBuscarPorAtributos);
 	}
 	
 	private void armarMenuPlanta() {
@@ -203,23 +217,32 @@ public class App extends JFrame{
 		menuBar.add(this.menuInsumo);
 		menuBar.add(this.menuEnvio);
 		menuBar.add(this.menuAyuda);
+		
 		this.setJMenuBar(menuBar);
 		this.addWindowListener( new WindowAdapter() {
 			public void windowIconified(WindowEvent e) {
 				System.out.println("AHORA SI");
 			};
 		});
+		
+		
+		PanelInicio a = new PanelInicio();
+		a.armarPanel();
+		this.setContentPane(a);
+		this.pack();
 	}
 	public static void main(String[] args) throws SQLException {
 		App app = new App();
 		app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		app.armarApp();
 		app.setPreferredSize(new Dimension(900, 560));
-		app.setSize(900, 600);
+		app.setSize(900, 560);
 		app.setLocation(app.centro.x - (int) app.getSize().getWidth()/2,app.centro.y - (int)app.getSize().getHeight()/2);
 		app.setIconImage(new ImageIcon(app.getClass().getResource("/imagenes/COVID19.png")).getImage());
+		app.setResizable(false);
 		app.setVisible(true);
 		
+
 
 		
 		
