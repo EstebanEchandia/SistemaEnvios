@@ -243,6 +243,7 @@ public class App extends JFrame{
 		app.setVisible(true);
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		
 		
@@ -250,6 +251,9 @@ public class App extends JFrame{
 		Statement st = conn.createStatement();
 	//	int res = st.executeUpdate("SELECT * FROM trabajopractico.camion where camion.id::varchar equals" + ' 1');
 >>>>>>> 4cc8ec1c85155f4f7ca8e3d95e031937b2224767
+=======
+
+>>>>>>> 0fce221afc300cd7639a481a29f6455185ede254
 
 		
 		
