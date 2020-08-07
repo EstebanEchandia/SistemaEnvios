@@ -11,9 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import gestor.GestorCamion;
 
@@ -42,7 +44,10 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	
 	private GestorCamion gestorCamion = new GestorCamion();
 	
-	private JTable tblAtributos = new JTable();
+	private JTable tblAtributos;
+	private DefaultTableModel modeloTablaAtributos = new DefaultTableModel();
+	
+	private JScrollPane scroll;
 	
 	public void PanelCamionBuscarPorAtributos(){
 	}
@@ -93,16 +98,29 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		this.btnGuardar.setBounds(370, 400, 100, 40);
 		this.add(btnGuardar);
 
-		this.tblAtributos = new JTable();/*
 		
-		*	Aca voy a definir toda la tabla con los atributos, columnas, etc
-		*
-		*
-		*
-		*
-		*/
-		this.tblAtributos.setBounds(320, 20, 500,350);
-		this.add(tblAtributos);
+		this.modeloTablaAtributos.addColumn("Patente");
+		this.modeloTablaAtributos.addColumn("Modelo");
+		this.modeloTablaAtributos.addColumn("Fecha de compra");
+		this.modeloTablaAtributos.addColumn("KMs recorridos");
+		this.modeloTablaAtributos.addColumn("Costo por km");
+		this.modeloTablaAtributos.addColumn("Costo por hora");
+		
+		String[] p1 = {"HXL-655","Hyundai Santa Fe","2007-2-13","40000","1","10"};
+		String[] p2 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
+		
+		this.modeloTablaAtributos.addRow(p1);
+		this.modeloTablaAtributos.addRow(p2);
+		
+		this.tblAtributos = new JTable(modeloTablaAtributos);
+		this.tblAtributos.setBounds(280, 20, 550,350);
+		
+		this.scroll = new JScrollPane(this.tblAtributos);
+		
+		this.scroll.setBounds(280, 20, 550,350);
+		this.add(scroll);
+		
+		
 
 
 	}
