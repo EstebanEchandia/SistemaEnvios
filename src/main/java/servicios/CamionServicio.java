@@ -17,4 +17,14 @@ public class CamionServicio {
 		
 		return this.camionDao.updateCamion(c);
 	}
+	
+	public Camion bajaCamion(Camion c) {
+		
+		return this.camionDao.bajaCamion(c);
+	}
+	
+	public Camion recuperarCamion(Camion c) {
+		
+		return this.camionDao.recuperarCamion(c);
+	}
 }
