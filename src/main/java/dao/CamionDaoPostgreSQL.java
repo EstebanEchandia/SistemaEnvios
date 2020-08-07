@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import dao.utils.DB;
@@ -37,6 +38,13 @@ public class CamionDaoPostgreSQL implements CamionDao{
 			private static final String UPDATE_CAMION =
 					" UPDATE CAMION SET PATENTE = ?,MODELO = ?, KMRECORRIDOS = ?, COSTOPORKM = ?,COSTOPORHORA = ?,FECHADECOMPRA = ?, IDPLANTA = ?"
 					+ " WHERE ID = ?";
+			
+			private static final String DELETE_CAMION =
+					" DELETE FROM trabajopractico.CAMION " + " WHERE ID = ?";
+			
+			private static final String SELECT_CAMION =
+					" SELECT * FROM trabajopractico.CAMION " + " WHERE ID = ?";
+			
 			
 //			private void verificarTablas() {
 //				TABLA_CREATE
@@ -85,9 +93,11 @@ public class CamionDaoPostgreSQL implements CamionDao{
 					pstmt.setDouble(4, c.getCostoPorKm());
 					pstmt.setDouble(5, c.getCostoPorHora());
 					pstmt.setDate(6, Date.valueOf(c.getFechaDeCompra()));
-					pstmt.setInt(7, 1); //ACA AGARRA LA PLANTA NO UN UNO
+					pstmt.setInt(7, c.getPlanta()); 
+					
 					pstmt.executeUpdate();
 					System.out.println("Termine de crear");
+					
 					
 					
 					System.out.println(c.getFechaDeCompra().format(DateTimeFormatter.ofPattern("dd-MM-uuuu")));
@@ -144,6 +154,75 @@ public class CamionDaoPostgreSQL implements CamionDao{
 				}
 				return c;
 			}
+			
+			
+			@Override
+			public Camion bajaCamion(Camion c) {
+				Connection conn = DB.getConnection();
+				PreparedStatement pstmt = null;
+				try {
+					System.out.println("Borrando Camion");
+					
+					pstmt = conn.prepareStatement(DELETE_CAMION);
+					
+					pstmt.setInt(1, c.getId());
+
+					pstmt.executeUpdate();
+	
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt!=null) pstmt.close();
+					if(conn!=null) conn.close();				
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return c;
+
+			}
+			
+			@Override
+			public Camion recuperarCamion(Camion c) {
+				Connection conn = DB.getConnection();
+				PreparedStatement pstmt = null;
+				try {
+					System.out.println("Buscando Camion");
+					
+					pstmt = conn.prepareStatement(SELECT_CAMION);
+					
+					pstmt.setInt(1, c.getId());
+
+					ResultSet rs = pstmt.executeQuery();
+					
+					c.setId(rs.getInt("id"));
+					c.setModelo(rs.getString("modelo"));
+					c.setPatente(rs.getString("patente"));
+					c.setCostoPorHora(rs.getDouble("costoporhora"));
+					c.setCostoPorKm(rs.getDouble("costoporkm"));
+					c.setFechaDeCompra(rs.getDate("fechadecompra").toLocalDate());
+					c.setKmRecorridos(rs.getDouble("kmrecorridos"));
+					c.setPlanta(rs.getInt("idPlanta"));
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt!=null) pstmt.close();
+					if(conn!=null) conn.close();				
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+				
+			return c;
+
+			}
+			
+			
 			
 		
 

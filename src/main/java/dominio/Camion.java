@@ -14,10 +14,13 @@ public class Camion {
 	private Double costoPorHora;
 	private LocalDate fechaDeCompra;
 	private ArrayList<Envio> envios;
-	private Planta planta;
+	private Integer idPlanta;
 	
 	
-	
+	public Camion(Integer id) {
+		super();
+		this.id=id;
+	}
 	public Camion(Integer id, String patente, String modelo, Double kmRecorridos, Double costoPorKm,
 			Double costoPorHora, LocalDate fechaDeCompra) {
 		
@@ -29,6 +32,7 @@ public class Camion {
 		this.costoPorKm = costoPorKm;
 		this.costoPorHora = costoPorHora;
 		this.fechaDeCompra = fechaDeCompra;
+		this.idPlanta = 0; //Si no esta asociado a ninguna planta, toma el valor 0
 		
 	}
 	
@@ -74,7 +78,7 @@ public class Camion {
 	public LocalDate getFechaDeCompra() {
 		return fechaDeCompra;
 	}
-	public void setFechaDeCompra(LocalDateTime fechaDeCompra) {
+	public void setFechaDeCompra(LocalDate fechaDeCompra) {
 		this.fechaDeCompra = fechaDeCompra;
 	}
 	public ArrayList<Envio> getEnvios() {
@@ -83,11 +87,11 @@ public class Camion {
 	public void setEnvios(ArrayList<Envio> envios) {
 		this.envios = envios;
 	}
-//	public Integer getPlanta() {
-//		return planta.getId();
-//	}
-//	public void setPlanta(Planta planta) {
-//		this.planta = planta;
-//	}
+	public Integer getPlanta() {
+		return idPlanta;
+	}
+	public void setPlanta(int i) {
+		this.idPlanta = i;
+	}
 	
 }

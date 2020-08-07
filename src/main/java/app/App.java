@@ -211,7 +211,7 @@ public class App extends JFrame{
 		armarMenuAyuda();
 		
 
-		/*  Aniadimos los menus a la barra de menus   */
+		/*  Añadimos los menus a la barra de menus   */
 		menuBar.add(this.menuCamion);
 		menuBar.add(this.menuPlanta);
 		menuBar.add(this.menuInsumo);
@@ -242,11 +242,7 @@ public class App extends JFrame{
 		app.setResizable(false);
 		app.setVisible(true);
 		
-		
-		
-		Connection conn = DB.crearConnection();
-		Statement st = conn.createStatement();
-	//	int res = st.executeUpdate("SELECT * FROM trabajopractico.camion where camion.id::varchar equals" + ' 1');
+
 
 		
 		
