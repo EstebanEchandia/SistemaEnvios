@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
@@ -12,9 +13,9 @@ import javax.swing.JPanel;
 
 public class PanelInicio extends JPanel {
 	
-	private JLabel lblInicio = new JLabel("TP DIED");
+	private JLabel lblInicio = new JLabel("Sistema de Gestión Logística");
 	
-	private Image imagen = new ImageIcon(getClass().getResource("/imagenes/Lineas con flow.png")).getImage();
+	private Image imagen = new ImageIcon(getClass().getResource("/imagenes/asd.png")).getImage();
 	
 	Point centro = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 	
@@ -22,8 +23,10 @@ public class PanelInicio extends JPanel {
 	}
 	
 	public void armarPanel() {
+		
 		this.setLayout(null);
-		this.lblInicio.setBounds(400,200, 130, 30);
+		
+		this.lblInicio.setBounds(265,55, 400, 40);
 		this.lblInicio.setFont(new Font("Serif", Font.BOLD, 30));
 		this.add(lblInicio);
 	}

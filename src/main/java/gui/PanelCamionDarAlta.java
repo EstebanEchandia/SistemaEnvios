@@ -37,7 +37,6 @@ public class PanelCamionDarAlta extends JPanel {
 	private JTextField txtCostoPorHora;
 	
 	private JButton btnGuardar;
-	private JButton btnCancelar;
 	
 	private GestorCamion gestorCamion = new GestorCamion();
 	
@@ -94,13 +93,8 @@ public class PanelCamionDarAlta extends JPanel {
 																	Double.parseDouble(this.getTxtCostoPorKm().getText()),
 																	Double.parseDouble(this.getTxtCostoPorHora().getText()),
 																	LocalDate.parse(this.getTxtFechaCompra().getText())));
-		this.btnGuardar.setBounds(300, 400, 100, 40);
+		this.btnGuardar.setBounds(370, 400, 100, 40);
 		this.add(btnGuardar);
-		
-		this.btnCancelar = new JButton("Cancelar");
-		//this.btnCancelar.addActionListener(e -> this.get);
-		this.btnCancelar.setBounds(430, 400, 100, 40);
-		this.add(btnCancelar);
 
 	}
 
@@ -214,14 +208,6 @@ public class PanelCamionDarAlta extends JPanel {
 
 	public void setBtnGuardar(JButton btnGuardar) {
 		this.btnGuardar = btnGuardar;
-	}
-
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public void setBtnCancelar(JButton btnCancelar) {
-		this.btnCancelar = btnCancelar;
 	}
 	public Dimension getPreferredSize() {
         return new Dimension(300, 300);

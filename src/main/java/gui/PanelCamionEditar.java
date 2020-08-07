@@ -41,7 +41,6 @@ public class PanelCamionEditar extends JPanel {
 	private JTextField txtCostoPorHora;
 	
 	private JButton btnGuardar;
-	private JButton btnCancelar;
 
 	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un camion el usuario debe ingresar el ID de el Camion\n a modificar y luego completar todos los campos que quiera modificar.\n\n Si un campo no es completado quedara con el valor anterior a la modificacion.");
 	
@@ -99,7 +98,7 @@ public class PanelCamionEditar extends JPanel {
 		this.add(txtCostoPorHora);
 		
 		this.btnGuardar = new JButton("Editar");
-		this.btnGuardar.setBounds(300, 400, 100, 40);
+		this.btnGuardar.setBounds(370, 400, 100, 40);
 		
 		this.btnGuardar.addActionListener( e -> gestorCamion.updateCamion(Integer.parseInt(this.getTxtId().getText()), 
 				this.getTxtPatente().getText(), 
@@ -108,13 +107,7 @@ public class PanelCamionEditar extends JPanel {
 				Double.parseDouble(this.getTxtCostoPorKm().getText()), 
 				Double.parseDouble(this.getTxtCostoPorHora().getText()), 
 				LocalDate.parse(this.getTxtFechaCompra().getText())));
-		this.add(btnGuardar);
-		
-		
-		this.btnCancelar = new JButton("Cancelar");
-		this.btnCancelar.setBounds(430, 400, 100, 40);
-		this.add(btnCancelar);
-		
+		this.add(btnGuardar);		
 		
 		this.txtAreaExplicacion.setBounds(500,60,250,200);
 		this.txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
@@ -243,13 +236,6 @@ public class PanelCamionEditar extends JPanel {
 		this.btnGuardar = btnGuardar;
 	}
 
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public void setBtnCancelar(JButton btnCancelar) {
-		this.btnCancelar = btnCancelar;
-	}
 	public Dimension getPreferredSize() {
         return new Dimension(300, 300);
     };

@@ -22,7 +22,6 @@ public class PanelCamionDarBaja extends JPanel {
 	private JTextField txtId;
 	
 	private JButton btnGuardar;
-	private JButton btnCancelar;
 	
 	private JTextArea txtAreaExplicacion = new JTextArea("Escriba el ID del Camion a dar de baja y oprima Dar Baja");
 	
@@ -45,12 +44,8 @@ public class PanelCamionDarBaja extends JPanel {
 		this.add(txtId);
 		
 		this.btnGuardar = new JButton("Dar Baja");
-		this.btnGuardar.setBounds(300, 400, 100, 40);
+		this.btnGuardar.setBounds(370, 400, 100, 40);
 		this.add(btnGuardar);
-		
-		this.btnCancelar = new JButton("Cancelar");
-		this.btnCancelar.setBounds(430, 400, 100, 40);
-		this.add(btnCancelar);
 		
 		this.txtAreaExplicacion.setBounds(10,60,250,200);
 		this.txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
@@ -74,14 +69,6 @@ public class PanelCamionDarBaja extends JPanel {
 
 	public void setBtnGuardar(JButton btnGuardar) {
 		this.btnGuardar = btnGuardar;
-	}
-
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public void setBtnCancelar(JButton btnCancelar) {
-		this.btnCancelar = btnCancelar;
 	}
 	public Dimension getPreferredSize() {
         return new Dimension(300, 300);

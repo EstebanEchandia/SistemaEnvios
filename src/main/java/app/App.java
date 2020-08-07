@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,21 +20,11 @@ import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
 
-import gui.PanelAyuda;
-import gui.PanelCamionBuscarPorAtributos;
-import gui.PanelCamionDarAlta;
-import gui.PanelCamionDarBaja;
-import gui.PanelCamionEditar;
-import gui.PanelGrafoPlanta;
-import gui.PanelInicio;
-import gui.PanelInsumoDarAlta;
-import gui.PanelInsumoDarBaja;
-import gui.PanelInsumoEditar;
-import gui.PanelPlanta;
-import gui.PanelStockdeInsumo;
+import gui.*;
 import dao.utils.DB;
 
 public class App extends JFrame{
+	
 	JMenuBar menuBar;
 	JMenu menuCamion;
 	JMenu menuPlanta;
@@ -51,15 +42,18 @@ public class App extends JFrame{
 	JMenuItem menuItemInsumoEditar;
 	JMenuItem menuItemInsumoBaja;
 	JMenuItem menuItemInsumoStock;
+	JMenuItem menuItemInsumoVisualizarInsumos;
 	
 	JMenuItem menuItemPlanta;
-	JMenuItem menuItemPlantaGrafo;
+	JMenuItem menuItemPlantaRegistrarRuta;
+	
+	JButton inicio;
 	
 	Point centro = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 	
 	private void armarMenuCamion() {
 		/*	Panel AltaCamion  */
-		this.menuItemCamionAlta = new JMenuItem("Dar de alta Camion");
+		this.menuItemCamionAlta = new JMenuItem("Alta Camion");
 		this.menuItemCamionAlta.addActionListener( e -> {
 			PanelCamionDarAlta a = new PanelCamionDarAlta();
 			a.armarPanel();
@@ -103,13 +97,12 @@ public class App extends JFrame{
 
 		this.menuCamion.add(menuItemCamionBuscarPorAtributos);
 	}
-	
 	private void armarMenuPlanta() {
 		
 		/*  Panel Planta  */
-		this.menuItemPlanta = new JMenuItem("Planta");
+		this.menuItemPlanta = new JMenuItem("Añadir Planta");
 		this.menuItemPlanta.addActionListener( e -> {
-			PanelPlanta a = new PanelPlanta();
+			PanelPlantaAniadirPlanta a = new PanelPlantaAniadirPlanta();
 			a.armarPanel();
 			this.setContentPane(a);
 			this.pack();
@@ -119,21 +112,21 @@ public class App extends JFrame{
 		
 		
 		/*  Panel GrafoPlanta  */
-		this.menuItemPlantaGrafo = new JMenuItem("Grafo Plantas");
-		this.menuItemPlantaGrafo.addActionListener( e -> {
-			PanelGrafoPlanta a = new PanelGrafoPlanta();
+		this.menuItemPlantaRegistrarRuta = new JMenuItem("Registrar Ruta entre dos Plantas");
+		this.menuItemPlantaRegistrarRuta.addActionListener( e -> {
+			PanelPlantaRegistrarRuta a = new PanelPlantaRegistrarRuta();
 			a.armarPanel();
 			this.setContentPane(a);
 			this.pack();
 		});
 
-		this.menuPlanta.add(menuItemPlantaGrafo);
+		this.menuPlanta.add(menuItemPlantaRegistrarRuta);
 		
 	}
 	private void armarMenuInsumo() {
 		
 		/*  Panel AltaInsumo  */
-		this.menuItemInsumoAlta = new JMenuItem("Dar de alta Insumo");
+		this.menuItemInsumoAlta = new JMenuItem("Alta Insumo");
 		this.menuItemInsumoAlta.addActionListener( e -> {
 			PanelInsumoDarAlta a = new PanelInsumoDarAlta();
 			a.armarPanel();
@@ -177,6 +170,18 @@ public class App extends JFrame{
 		});
 
 		this.menuInsumo.add(menuItemInsumoStock);
+		
+		
+		/*  Panel VisualizarInsumos  */
+		this.menuItemInsumoVisualizarInsumos = new JMenuItem("Visualizar insumos");
+		this.menuItemInsumoVisualizarInsumos.addActionListener( e -> {
+			PanelInsumoVisualizarInsumos a = new PanelInsumoVisualizarInsumos();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
+
+		this.menuInsumo.add(menuItemInsumoVisualizarInsumos);
 	}
 	private void armarMenuEnvio() {
 		
@@ -195,6 +200,7 @@ public class App extends JFrame{
 	}
 
 	private void armarApp() {
+		
 		this.menuBar = new JMenuBar();
 		/*  Creo todos los menus desplegables de la barra  */
 		this.menuCamion = new JMenu("Camion");
@@ -202,6 +208,15 @@ public class App extends JFrame{
 		this.menuInsumo = new JMenu("Insumo");
 		this.menuEnvio = new JMenu("Envio");
 		this.menuAyuda = new JMenu("Ayuda");
+		
+		this.inicio = new JButton("Inicio");
+		this.inicio.addActionListener( e -> {
+			this.remove(this.getContentPane());
+			PanelInicio a = new PanelInicio();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
 
 
 		armarMenuCamion();
@@ -212,11 +227,13 @@ public class App extends JFrame{
 		
 
 		/*  Añadimos los menus a la barra de menus   */
+		menuBar.add(this.inicio);
 		menuBar.add(this.menuCamion);
 		menuBar.add(this.menuPlanta);
 		menuBar.add(this.menuInsumo);
 		menuBar.add(this.menuEnvio);
 		menuBar.add(this.menuAyuda);
+		
 		
 		this.setJMenuBar(menuBar);
 		this.addWindowListener( new WindowAdapter() {
@@ -231,6 +248,7 @@ public class App extends JFrame{
 		this.setContentPane(a);
 		this.pack();
 	}
+	
 	public static void main(String[] args) throws SQLException {
 		App app = new App();
 		app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -39,7 +39,6 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	private JTextField txtCostoPorHora;
 	
 	private JButton btnGuardar;
-	private JButton btnCancelar;
 	
 	private GestorCamion gestorCamion = new GestorCamion();
 	
@@ -49,7 +48,8 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	}
 	
 	public void armarPanel() {
-this.setLayout(null);
+		
+		this.setLayout(null);
 		
 		this.setBackground(Color.yellow);
 		
@@ -90,13 +90,9 @@ this.setLayout(null);
 		this.add(txtCostoPorHora);
 		
 		this.btnGuardar = new JButton("Buscar");
-		this.btnGuardar.setBounds(300, 400, 100, 40);
+		this.btnGuardar.setBounds(370, 400, 100, 40);
 		this.add(btnGuardar);
-		
-		this.btnCancelar = new JButton("Cancelar");
-		this.btnCancelar.setBounds(430, 400, 100, 40);
-		this.add(btnCancelar);
-		
+
 		this.tblAtributos = new JTable();/*
 		
 		*	Aca voy a definir toda la tabla con los atributos, columnas, etc
@@ -222,14 +218,7 @@ this.setLayout(null);
 	public void setBtnGuardar(JButton btnGuardar) {
 		this.btnGuardar = btnGuardar;
 	}
-
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public void setBtnCancelar(JButton btnCancelar) {
-		this.btnCancelar = btnCancelar;
-	}
+	
 	public Dimension getPreferredSize() {
         return new Dimension(300, 300);
     };

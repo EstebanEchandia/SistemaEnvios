@@ -1,39 +1,48 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class PanelInsumoDarBaja extends JPanel {
 	
-	private JLabel lblInsumoId = new JLabel("Insumo Id:");
-	private JTextField txtInsumoId;
+	private JLabel lblId = new JLabel("Id:");
+	private JTextField txtId;
 	
-	private JLabel lblDescripcion = new JLabel("Se debera poner el Id del Insumo a dar de baja y luego apretar el boton 'Dar de baja'");
+	private JButton btnGuardar;
 	
-	private JButton btnDarDeBaja;
-	private JButton btnCancelar;
+	private JTextArea txtAreaExplicacion = new JTextArea("Escriba el ID del Insumo a dar de baja y oprima Dar Baja");
 	
 	public void PanelInsumo(){
 	}
 	
 	public void armarPanel() {
 		
+		this.setLayout(null);
+		
 		this.setBackground(Color.orange);
 		
-		this.txtInsumoId = new JTextField(20);
-		this.add(lblInsumoId);
-		this.add(txtInsumoId);
+		this.txtId = new JTextField(20);
+		this.txtId.setBounds(60, 20, 100,20);
+		this.lblId.setBounds(10,20,100,20);
+		this.add(lblId);
+		this.add(txtId);
 		
-		this.add(lblDescripcion);
-
-		this.btnDarDeBaja = new JButton("Dar de baja");
-		this.add(btnDarDeBaja);
+		this.btnGuardar = new JButton("Dar Baja");
+		this.btnGuardar.setBounds(370, 400, 100, 40);
+		this.add(btnGuardar);
 		
-		this.btnCancelar = new JButton("Cancelar");
-		this.add(btnCancelar);
+		this.txtAreaExplicacion.setBounds(10,60,250,200);
+		this.txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
+		this.txtAreaExplicacion.setLineWrap(true);
+		this.txtAreaExplicacion.setWrapStyleWord(true);
+		this.txtAreaExplicacion.setOpaque(false);
+		this.txtAreaExplicacion.setEditable(false);
+		this.add(txtAreaExplicacion);
 	}
 }
