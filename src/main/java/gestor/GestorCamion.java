@@ -2,11 +2,9 @@ package gestor;
 
 import java.time.LocalDate;
 
-import dao.CamionDao;
-import dao.CamionDaoPostgreSQL;
+
 import dominio.Camion;
 import exepciones.CampoVacioException;
-import gui.PanelCamionDarAlta;
 import servicios.CamionServicio;
 
 public class GestorCamion {
