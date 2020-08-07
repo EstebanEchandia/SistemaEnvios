@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -12,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import gestor.GestorCamion;
 
 public class PanelCamionEditar extends JPanel {
 	
@@ -42,6 +45,7 @@ public class PanelCamionEditar extends JPanel {
 
 	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un camion el usuario debe ingresar el ID de el Camion\n a modificar y luego completar todos los campos que quiera modificar.\n\n Si un campo no es completado quedara con el valor anterior a la modificacion.");
 	
+	private GestorCamion gestorCamion = new GestorCamion();
 	
 	public void PanelAyuda(){
 	}
@@ -96,11 +100,21 @@ public class PanelCamionEditar extends JPanel {
 		
 		this.btnGuardar = new JButton("Editar");
 		this.btnGuardar.setBounds(300, 400, 100, 40);
+		
+		this.btnGuardar.addActionListener( e -> gestorCamion.updateCamion(Integer.parseInt(this.getTxtId().getText()), 
+				this.getTxtPatente().getText(), 
+				this.getTxtModelo().getText(), 
+				Double.parseDouble(this.getTxtKmRecorridos().getText()), 
+				Double.parseDouble(this.getTxtCostoPorKm().getText()), 
+				Double.parseDouble(this.getTxtCostoPorHora().getText()), 
+				LocalDate.parse(this.getTxtFechaCompra().getText())));
 		this.add(btnGuardar);
+		
 		
 		this.btnCancelar = new JButton("Cancelar");
 		this.btnCancelar.setBounds(430, 400, 100, 40);
 		this.add(btnCancelar);
+		
 		
 		this.txtAreaExplicacion.setBounds(500,60,250,200);
 		this.txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
@@ -126,6 +140,12 @@ public class PanelCamionEditar extends JPanel {
 	public void setTxtPatente(JTextField txtPatente) {
 		this.txtPatente = txtPatente;
 	}
+	
+	public JTextField getTxtId() {
+		return txtId;
+	}
+	
+	
 
 	public JLabel getLblModelo() {
 		return lblModelo;

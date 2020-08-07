@@ -31,7 +31,7 @@ public class CamionDaoPostgreSQL implements CamionDao{
 							+ " VALUES (?,?,?,?,?,?,?)";
 			
 			private static final String UPDATE_CAMION =
-					" UPDATE CAMION SET PATENTE = ?,MODELO = ?, KMRECORRIDOS = ?, COSTOPORKM = ?,COSTOPORHORA = ?,FECHADECOMPRA = ?, IDPLANTA = ?"
+					" UPDATE trabajopractico.CAMION SET PATENTE = ?,MODELO = ?, KMRECORRIDOS = ?, COSTOPORKM = ?,COSTOPORHORA = ?,FECHADECOMPRA = ?"
 					+ " WHERE ID = ?";
 			
 			private static final String DELETE_CAMION =
@@ -130,9 +130,9 @@ public class CamionDaoPostgreSQL implements CamionDao{
 						pstmt.setDouble(4, c.getCostoPorKm());
 						pstmt.setDouble(5, c.getCostoPorHora());
 						pstmt.setObject(6, c.getFechaDeCompra());
-						pstmt.setInt(7, c.getPlanta());
+						//pstmt.setInt(7, c.getPlanta());
 						
-						pstmt.setInt(8, c.getId());
+						pstmt.setInt(7, c.getId());
 
 						pstmt.executeUpdate();
 		
@@ -181,8 +181,10 @@ public class CamionDaoPostgreSQL implements CamionDao{
 
 			}
 			
+			
+			
 			@Override
-			public Camion recuperarCamion(Camion c) {
+			public Camion recuperarCamion(Camion c) { //Buscar un camion sabiendo solo su id
 				Connection conn = DB.getConnection();
 				PreparedStatement pstmt = null;
 				try {
