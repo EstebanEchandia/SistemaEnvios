@@ -13,6 +13,9 @@ import gestor.GestorRuta;
 
 public class PanelPlantaRegistrarRuta extends JPanel{
 	
+	private JLabel lblSigla = new JLabel("Sigla:");
+	private JTextField txtSigla;
+	
 	private JLabel lblPlantaOrigen = new JLabel("Planta Origen:");
 	private JTextField txtPlantaOrigen;
 	
@@ -41,29 +44,41 @@ public class PanelPlantaRegistrarRuta extends JPanel{
 		
 		this.setBackground(new Color(184,65,39));
 		
+		this.txtSigla = new JTextField(20);
+		this.txtSigla.setBounds(50, 20, 100,20);
+		this.lblSigla.setBounds(10,20,100,20);
+		this.add(lblSigla);
+		this.add(txtSigla);
+		
 		this.txtPlantaOrigen = new JTextField(20);
-		this.txtPlantaOrigen.setBounds(100, 20, 100,20);
-		this.lblPlantaOrigen.setBounds(10,20,100,20);
+		this.txtPlantaOrigen.setBounds(100, 50, 100,20);
+		this.lblPlantaOrigen.setBounds(10,50,100,20);
 		this.add(lblPlantaOrigen);
 		this.add(txtPlantaOrigen);
 		
 		this.txtPlantaDestino = new JTextField(20);
-		this.txtPlantaDestino.setBounds(100, 50, 100,20);
-		this.lblPlantaDestino.setBounds(10,50,100,20);
+		this.txtPlantaDestino.setBounds(100, 80, 100,20);
+		this.lblPlantaDestino.setBounds(10,80,100,20);
 		this.add(lblPlantaDestino);
 		this.add(txtPlantaDestino);
 		
 		this.txtDuracionEstimadaEnHoras = new JTextField(20);
-		this.txtDuracionEstimadaEnHoras.setBounds(150, 80, 100,20);
-		this.lblDuracionEstimadaEnHoras.setBounds(10,80,150,20);
+		this.txtDuracionEstimadaEnHoras.setBounds(150, 110, 100,20);
+		this.lblDuracionEstimadaEnHoras.setBounds(10,110,150,20);
 		this.add(lblDuracionEstimadaEnHoras);
 		this.add(txtDuracionEstimadaEnHoras);
 		
 		this.txtDistanciaEnKm = new JTextField(20);
-		this.txtDistanciaEnKm.setBounds(100, 110, 100,20);
-		this.lblDistanciaEnKm.setBounds(10,110,100,20);
+		this.txtDistanciaEnKm.setBounds(100, 140, 100,20);
+		this.lblDistanciaEnKm.setBounds(10,140,100,20);
 		this.add(lblDistanciaEnKm);
 		this.add(txtDistanciaEnKm);
+		
+		this.txtPesoMaximoEnKgQueSePuedenTransportar = new JTextField(20);
+		this.txtPesoMaximoEnKgQueSePuedenTransportar.setBounds(200, 170, 100,20);
+		this.lblPesoMaximoEnKgQueSePuedenTransportar.setBounds(10,170,190,20);
+		this.add(lblPesoMaximoEnKgQueSePuedenTransportar);
+		this.add(txtPesoMaximoEnKgQueSePuedenTransportar);
 
 
 		this.btnGuardar = new JButton("Registrar");
