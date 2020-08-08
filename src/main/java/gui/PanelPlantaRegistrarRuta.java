@@ -83,15 +83,25 @@ public class PanelPlantaRegistrarRuta extends JPanel{
 
 		this.btnGuardar = new JButton("Registrar");
 		this.btnGuardar.setBounds(370, 400, 100, 40);
-		this.btnGuardar.addActionListener( e -> gestorRuta.altaRuta("A12",Double.parseDouble(this.getTxtDistanciaEnKm().getText()),
+		this.btnGuardar.addActionListener( e -> gestorRuta.altaRuta(this.getTxtSigla().getText(),
+																			Double.parseDouble(this.getTxtDistanciaEnKm().getText()),
 																		  Double.parseDouble(this.getTxtDuracionEstimadaEnHoras().getText()), 
-																		 // Double.parseDouble(this.getTxtPesoMaximoEnKgQueSePuedenTransportar().getText()), 
-																		  10d,
+																		  Double.parseDouble(this.getTxtPesoMaximoEnKgQueSePuedenTransportar().getText()), 
 																		  Integer.parseInt(this.getTxtPlantaOrigen().getText()), 
 																		  Integer.parseInt(this.getTxtPlantaDestino().getText())));
 		this.add(btnGuardar);
 
 	}
+	
+	
+	public JTextField getTxtSigla() {
+		return txtSigla;
+	}
+
+	public void setTxtSigla(JTextField txtSigla) {
+		this.txtSigla = txtSigla;
+	}
+
 	public JTextField getTxtPlantaOrigen() {
 		return txtPlantaOrigen;
 	}
