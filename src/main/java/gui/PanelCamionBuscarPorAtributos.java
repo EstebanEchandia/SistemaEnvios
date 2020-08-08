@@ -3,11 +3,14 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -16,12 +19,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import dominio.Camion;
 import gestor.GestorCamion;
 
 public class PanelCamionBuscarPorAtributos extends JPanel {
+	
+	private JLabel lblId = new JLabel("Id:");
+	private JTextField txtId;
 	
 	private JLabel lblPatente = new JLabel("Patente:");
 	private JTextField txtPatente;
@@ -43,6 +50,7 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	private JTextField txtCostoPorHora;
 	
 	private JButton btnGuardar;
+	private JButton btnMostrarTodos;
 	
 	private GestorCamion gestorCamion = new GestorCamion();
 	
@@ -50,6 +58,8 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	private DefaultTableModel modeloTablaAtributos = new DefaultTableModel();
 	
 	private JScrollPane scroll;
+	
+	private JLabel imagenCamion;
 	
 	public void PanelCamionBuscarPorAtributos(){
 	}
@@ -60,47 +70,61 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		
 		this.setBackground(Color.yellow);
 		
+		this.txtId = new JTextField(20);
+		this.txtId.setBounds(30, 20, 100,20);
+		this.lblId.setBounds(10,20,100,20);
+		this.add(lblId);
+		this.add(txtId);
+		
 		this.txtPatente = new JTextField(20);
-		this.txtPatente.setBounds(60, 20, 100,20);
-		this.lblPatente.setBounds(10,20,100,20);
+		this.txtPatente.setBounds(60, 50, 100,20);
+		this.lblPatente.setBounds(10,50,100,20);
 		this.add(lblPatente);
 		this.add(txtPatente);
 		
 		this.txtModelo = new JTextField(50);
-		this.txtModelo.setBounds(60, 50, 100, 20);
-		this.lblModelo.setBounds(10, 50, 100, 20);
+		this.txtModelo.setBounds(60, 80, 100, 20);
+		this.lblModelo.setBounds(10, 80, 100, 20);
 		this.add(lblModelo);
 		this.add(txtModelo);
 		
 		this.txtFechaCompra = new JFormattedTextField();
-		this.txtFechaCompra.setBounds(130, 80, 100, 20);
-		this.lblFechaDeCompra.setBounds(10, 80, 120, 20);
+		this.txtFechaCompra.setBounds(130, 110, 100, 20);
+		this.lblFechaDeCompra.setBounds(10, 110, 120, 20);
 		this.add(lblFechaDeCompra);
 		this.add(txtFechaCompra);
 		
 		this.txtKmRecorridos = new JTextField(30);
-		this.txtKmRecorridos.setBounds(130, 110, 100, 20);
-		this.lblKmRecorridos.setBounds(10, 110, 100, 20);
+		this.txtKmRecorridos.setBounds(130, 140, 100, 20);
+		this.lblKmRecorridos.setBounds(10, 140, 100, 20);
 		this.add(lblKmRecorridos);
 		this.add(txtKmRecorridos);
 		
 		this.txtCostoPorKm = new JTextField(30);
-		this.txtCostoPorKm.setBounds(130, 140, 100, 20);
-		this.lblCostoPorKm.setBounds(10, 140, 100, 20);
+		this.txtCostoPorKm.setBounds(130, 170, 100, 20);
+		this.lblCostoPorKm.setBounds(10, 170, 100, 20);
 		this.add(lblCostoPorKm);
 		this.add(txtCostoPorKm);  
 		
 		this.txtCostoPorHora = new JTextField(30);
-		this.txtCostoPorHora.setBounds(130, 170, 100, 20);
-		this.lblCostoPorHora.setBounds(10, 170, 100, 20);
+		this.txtCostoPorHora.setBounds(130, 200, 100, 20);
+		this.lblCostoPorHora.setBounds(10, 200, 100, 20);
 		this.add(lblCostoPorHora);
 		this.add(txtCostoPorHora);
 		
+		this.btnMostrarTodos = new JButton("Mostrar todos");
+		this.btnMostrarTodos.setBounds(410, 400, 120, 40);
+		this.add(btnMostrarTodos);
+		
 		this.btnGuardar = new JButton("Buscar");
+
+		this.btnGuardar.setBounds(300, 400, 100, 40);
+
 		this.btnGuardar.setBounds(370, 400, 100, 40);
 		
-		//COMO HAGO PARA QUE ESTO DEVUELVA ALGO???????????
+
 		this.btnGuardar.addActionListener(e -> this.buscarCamion());
+
 		this.add(btnGuardar);
 
 		this.modeloTablaAtributos.addColumn("Id");
@@ -122,6 +146,15 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		this.scroll.setBounds(280, 20, 550,300);
 		this.add(scroll);
 		
+
+		
+		this.imagenCamion = new JLabel();
+		this.imagenCamion.setBounds(60,300,140,140);
+		
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/camion.png"));	
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(140,140,Image.SCALE_SMOOTH)); 
+		this.imagenCamion.setIcon(icono);
+		this.add(imagenCamion);
 
 	}
 	

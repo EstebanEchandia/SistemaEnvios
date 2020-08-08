@@ -15,7 +15,7 @@ public class PanelInicio extends JPanel {
 	
 	private JLabel lblInicio = new JLabel("Sistema de Gestión Logística");
 	
-	private Image imagen = new ImageIcon(getClass().getResource("/imagenes/asd.png")).getImage();
+	private Image imagen = new ImageIcon(getClass().getResource("/imagenes/fondo.png")).getImage();
 	
 	Point centro = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 	

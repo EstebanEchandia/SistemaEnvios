@@ -3,10 +3,13 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -39,6 +42,8 @@ public class PanelCamionDarAlta extends JPanel {
 	private JButton btnGuardar;
 	
 	private GestorCamion gestorCamion = new GestorCamion();
+	
+	private JLabel imagenCamion;
 	
 	public void PanelCamionDarAlta(){
 	}
@@ -95,6 +100,14 @@ public class PanelCamionDarAlta extends JPanel {
 																	LocalDate.parse(this.getTxtFechaCompra().getText())));
 		this.btnGuardar.setBounds(370, 400, 100, 40);
 		this.add(btnGuardar);
+		
+		this.imagenCamion = new JLabel();
+		this.imagenCamion.setBounds(600,300,140,140);
+		
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/camion.png"));	
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(140,140,Image.SCALE_SMOOTH)); 
+		this.imagenCamion.setIcon(icono);
+		this.add(imagenCamion);
 
 	}
 
