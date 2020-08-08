@@ -171,9 +171,7 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		for(Camion c: listaCamiones) {
 			String[] p1 = c.listaAtributos();
 			this.modeloTablaAtributos.addRow(p1);
-		}	
-		
-		
+		}		
 	}
 	
 	public void buscarCamion() {
