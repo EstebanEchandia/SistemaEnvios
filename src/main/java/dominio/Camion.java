@@ -15,7 +15,9 @@ public class Camion {
 	private ArrayList<Envio> envios;
 	private Integer idPlanta;
 	
-	
+	public Camion() {
+		super();
+	}
 	public Camion(Integer id) {
 		super();
 		this.id=id;
@@ -31,10 +33,16 @@ public class Camion {
 		this.costoPorKm = costoPorKm;
 		this.costoPorHora = costoPorHora;
 		this.fechaDeCompra = fechaDeCompra;
-		this.idPlanta = 0; //Si no esta asociado a ninguna planta, toma el valor 0
-		
+
 	}
 	
+	//"HXL-655","Hyundai Santa Fe","2007-2-13","40000","1","10"
+
+	public String[] listaAtributos(){
+		String[] res = new String[] {id.toString(), patente, modelo,fechaDeCompra.toString(),kmRecorridos.toString(), costoPorKm.toString(), costoPorHora.toString()};
+		return res;
+		
+	}
 
 	public String getPatente() {
 		return patente;

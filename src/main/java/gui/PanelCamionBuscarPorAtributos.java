@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -17,6 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import dominio.Camion;
 import gestor.GestorCamion;
 
 public class PanelCamionBuscarPorAtributos extends JPanel {
@@ -96,9 +98,12 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		
 		this.btnGuardar = new JButton("Buscar");
 		this.btnGuardar.setBounds(370, 400, 100, 40);
+		
+		//COMO HAGO PARA QUE ESTO DEVUELVA ALGO???????????
+		this.btnGuardar.addActionListener(e -> this.buscarCamion());
 		this.add(btnGuardar);
 
-		
+		this.modeloTablaAtributos.addColumn("Id");
 		this.modeloTablaAtributos.addColumn("Patente");
 		this.modeloTablaAtributos.addColumn("Modelo");
 		this.modeloTablaAtributos.addColumn("Fecha de compra");
@@ -106,21 +111,7 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		this.modeloTablaAtributos.addColumn("Costo por km");
 		this.modeloTablaAtributos.addColumn("Costo por hora");
 		
-		String[] p1 = {"HXL-655","Hyundai Santa Fe","2007-2-13","40000","1","10"};
-		String[] p2 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
-		String[] p3 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
-		String[] p4 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
-		String[] p5 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
-		String[] p6 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
-		String[] p7 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
-		
-		this.modeloTablaAtributos.addRow(p1);
-		this.modeloTablaAtributos.addRow(p2);
-		this.modeloTablaAtributos.addRow(p3);
-		this.modeloTablaAtributos.addRow(p4);
-		this.modeloTablaAtributos.addRow(p5);
-		this.modeloTablaAtributos.addRow(p6);
-		this.modeloTablaAtributos.addRow(p7);
+	
 		
 		
 		this.tblAtributos = new JTable(modeloTablaAtributos);
@@ -131,10 +122,34 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		this.scroll.setBounds(280, 20, 550,300);
 		this.add(scroll);
 		
-		
-
 
 	}
+	
+	
+	public void mostrarTodosCamiones(){
+		
+		while(this.modeloTablaAtributos.getRowCount()>0) {
+			this.modeloTablaAtributos.removeRow(0);
+		}
+		
+		ArrayList<Camion> listaCamiones = gestorCamion.recuperarCamionTodos();
+		
+		for(Camion c: listaCamiones) {
+			String[] p1 = c.listaAtributos();
+			this.modeloTablaAtributos.addRow(p1);
+		}	
+		
+		
+	}
+	
+	public void buscarCamion() {
+		
+		Camion c = gestorCamion.recuperarCamionPatente(this.getTxtPatente().getText());
+		String[] p1 = c.listaAtributos();
+		this.modeloTablaAtributos.addRow(p1);
+		
+	}
+	
 
 	public JLabel getLblPatente() {
 		return lblPatente;
