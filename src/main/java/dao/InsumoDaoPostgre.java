@@ -329,11 +329,10 @@ public class InsumoDaoPostgre implements InsumoDao{
 				pstmt2 = conn.prepareStatement(SELECT_INSUMOS_GENERALES);
 				
 				rs = pstmt2.executeQuery();	
+				
 				while(rs.next()) {
 					res.add(new InsumoGeneral(rs.getInt("id"), rs.getString("descripcion"), rs.getDouble("costo"), Unidad.valueOf(rs.getObject("unidaddemedida").toString()), rs.getDouble("peso")));
 				} 
-				
-			
 								
 		} catch (SQLException e) {
 			e.printStackTrace();

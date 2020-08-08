@@ -2,16 +2,11 @@ package gui;
 
 import java.awt.Color;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import dominio.Camion;
 import dominio.Insumo;
 import gestor.GestorInsumo;
 
@@ -33,10 +28,10 @@ public class PanelInsumoVisualizarInsumos extends JPanel {
 		
 		this.setBackground(Color.orange);
 		
-		
+		this.modeloTablaAtributos.addColumn("id");
 		this.modeloTablaAtributos.addColumn("Descripcion");
-		this.modeloTablaAtributos.addColumn("Unidad de Medida");
 		this.modeloTablaAtributos.addColumn("Costo");
+		this.modeloTablaAtributos.addColumn("Unidad de Medida");
 		this.modeloTablaAtributos.addColumn("Peso");
 		this.modeloTablaAtributos.addColumn("Densidad");
 		this.modeloTablaAtributos.addColumn("Stock");
