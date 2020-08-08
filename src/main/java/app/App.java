@@ -259,9 +259,5 @@ public class App extends JFrame{
 		app.setIconImage(new ImageIcon(app.getClass().getResource("/imagenes/COVID19.png")).getImage());
 		app.setResizable(false);
 		app.setVisible(true);
-		
-
-		
-		
 	}
 }
