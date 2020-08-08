@@ -1,7 +1,7 @@
 package gestor;
 
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 
 import dominio.Camion;
 import exepciones.CampoVacioException;
@@ -56,12 +56,34 @@ public class GestorCamion {
 		
 	}
 	
-	public void recuperarCamion(Integer id) {
+	
+	
+	public ArrayList<Camion> recuperarCamionTodos() {
+		
+		CamionServicio cs = new CamionServicio();
+
+		return cs.recuperarCamionTodos();
+		
+		
+	}
+	
+	public Camion recuperarCamionId(Integer id) {
 		
 		Camion c = new Camion(id);
 		CamionServicio cs = new CamionServicio();
 
-		cs.bajaCamion(c);
+		return cs.recuperarCamionId(c);
+		
+		
+	}
+	
+	public Camion recuperarCamionPatente(String pat) {
+		
+		Camion c = new Camion();
+		c.setPatente(pat);
+		CamionServicio cs = new CamionServicio();
+
+		return cs.recuperarCamionPatente(c);
 		
 		
 	}

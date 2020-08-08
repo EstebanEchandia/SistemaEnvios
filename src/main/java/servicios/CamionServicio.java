@@ -1,5 +1,7 @@
 package servicios;
 
+import java.util.ArrayList;
+
 import dao.CamionDao;
 import dao.CamionDaoPostgreSQL;
 import dominio.Camion;
@@ -19,12 +21,23 @@ public class CamionServicio {
 	}
 	
 	public Camion bajaCamion(Camion c) {
-		
+		 
 		return this.camionDao.bajaCamion(c);
 	}
 	
-	public Camion recuperarCamion(Camion c) {
+	public Camion recuperarCamionId(Camion c) {
 		
-		return this.camionDao.recuperarCamion(c);
+		return this.camionDao.recuperarCamionId(c);
 	}
+	
+	public Camion recuperarCamionPatente(Camion c) {
+		
+		return this.camionDao.recuperarCamionPatente(c);
+	}
+	
+	public ArrayList<Camion> recuperarCamionTodos() {
+	
+		return this.camionDao.recuperarCamionTodos();
+	}
+
 }
