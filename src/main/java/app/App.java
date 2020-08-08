@@ -44,8 +44,9 @@ public class App extends JFrame{
 	JMenuItem menuItemInsumoStock;
 	JMenuItem menuItemInsumoVisualizarInsumos;
 	
-	JMenuItem menuItemPlanta;
+	JMenuItem menuItemPlantaAniadirPlanta;
 	JMenuItem menuItemPlantaRegistrarRuta;
+	JMenuItem menuItemPlantaBuscarPlanta;
 	
 	JButton inicio;
 	
@@ -100,18 +101,18 @@ public class App extends JFrame{
 	private void armarMenuPlanta() {
 		
 		/*  Panel Planta  */
-		this.menuItemPlanta = new JMenuItem("Añadir Planta");
-		this.menuItemPlanta.addActionListener( e -> {
+		this.menuItemPlantaAniadirPlanta = new JMenuItem("Añadir Planta");
+		this.menuItemPlantaAniadirPlanta.addActionListener( e -> {
 			PanelPlantaAniadirPlanta a = new PanelPlantaAniadirPlanta();
 			a.armarPanel();
 			this.setContentPane(a);
 			this.pack();
 		});
 
-		this.menuPlanta.add(menuItemPlanta);
+		this.menuPlanta.add(menuItemPlantaAniadirPlanta);
 		
 		
-		/*  Panel GrafoPlanta  */
+		/*  Panel RegistrarRuta  */
 		this.menuItemPlantaRegistrarRuta = new JMenuItem("Registrar Ruta entre dos Plantas");
 		this.menuItemPlantaRegistrarRuta.addActionListener( e -> {
 			PanelPlantaRegistrarRuta a = new PanelPlantaRegistrarRuta();
@@ -121,6 +122,17 @@ public class App extends JFrame{
 		});
 
 		this.menuPlanta.add(menuItemPlantaRegistrarRuta);
+		
+		/*  Panel BuscarPlantas  */
+		this.menuItemPlantaBuscarPlanta = new JMenuItem("Buscar Plantas");
+		this.menuItemPlantaBuscarPlanta.addActionListener( e -> {
+			PanelPlantaBuscarPlanta a = new PanelPlantaBuscarPlanta();
+			a.armarPanel();
+			this.setContentPane(a);
+			this.pack();
+		});
+
+		this.menuPlanta.add(menuItemPlantaBuscarPlanta);
 		
 	}
 	private void armarMenuInsumo() {
