@@ -114,13 +114,14 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		
 		this.btnMostrarTodos = new JButton("Mostrar todos");
 		this.btnMostrarTodos.setBounds(410, 400, 120, 40);
+		this.btnMostrarTodos.addActionListener(e -> this.mostrarTodosCamiones());
 		this.add(btnMostrarTodos);
 		
 		this.btnGuardar = new JButton("Buscar");
 
 		this.btnGuardar.setBounds(300, 400, 100, 40);
 
-		this.btnGuardar.setBounds(370, 400, 100, 40);
+		
 		
 
 		this.btnGuardar.addActionListener(e -> this.buscarCamion());
