@@ -42,7 +42,7 @@ public class PanelCamionEditar extends JPanel {
 	
 	private JButton btnGuardar;
 
-	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un camion el usuario debe ingresar el ID de el Camion\n a modificar y luego completar todos los campos que quiera modificar.\n\n Si un campo no es completado quedara con el valor anterior a la modificacion.");
+	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un camion el usuario debe ingresar el ID de el Camion\n a modificar y luego completar todos los campos que quiera modificar.\n\n Todos los campos deben ser completados.\n\n La fecha debe ser ingresada en el formato: aaaa-mm-dd");
 	
 	private GestorCamion gestorCamion = new GestorCamion();
 	
@@ -109,7 +109,7 @@ public class PanelCamionEditar extends JPanel {
 				LocalDate.parse(this.getTxtFechaCompra().getText())));
 		this.add(btnGuardar);		
 		
-		this.txtAreaExplicacion.setBounds(500,60,250,200);
+		this.txtAreaExplicacion.setBounds(500,60,250,250);
 		this.txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
 		this.txtAreaExplicacion.setLineWrap(true);
 		this.txtAreaExplicacion.setWrapStyleWord(true);

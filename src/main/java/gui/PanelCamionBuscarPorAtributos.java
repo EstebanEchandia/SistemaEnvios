@@ -108,16 +108,27 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		
 		String[] p1 = {"HXL-655","Hyundai Santa Fe","2007-2-13","40000","1","10"};
 		String[] p2 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
+		String[] p3 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
+		String[] p4 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
+		String[] p5 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
+		String[] p6 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
+		String[] p7 = {"AAA-000","Peugeot 308","2014-5-20","1000","1.5","13"};
 		
 		this.modeloTablaAtributos.addRow(p1);
 		this.modeloTablaAtributos.addRow(p2);
+		this.modeloTablaAtributos.addRow(p3);
+		this.modeloTablaAtributos.addRow(p4);
+		this.modeloTablaAtributos.addRow(p5);
+		this.modeloTablaAtributos.addRow(p6);
+		this.modeloTablaAtributos.addRow(p7);
+		
 		
 		this.tblAtributos = new JTable(modeloTablaAtributos);
-		this.tblAtributos.setBounds(280, 20, 550,350);
+		this.tblAtributos.setBounds(280, 20, 550,300);
 		
 		this.scroll = new JScrollPane(this.tblAtributos);
 		
-		this.scroll.setBounds(280, 20, 550,350);
+		this.scroll.setBounds(280, 20, 550,300);
 		this.add(scroll);
 		
 		

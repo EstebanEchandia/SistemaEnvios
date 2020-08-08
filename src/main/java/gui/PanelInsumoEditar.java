@@ -3,9 +3,11 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -31,8 +33,12 @@ public class PanelInsumoEditar extends JPanel {
 	
 	private JButton btnGuardar;
 	
-	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un insumo el usuario debe ingresar el ID de el Insumo\n a modificar y luego completar todos los campos que quiera modificar.\n\n Si un campo no es completado quedara con el valor anterior a la modificacion.");
+	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un insumo el usuario debe ingresar el ID de el Insumo\n a modificar y luego completar todos los campos que quiera modificar.\n\n Todos los campos deben ser completados.");
 	
+	private ButtonGroup grupoRb = new ButtonGroup();
+	
+	private JRadioButton rbGeneral = new JRadioButton("General");
+	private JRadioButton rbLiquido = new JRadioButton("Liquido");
 	
 	public void PanelInsumoEditar(){
 	}
@@ -68,14 +74,14 @@ public class PanelInsumoEditar extends JPanel {
 		this.add(txtCosto);
 		
 		this.txtPeso = new JTextField(20);
-		this.txtPeso.setBounds(50,110,100,20);
-		this.lblPeso.setBounds(10,110,100,20);
+		this.txtPeso.setBounds(50,140,100,20);
+		this.lblPeso.setBounds(10,140,100,20);
 		this.add(lblPeso);
 		this.add(txtPeso);
 		
 		this.txtDensidad = new JTextField(20);
-		this.txtDensidad.setBounds(70,140,100,20);
-		this.lblDensidad.setBounds(10,140,100,20);
+		this.txtDensidad.setBounds(230,140,100,20);
+		this.lblDensidad.setBounds(170,140,100,20);
 		this.add(lblDensidad);
 		this.add(txtDensidad);
 		
@@ -90,5 +96,30 @@ public class PanelInsumoEditar extends JPanel {
 		this.txtAreaExplicacion.setOpaque(false);
 		this.txtAreaExplicacion.setEditable(false);
 		this.add(txtAreaExplicacion);
+		
+		this.grupoRb.add(rbGeneral);
+		this.grupoRb.add(rbLiquido);
+		
+		this.rbGeneral.setBounds(10,110,70,20);
+		this.rbGeneral.setBackground(Color.orange);
+		this.rbGeneral.addActionListener(e -> {
+			this.txtPeso.setEnabled(true);
+			this.lblPeso.setEnabled(true);
+			this.txtDensidad.setEnabled(false);
+			this.lblDensidad.setEnabled(false);
+		});
+		
+		this.rbLiquido.setBounds(170,110,70,20 );
+		this.rbLiquido.setBackground(Color.orange);
+		this.rbLiquido.addActionListener(e -> {
+			this.txtPeso.setEnabled(false);
+			this.lblPeso.setEnabled(false);
+			this.txtDensidad.setEnabled(true);
+			this.lblDensidad.setEnabled(true);
+			
+		});
+		
+		this.add(rbGeneral);
+		this.add(rbLiquido);
 	}
 }
