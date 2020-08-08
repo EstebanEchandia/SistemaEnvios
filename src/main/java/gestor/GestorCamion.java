@@ -13,7 +13,6 @@ public class GestorCamion {
 	public void altaCamion(String patente, String modelo, Double kmrecorridos, Double costoporkm, 
 			Double costoporhora, LocalDate fechadecompra) {
 			
-			//Integer ultimoIdCamion = camionDao.getUltimoId();
 
 			//Campos obligatorios: Todos	
 			Camion c = new Camion(1,patente,modelo,kmrecorridos,costoporkm,costoporhora,fechadecompra); //En el campo de id tiene el valor 1 por que la bd lo maneja serial

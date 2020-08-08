@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import gestor.GestorInsumo;
+
 public class PanelInsumoDarBaja extends JPanel {
 	
 	private JLabel lblId = new JLabel("Id:");
@@ -24,6 +26,8 @@ public class PanelInsumoDarBaja extends JPanel {
 	private JLabel imagenInsumo1;
 	private JLabel imagenInsumo2;
 	private JLabel imagenInsumo3;
+	
+	GestorInsumo gestorInsumo = new GestorInsumo();
 	
 	public void PanelInsumo(){
 	}
@@ -42,6 +46,7 @@ public class PanelInsumoDarBaja extends JPanel {
 		
 		this.btnGuardar = new JButton("Dar Baja");
 		this.btnGuardar.setBounds(370, 400, 100, 40);
+		this.btnGuardar.addActionListener( e -> gestorInsumo.bajaInsumo(Integer.parseInt(this.getTxtId().getText())));
 		this.add(btnGuardar);
 		
 		this.txtAreaExplicacion.setBounds(10,60,250,200);
@@ -75,5 +80,13 @@ public class PanelInsumoDarBaja extends JPanel {
 		Icon icono3 = new ImageIcon(imagen3.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH)); 
 		this.imagenInsumo3.setIcon(icono3);
 		this.add(imagenInsumo3);
+	}
+
+	public JTextField getTxtId() {
+		return txtId;
+	}
+
+	public void setTxtId(JTextField txtId) {
+		this.txtId = txtId;
 	}
 }
