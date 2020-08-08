@@ -11,13 +11,13 @@ public class GestorPlanta {
 	
 	private Planta p;
 	private GrafoPlantas grafo;
+	private PlantaServicio ps = new PlantaServicio();
 	
 	
 	public void altaPlanta(String nombre) {
 		
 		Planta p = new Planta(1,nombre);
 		
-		PlantaServicio ps = new PlantaServicio();
 		
 		ps.altaPlanta(p);
 		
@@ -36,6 +36,10 @@ public class GestorPlanta {
 	ArrayList<Planta> getListaPlantasOrdenadasPorPageRank() {
 		
 		return new ArrayList<Planta>();
+	}
+	
+	public ArrayList<Planta> recuperarPlantasTodas() {
+		return this.ps.recuperarPlantasTodas();
 	}
 	
 

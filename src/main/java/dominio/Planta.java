@@ -28,6 +28,10 @@ public class Planta {
 		this.nombre = nombre;
 	}
 
+	public String[] listaAtributos(){
+		String[] res = new String[] {id.toString(), nombre};
+		return res;
+	}
 	
 	@Override
 	public int hashCode() {

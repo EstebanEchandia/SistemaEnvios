@@ -3,10 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import dao.utils.DB;
+import dominio.Camion;
 import dominio.Planta;
 
 public class PlantaDaoPostgreSQL implements PlantaDao{
@@ -25,6 +28,10 @@ public class PlantaDaoPostgreSQL implements PlantaDao{
 	
 	private static final String DELETE_PLANTA =
 			" DELETE FROM trabajopractico.CAMION " + " WHERE ID = ?";
+	
+	private static final String SELECT_PLANTA_ALL =
+			"SELECT * FROM trabajopractico.planta ";
+	
 	
 	@Override
 	public Planta altaPlanta(Planta p) {
@@ -113,5 +120,39 @@ public class PlantaDaoPostgreSQL implements PlantaDao{
 		}
 	return p;
 	}
+
+
+	
+	@Override
+	public ArrayList<Planta> recuperarPlantasTodas() {
+		
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ArrayList <Planta> res = new ArrayList<Planta>();
+		try {
+			System.out.println("Buscando Plantas");
+			pstmt = conn.prepareStatement(SELECT_PLANTA_ALL);
+			
+			ResultSet rs = pstmt.executeQuery();	
+			
+			while(rs.next()) {
+				res.add(new Planta(rs.getInt("id"), rs.getString("nombre")));
+			}
+							
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			}	
+		return res;
+	
+	}
+	
+	
 
 }
