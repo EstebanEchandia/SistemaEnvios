@@ -3,10 +3,13 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -26,6 +29,8 @@ public class PanelCamionDarBaja extends JPanel {
 	private JTextArea txtAreaExplicacion = new JTextArea("Escriba el ID del Camion a dar de baja y oprima Dar Baja");
 	
 	private GestorCamion gestorCamion = new GestorCamion();
+	
+	private JLabel imagenCamion;
 	
 	public void PanelCamionDarBaja(){
 	}
@@ -57,6 +62,13 @@ public class PanelCamionDarBaja extends JPanel {
 		
 		this.btnGuardar.addActionListener( e -> gestorCamion.bajaCamion(Integer.parseInt(this.getTxtId().getText())));
 		
+		this.imagenCamion = new JLabel();
+		this.imagenCamion.setBounds(600,300,140,140);
+		
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/camion.png"));	
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(140,140,Image.SCALE_SMOOTH)); 
+		this.imagenCamion.setIcon(icono);
+		this.add(imagenCamion);
 	}
 
 	public JButton getBtnGuardar() {

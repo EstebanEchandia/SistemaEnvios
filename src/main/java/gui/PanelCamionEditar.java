@@ -3,10 +3,13 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -45,6 +48,8 @@ public class PanelCamionEditar extends JPanel {
 	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un camion el usuario debe ingresar el ID de el Camion\n a modificar y luego completar todos los campos que quiera modificar.\n\n Todos los campos deben ser completados.\n\n La fecha debe ser ingresada en el formato: aaaa-mm-dd");
 	
 	private GestorCamion gestorCamion = new GestorCamion();
+	
+	private JLabel imagenCamion;
 	
 	public void PanelAyuda(){
 	}
@@ -116,6 +121,14 @@ public class PanelCamionEditar extends JPanel {
 		this.txtAreaExplicacion.setOpaque(false);
 		this.txtAreaExplicacion.setEditable(false);
 		this.add(txtAreaExplicacion);
+		
+		this.imagenCamion = new JLabel();
+		this.imagenCamion.setBounds(60,300,140,140);
+		
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/camion.png"));	
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(140,140,Image.SCALE_SMOOTH)); 
+		this.imagenCamion.setIcon(icono);
+		this.add(imagenCamion);
 	}		
 	
 	public JLabel getLblPatente() {

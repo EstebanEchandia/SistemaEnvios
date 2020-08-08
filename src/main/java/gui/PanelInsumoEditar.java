@@ -2,8 +2,11 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -39,6 +42,10 @@ public class PanelInsumoEditar extends JPanel {
 	
 	private JRadioButton rbGeneral = new JRadioButton("General");
 	private JRadioButton rbLiquido = new JRadioButton("Liquido");
+	
+	private JLabel imagenInsumo1;
+	private JLabel imagenInsumo2;
+	private JLabel imagenInsumo3;
 	
 	public void PanelInsumoEditar(){
 	}
@@ -121,5 +128,30 @@ public class PanelInsumoEditar extends JPanel {
 		
 		this.add(rbGeneral);
 		this.add(rbLiquido);
+		
+		this.imagenInsumo1 = new JLabel();
+		this.imagenInsumo1.setBounds(150,300,100,100);
+		
+		ImageIcon imagen1 = new ImageIcon(getClass().getResource("/imagenes/etiqueta.png"));	
+		Icon icono1 = new ImageIcon(imagen1.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH)); 
+		this.imagenInsumo1.setIcon(icono1);
+		this.add(imagenInsumo1);
+		
+		this.imagenInsumo2 = new JLabel();
+		this.imagenInsumo2.setBounds(375,220,100,100);
+		
+		ImageIcon imagen2 = new ImageIcon(getClass().getResource("/imagenes/bolsa.png"));	
+		Icon icono2 = new ImageIcon(imagen2.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH)); 
+		this.imagenInsumo2.setIcon(icono2);
+		this.add(imagenInsumo2);
+		
+		this.imagenInsumo3 = new JLabel();
+		this.imagenInsumo3.setBounds(600,300,100,100);
+		
+		ImageIcon imagen3 = new ImageIcon(getClass().getResource("/imagenes/canasta de compras.png"));	
+		Icon icono3 = new ImageIcon(imagen3.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH)); 
+		this.imagenInsumo3.setIcon(icono3);
+		this.add(imagenInsumo3);
+		
 	}
 }
