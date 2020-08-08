@@ -37,11 +37,11 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 	
 		
 		this.tblPlantas = new JTable(modeloTablaAtributos);
-		this.tblPlantas.setBounds(120, 20, 630,430);
+		this.tblPlantas.setBounds(120, 20, 630,300);
 		
 		this.scroll = new JScrollPane(this.tblPlantas);
 		
-		this.scroll.setBounds(120, 20, 630,430);
+		this.scroll.setBounds(120, 20, 630,300);
 		this.add(scroll);
 		
 		this.btnEditar = new JButton("Editar");
