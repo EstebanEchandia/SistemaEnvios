@@ -1,12 +1,15 @@
 package gui;
 
 import java.awt.Color;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import gestor.GestorRuta;
 
 public class PanelPlantaRegistrarRuta extends JPanel{
 	
@@ -26,6 +29,8 @@ public class PanelPlantaRegistrarRuta extends JPanel{
 	private JTextField txtPesoMaximoEnKgQueSePuedenTransportar;
 	
 	private JButton btnGuardar;
+	
+	private GestorRuta gestorRuta = new GestorRuta();
 
 	public void PanelCamiones(){
 	}
@@ -63,7 +68,54 @@ public class PanelPlantaRegistrarRuta extends JPanel{
 
 		this.btnGuardar = new JButton("Registrar");
 		this.btnGuardar.setBounds(370, 400, 100, 40);
+		this.btnGuardar.addActionListener( e -> gestorRuta.altaRuta("A12",Double.parseDouble(this.getTxtDistanciaEnKm().getText()),
+																		  Double.parseDouble(this.getTxtDuracionEstimadaEnHoras().getText()), 
+																		 // Double.parseDouble(this.getTxtPesoMaximoEnKgQueSePuedenTransportar().getText()), 
+																		  10d,
+																		  Integer.parseInt(this.getTxtPlantaOrigen().getText()), 
+																		  Integer.parseInt(this.getTxtPlantaDestino().getText())));
 		this.add(btnGuardar);
 
 	}
+	public JTextField getTxtPlantaOrigen() {
+		return txtPlantaOrigen;
+	}
+
+	public void setTxtPlantaOrigen(JTextField txtPlantaOrigen) {
+		this.txtPlantaOrigen = txtPlantaOrigen;
+	}
+
+	public JTextField getTxtPlantaDestino() {
+		return txtPlantaDestino;
+	}
+
+	public void setTxtPlantaDestino(JTextField txtPlantaDestino) {
+		this.txtPlantaDestino = txtPlantaDestino;
+	}
+
+	public JTextField getTxtDuracionEstimadaEnHoras() {
+		return txtDuracionEstimadaEnHoras;
+	}
+
+	public void setTxtDuracionEstimadaEnHoras(JTextField txtDuracionEstimadaEnHoras) {
+		this.txtDuracionEstimadaEnHoras = txtDuracionEstimadaEnHoras;
+	}
+
+	public JTextField getTxtDistanciaEnKm() {
+		return txtDistanciaEnKm;
+	}
+
+	public void setTxtDistanciaEnKm(JTextField txtDistanciaEnKm) {
+		this.txtDistanciaEnKm = txtDistanciaEnKm;
+	}
+
+	public JTextField getTxtPesoMaximoEnKgQueSePuedenTransportar() {
+		return txtPesoMaximoEnKgQueSePuedenTransportar;
+	}
+
+	public void setTxtPesoMaximoEnKgQueSePuedenTransportar(JTextField txtPesoMaximoEnKgQueSePuedenTransportar) {
+		this.txtPesoMaximoEnKgQueSePuedenTransportar = txtPesoMaximoEnKgQueSePuedenTransportar;
+	}
+	
+
 }

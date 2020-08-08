@@ -18,10 +18,12 @@ public class Camion {
 	public Camion() {
 		super();
 	}
+	
 	public Camion(Integer id) {
 		super();
 		this.id=id;
 	}
+	
 	public Camion(Integer id, String patente, String modelo, Double kmRecorridos, Double costoPorKm,
 			Double costoPorHora, LocalDate fechaDeCompra) {
 		
@@ -36,8 +38,8 @@ public class Camion {
 
 	}
 	
-	//"HXL-655","Hyundai Santa Fe","2007-2-13","40000","1","10"
-
+	
+	//Devuelve un string del tipo {"HXL-655","Hyundai Santa Fe","2007-2-13","40000","1","10"}
 	public String[] listaAtributos(){
 		String[] res = new String[] {id.toString(), patente, modelo,fechaDeCompra.toString(),kmRecorridos.toString(), costoPorKm.toString(), costoPorHora.toString()};
 		return res;

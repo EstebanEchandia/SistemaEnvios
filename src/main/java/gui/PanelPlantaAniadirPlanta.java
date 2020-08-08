@@ -1,11 +1,15 @@
 package gui;
 
 import java.awt.Color;
+import java.time.LocalDate;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import gestor.GestorPlanta;
 
 public class PanelPlantaAniadirPlanta extends JPanel{
 	private JLabel lblNombrePlanta = new JLabel("Nombre Planta:");
@@ -13,6 +17,7 @@ public class PanelPlantaAniadirPlanta extends JPanel{
 	
 	private JButton btnGuardar;
 	
+	private GestorPlanta gestorPlanta = new GestorPlanta();
 	public void PanelPlanta(){
 	}
 	
@@ -30,6 +35,14 @@ public class PanelPlantaAniadirPlanta extends JPanel{
 		
 		this.btnGuardar = new JButton("Añadir Planta");
 		this.btnGuardar.setBounds(370, 400, 120, 40);
+		
+		this.btnGuardar.addActionListener( e -> gestorPlanta.altaPlanta(this.getTxtNombrePlanta().getText()));
 		this.add(btnGuardar);
 	}
+
+	private JTextField getTxtNombrePlanta() {
+		
+		return this.txtNombrePlanta;
+	}
 }
+

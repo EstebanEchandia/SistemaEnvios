@@ -16,7 +16,7 @@ CREATE SCHEMA trabajoPractico
 			
 			patente varchar(20),
 			modelo varchar(100),
-			kmRecorridos numeric(20,2),
+			kmRecorridos numeic(20,2),
 			costoPorKm numeric(20,2),
 			costoPorHora numeric(20,2),
 			fechaDeCompra date NOT NULL,
@@ -145,4 +145,22 @@ CREATE SCHEMA trabajoPractico
 			CONSTRAINT fk_idPlanta FOREIGN KEY (idPlanta)
 			REFERENCES trabajoPractico.planta(id)
 		);
+
+		CREATE TABLE trabajoPractico.ruta
+		(
+			sigla varchar(10),
+			distanciaEnKm numeric(20,2),
+			duracionEnM numeric(20,2) ,
+			cantMaxATransportarEnKg numeric(20,2) ,
+			plantaOrigen integer,
+			plantaDestino integer,
+
+			CONSTRAINT pk_idStock PRIMARY KEY (sigla),
+
+			CONSTRAINT fk_plantaOrigenRuta FOREIGN KEY (plantaOrigen)
+			REFERENCES trabajoPractico.planta(id),
+
+			CONSTRAINT fk_plantaDestinoRuta FOREIGN KEY (plantaDestino)
+			REFERENCES trabajoPractico.planta(id)
+	
 	
