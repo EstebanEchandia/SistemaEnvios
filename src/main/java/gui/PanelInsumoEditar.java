@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
@@ -13,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import enums.Unidad;
+import gestor.GestorInsumo;
 
 public class PanelInsumoEditar extends JPanel {
 	
@@ -46,6 +50,8 @@ public class PanelInsumoEditar extends JPanel {
 	private JLabel imagenInsumo1;
 	private JLabel imagenInsumo2;
 	private JLabel imagenInsumo3;
+	
+	private GestorInsumo gestorInsumo = new GestorInsumo();
 	
 	public void PanelInsumoEditar(){
 	}
@@ -109,11 +115,32 @@ public class PanelInsumoEditar extends JPanel {
 		
 		this.rbGeneral.setBounds(10,110,70,20);
 		this.rbGeneral.setBackground(Color.orange);
+		
+		
 		this.rbGeneral.addActionListener(e -> {
+			
 			this.txtPeso.setEnabled(true);
 			this.lblPeso.setEnabled(true);
 			this.txtDensidad.setEnabled(false);
 			this.lblDensidad.setEnabled(false);
+			
+			//Borramos todos los ActionListeners asociados a guardar
+			for(ActionListener al: this.btnGuardar.getActionListeners()) {
+				btnGuardar.removeActionListener(al);
+			}
+			
+			//Creamos el actionListener que vamos a usar
+			this.btnGuardar.addActionListener( f -> gestorInsumo.updateInsumoGeneral(
+					Integer.parseInt(this.getTxtId().getText()),
+					this.getTxtDescripcion().getText(),
+					Double.parseDouble(this.getTxtCosto().getText()),
+					Unidad.valueOf(this.getTxtUnidadDeMedida().getText()),			
+					Double.parseDouble(this.getTxtPeso().getText()))
+					);
+			
+		
+			
+			
 		});
 		
 		this.rbLiquido.setBounds(170,110,70,20 );
@@ -123,6 +150,18 @@ public class PanelInsumoEditar extends JPanel {
 			this.lblPeso.setEnabled(false);
 			this.txtDensidad.setEnabled(true);
 			this.lblDensidad.setEnabled(true);
+			
+			for(ActionListener al: this.btnGuardar.getActionListeners()) {
+				btnGuardar.removeActionListener(al);
+			}
+			
+			this.btnGuardar.addActionListener( f -> gestorInsumo.updateInsumoLiquido(
+					Integer.parseInt(this.getTxtId().getText()),
+					this.getTxtDescripcion().getText(),
+					Double.parseDouble(this.getTxtCosto().getText()),
+					Unidad.valueOf(this.getTxtUnidadDeMedida().getText()),			
+					Double.parseDouble(this.getTxtDensidad().getText()))
+					);
 			
 		});
 		
@@ -154,4 +193,54 @@ public class PanelInsumoEditar extends JPanel {
 		this.add(imagenInsumo3);
 		
 	}
+
+	public JTextField getTxtId() {
+		return txtId;
+	}
+
+	public void setTxtId(JTextField txtId) {
+		this.txtId = txtId;
+	}
+
+	public JTextField getTxtDescripcion() {
+		return txtDescripcion;
+	}
+
+	public void setTxtDescripcion(JTextField txtDescripcion) {
+		this.txtDescripcion = txtDescripcion;
+	}
+
+	public JTextField getTxtUnidadDeMedida() {
+		return txtUnidadDeMedida;
+	}
+
+	public void setTxtUnidadDeMedida(JTextField txtUnidadDeMedida) {
+		this.txtUnidadDeMedida = txtUnidadDeMedida;
+	}
+
+	public JTextField getTxtCosto() {
+		return txtCosto;
+	}
+
+	public void setTxtCosto(JTextField txtCosto) {
+		this.txtCosto = txtCosto;
+	}
+
+	public JTextField getTxtPeso() {
+		return txtPeso;
+	}
+
+	public void setTxtPeso(JTextField txtPeso) {
+		this.txtPeso = txtPeso;
+	}
+
+	public JTextField getTxtDensidad() {
+		return txtDensidad;
+	}
+
+	public void setTxtDensidad(JTextField txtDensidad) {
+		this.txtDensidad = txtDensidad;
+	}
+	
+	
 }
