@@ -69,9 +69,7 @@ public class App extends JFrame{
 		this.menuItemCamionEditar = new JMenuItem("Editar Camion");
 		this.menuItemCamionEditar.addActionListener( e -> {
 			PanelCamionEditar a = new PanelCamionEditar();
-			a.armarPanel();
-			this.setContentPane(a);
-			this.pack();
+			a.armarPanel(this);
 		});
 
 		this.menuCamion.add(menuItemCamionEditar);
