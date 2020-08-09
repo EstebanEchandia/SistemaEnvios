@@ -47,6 +47,7 @@ public class App extends JFrame{
 	JMenuItem menuItemPlantaAniadirPlanta;
 	JMenuItem menuItemPlantaRegistrarRuta;
 	JMenuItem menuItemPlantaBuscarPlanta;
+	JMenuItem menuItemPlantaRegistrarOrdenPedido;
 	
 	JButton inicio;
 	
@@ -129,6 +130,15 @@ public class App extends JFrame{
 		});
 
 		this.menuPlanta.add(menuItemPlantaBuscarPlanta);
+		
+		/*  Panel BuscarPlantas  */
+		this.menuItemPlantaRegistrarOrdenPedido = new JMenuItem("Registrar Orden de Pedido");
+		this.menuItemPlantaRegistrarOrdenPedido.addActionListener( e -> {
+			PanelRegistroOrdenDePedido a = new PanelRegistroOrdenDePedido();
+			a.armarPanel(this);
+		});
+
+		this.menuPlanta.add(menuItemPlantaRegistrarOrdenPedido);
 		
 	}
 	private void armarMenuInsumo() {
