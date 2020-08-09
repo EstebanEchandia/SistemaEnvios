@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,8 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import dominio.Insumo;
 import dominio.Planta;
+import gestor.GestorInsumo;
 import gestor.GestorPlanta;
+import gestor.GestorStock;
 
 public class PanelRegistroOrdenDePedido extends JPanel{
 	/*
@@ -207,6 +211,9 @@ public class PanelRegistroOrdenDePedido extends JPanel{
 		
 		JButton btnAgregar = new JButton("Agregar");
 		
+		GestorInsumo gestorInsumo = new GestorInsumo();
+		GestorStock gestorStock = new GestorStock();
+		
 		int cantidad;
 		
 		Object [] atributosInsumo = {-1,0};
@@ -218,9 +225,31 @@ public class PanelRegistroOrdenDePedido extends JPanel{
 		
 		modeloTablaTodosInsumos = new DefaultTableModel();
 		
-		modeloTablaTodosInsumos.addColumn("Insumo");
-		modeloTablaTodosInsumos.addColumn("Cantidad");
-		modeloTablaTodosInsumos.addColumn("Precio");
+		this.modeloTablaAtributos.addColumn("id");
+
+		modeloTablaTodosInsumos.addColumn("Descripcion");
+		modeloTablaTodosInsumos.addColumn("Costo");
+		modeloTablaTodosInsumos.addColumn("Unidad de Medida");
+		modeloTablaTodosInsumos.addColumn("Peso");
+		modeloTablaTodosInsumos.addColumn("Densidad");
+		modeloTablaTodosInsumos.addColumn("Stock");
+		
+		/**/
+		
+		while(modeloTablaTodosInsumos.getRowCount()>0) {
+			modeloTablaTodosInsumos.removeRow(0);
+		}
+		
+		ArrayList<Insumo> listaInsumos = gestorInsumo.recuperarInsumoTodos();
+		
+		for(Insumo i: listaInsumos) {
+			
+			String[] p1 = i.listaAtributos();
+			p1 = addElement(p1, gestorStock.getStockDeUnInsumo(i.getId()));
+
+			modeloTablaTodosInsumos.addRow(p1);
+		
+		/**/
 		
 		tblTodosInsumos = new JTable(modeloTablaTodosInsumos);
 		tblTodosInsumos.setBounds(10, 10, 380,250);
@@ -243,13 +272,16 @@ public class PanelRegistroOrdenDePedido extends JPanel{
 		
 		panelRegistrarOrdenPedido.add(panelAgregarInsumos);
 		
-		//
-		
 		/*------------------------------*/
 		
 		app.setContentPane(panelRegistrarOrdenPedido);
 		app.pack();
 		
-		
+		}
+	}
+	static String[] addElement(String []a, Integer e) {
+			a = Arrays.copyOf(a, a.length+1);
+			a[a.length - 1 ] = e.toString();
+			return a;
 	}
 }
