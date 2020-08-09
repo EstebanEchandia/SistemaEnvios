@@ -37,11 +37,11 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 	
 		
 		this.tblPlantas = new JTable(modeloTablaAtributos);
-		this.tblPlantas.setBounds(120, 20, 630,430);
+		this.tblPlantas.setBounds(120, 20, 630,300);
 		
 		this.scroll = new JScrollPane(this.tblPlantas);
 		
-		this.scroll.setBounds(120, 20, 630,430);
+		this.scroll.setBounds(120, 20, 630,300);
 		this.add(scroll);
 		
 		this.btnEditar = new JButton("Editar");
@@ -62,5 +62,15 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 			String[] p1 = p.listaAtributos();
 			this.modeloTablaAtributos.addRow(p1);
 		}		
+	}
+	
+	public void crearPanelEditarPlanta() {
+		JPanel panelEditarPlanta = new JPanel();
+		
+		panelEditarPlanta.setLayout(null);
+		
+		panelEditarPlanta.setBackground(Color.orange);
+		
+		JLabel cantidadInsumo;
 	}
 }
