@@ -63,4 +63,14 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 			this.modeloTablaAtributos.addRow(p1);
 		}		
 	}
+	
+	public void crearPanelEditarPlanta() {
+		JPanel panelEditarPlanta = new JPanel();
+		
+		panelEditarPlanta.setLayout(null);
+		
+		panelEditarPlanta.setBackground(Color.orange);
+		
+		JLabel cantidadInsumo;
+	}
 }
