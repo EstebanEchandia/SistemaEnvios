@@ -51,8 +51,9 @@ public class GestorInsumo {
 	public ArrayList<Insumo> recuperarInsumoTodos() {
 		ArrayList<Insumo> res = is.recuperarInsumoTodos();
 		return res;
-		
 	}
+	
+	
 	
 	
 }

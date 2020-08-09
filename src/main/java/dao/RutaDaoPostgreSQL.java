@@ -9,7 +9,7 @@ import dao.utils.DB;
 import dominio.Planta;
 import dominio.Ruta;
 
-public class RutaDaoPostgreSql implements RutaDao{
+public class RutaDaoPostgreSQL implements RutaDao{
 
 	private static final String INSERT_RUTA =
 			"INSERT INTO trabajopractico.ruta(SIGLA,DISTANCIAENKM,DURACIONENHORAS,CANTMAXATRANSPORTARENKG,PLANTAORIGEN,PLANTADESTINO)"+""

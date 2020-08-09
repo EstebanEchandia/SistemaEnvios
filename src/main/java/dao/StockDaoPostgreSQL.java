@@ -30,8 +30,8 @@ public class StockDaoPostgreSQL implements StockDao{
 					+ " VALUES (?,?,?,?)";
 	
 	private static final String SUMAR_STOCK_DE_UN_INSUMO =
-						"SELECT SUM(stock.cantidad)"+
-							"from trabajopractico.stock, trabajopractico.insumo"+
+						"SELECT SUM(stock.cantidad) "+
+							"from trabajopractico.stock, trabajopractico.insumo "+
 								"where stock.idInsumo = insumo.id and insumo.id = ?";
 					
 	
@@ -74,11 +74,9 @@ public class StockDaoPostgreSQL implements StockDao{
 		Integer res = 0;
 		
 		try {
-			System.out.println("Sumando Stock de insumos");
 					
-			pstmt = conn.prepareStatement(SUMAR_STOCK_DE_UN_INSUMO);
-			pstmt.setInt(1, idInsumo);
-			
+			pstmt = conn.prepareStatement(SUMAR_STOCK_DE_UN_INSUMO);	
+			pstmt.setInt(1, idInsumo);	
 			ResultSet rs = pstmt.executeQuery();	
 			
 			while(rs.next()) {
