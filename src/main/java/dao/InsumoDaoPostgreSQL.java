@@ -25,7 +25,7 @@ import enums.Unidad;
  * @author esteb
  *
  */
-public class InsumoDaoPostgre implements InsumoDao{
+public class InsumoDaoPostgreSQL implements InsumoDao{
 	
 	private static final String INSERT_INSUMO =
 			"INSERT INTO trabajopractico.INSUMO(DESCRIPCION,UNIDADDEMEDIDA,COSTO)"

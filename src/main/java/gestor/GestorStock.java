@@ -18,8 +18,16 @@ public class GestorStock {
 		
 		Stock s = new Stock(cantidad, ptoMinimoDePedido, insumoAsociado, idPlanta);
 		
+		stockServicio.altaStock(s);
+		
 		
 	}
+	
+	public Integer getStockDeUnInsumo(Integer id) {
+		return stockServicio.getStockDeUnInsumo(id);
+		
+	}
+	
 	Stock modificarStock() {
 		
 		return new Stock();

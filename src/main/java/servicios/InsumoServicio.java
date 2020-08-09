@@ -3,7 +3,7 @@ package servicios;
 import java.util.ArrayList;
 
 import dao.InsumoDao;
-import dao.InsumoDaoPostgre;
+import dao.InsumoDaoPostgreSQL;
 import dominio.Camion;
 import dominio.Insumo;
 import dominio.InsumoGeneral;
@@ -11,7 +11,7 @@ import dominio.InsumoLiquido;
 
 public class InsumoServicio {
 
-	private InsumoDao insumoDao = new InsumoDaoPostgre();
+	private InsumoDao insumoDao = new InsumoDaoPostgreSQL();
 	
 	public InsumoGeneral altaInsumoGeneral(InsumoGeneral i) {
 		return this.insumoDao.altaInsumoGeneral(i);	
@@ -39,4 +39,6 @@ public class InsumoServicio {
 	public ArrayList<Insumo> recuperarInsumoTodos() {
 		return this.insumoDao.recuperarInsumoTodos();
 		}
+	
+	
 }

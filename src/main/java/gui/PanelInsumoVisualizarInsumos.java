@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -9,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import dominio.Insumo;
 import gestor.GestorInsumo;
+import gestor.GestorStock;
 
 public class PanelInsumoVisualizarInsumos extends JPanel {
 	
@@ -17,7 +20,7 @@ public class PanelInsumoVisualizarInsumos extends JPanel {
 	private JScrollPane scroll;
 	
 	GestorInsumo gestorInsumo = new GestorInsumo();
-	
+	GestorStock gestorStock = new GestorStock();
 	
 	public void PanelInsumo(){
 	}
@@ -69,11 +72,19 @@ public class PanelInsumoVisualizarInsumos extends JPanel {
 		ArrayList<Insumo> listaInsumos = gestorInsumo.recuperarInsumoTodos();
 		
 		for(Insumo i: listaInsumos) {
-			System.out.println("Encontre un Insumo");
+			
 			String[] p1 = i.listaAtributos();
+			p1 = addElement(p1, gestorStock.getStockDeUnInsumo(i.getId()));
+
 			this.modeloTablaAtributos.addRow(p1);
 		}	
 		
 		
+	}
+	
+	static String[] addElement(String []a, Integer e) {
+		a = Arrays.copyOf(a, a.length+1);
+		a[a.length - 1 ] = e.toString();
+		return a;
 	}
 }
