@@ -42,6 +42,9 @@ public abstract class Insumo {
 	public void setUnidad(Unidad unidad) {
 		this.unidad = unidad;
 	}
+	public Double pesoPorUnidad() {
+		return 0.0;
+	}
 	
 	public String[] listaAtributos(){
 		return null;

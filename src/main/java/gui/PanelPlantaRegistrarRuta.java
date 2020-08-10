@@ -42,7 +42,7 @@ public class PanelPlantaRegistrarRuta extends JPanel{
 		
 		this.setLayout(null);
 		
-		this.setBackground(new Color(184,65,39));
+		this.setBackground(new Color(81,232,60));
 		
 		this.txtSigla = new JTextField(20);
 		this.txtSigla.setBounds(50, 20, 100,20);

@@ -44,5 +44,10 @@ public class InsumoGeneral extends Insumo {
 		return res;
 		
 	}
+	
+	@Override
+	public Double pesoPorUnidad() {
+		return this.peso;
+	}
 
 }

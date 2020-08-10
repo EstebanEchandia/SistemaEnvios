@@ -49,6 +49,7 @@ public class App extends JFrame{
 	JMenuItem menuItemPlantaAniadirPlanta;
 	JMenuItem menuItemPlantaRegistrarRuta;
 	JMenuItem menuItemPlantaBuscarPlanta;
+	JMenuItem menuItemPlantaVisualizarPlantasConAlgunInsumoConStockMenorAlPuntoDePedido;
 	
 	JMenuItem menuItemRegistrarOrdenPedido;
 	JMenuItem menuItemOrdenPedidoProcesada;
@@ -135,6 +136,15 @@ public class App extends JFrame{
 		});
 
 		this.menuPlanta.add(menuItemPlantaBuscarPlanta);
+		
+		/*  Panel  VisualizarPlantas */
+		this.menuItemPlantaVisualizarPlantasConAlgunInsumoConStockMenorAlPuntoDePedido = new JMenuItem("Visualizar plantas...");
+		this.menuItemPlantaVisualizarPlantasConAlgunInsumoConStockMenorAlPuntoDePedido.addActionListener( e -> {
+			PanelPlantasVisualizarPlantas a = new PanelPlantasVisualizarPlantas();
+			a.armarPanel(this);
+		});
+
+		this.menuPlanta.add(menuItemPlantaVisualizarPlantasConAlgunInsumoConStockMenorAlPuntoDePedido);
 		
 	}
 	private void armarMenuInsumo() {
