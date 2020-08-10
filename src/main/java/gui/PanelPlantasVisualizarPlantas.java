@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -11,9 +12,12 @@ import app.App;
 
 public class PanelPlantasVisualizarPlantas extends JPanel {
 	
-	JTable tblPlantas;
+	private JTable tblPlantas;
 	private DefaultTableModel modeloTablaAtributos = new DefaultTableModel();
 	private JScrollPane scroll;
+	
+	private JButton btnDetalleOrden = new JButton("Detalle de orden");
+	private JButton btnVerPlantasConStock = new JButton("Ver plantas con stock");
 
 	public void armarPanel(App app) {
 		
@@ -33,6 +37,11 @@ public class PanelPlantasVisualizarPlantas extends JPanel {
 		
 		this.scroll.setBounds(120, 20, 630,400);
 		this.add(scroll);
+		
+		this.btnDetalleOrden.setBounds(280, 430, 130, 30);
+		this.btnVerPlantasConStock.setBounds(430, 430, 160, 30);
+		this.add(btnDetalleOrden);
+		this.add(btnVerPlantasConStock);
 		
 		app.setContentPane(this);
 		app.pack();
