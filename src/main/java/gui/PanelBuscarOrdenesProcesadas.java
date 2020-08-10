@@ -91,5 +91,6 @@ public class PanelBuscarOrdenesProcesadas extends JPanel {
 	
 	public void insertarElementosTabla() {
 		
+		
 	}
 }

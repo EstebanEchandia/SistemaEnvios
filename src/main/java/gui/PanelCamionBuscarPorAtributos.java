@@ -174,8 +174,9 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	}
 	
 	public void buscarCamion() {
-		
+	
 		Camion c = gestorCamion.recuperarCamionPatente(this.getTxtPatente().getText());
+		System.out.println(c.getPatente());
 		String[] p1 = c.listaAtributos();
 		this.modeloTablaAtributos.addRow(p1);
 		
