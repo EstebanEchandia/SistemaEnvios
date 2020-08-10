@@ -137,8 +137,8 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 		
 		panelEditarPlanta.setLayout(null);
 		
-		panelEditarPlanta.setBackground(new Color(81,232,60));
-
+		panelEditarPlanta.setBackground(new Color(184,65,39));
+		
 		txtIdPlanta.setBounds(90, 50, 100, 20);
 		lblIdPlanta.setBounds(10, 50, 100, 20);
 		panelEditarPlanta.add(txtIdPlanta);
