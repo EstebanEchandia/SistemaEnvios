@@ -1,8 +1,7 @@
 package dominio;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Camion {
@@ -14,12 +13,19 @@ public class Camion {
 	private Double costoPorHora;
 	private LocalDate fechaDeCompra;
 	private ArrayList<Envio> envios;
-	private Planta planta;
+	private Integer idPlanta;
 	
+	public Camion() {
+		super();
+	}
 	
+	public Camion(Integer id) {
+		super();
+		this.id=id;
+	}
 	
 	public Camion(Integer id, String patente, String modelo, Double kmRecorridos, Double costoPorKm,
-			Double costoPorHora, LocalDate fechaDeCompra, Integer idPlanta) {
+			Double costoPorHora, LocalDate fechaDeCompra) {
 		
 		super();
 		this.id = id;
@@ -29,10 +35,16 @@ public class Camion {
 		this.costoPorKm = costoPorKm;
 		this.costoPorHora = costoPorHora;
 		this.fechaDeCompra = fechaDeCompra;
-		this.planta = planta.getPlantaConId(idPlanta);
-		
+
 	}
 	
+	
+	//Devuelve un string del tipo {"HXL-655","Hyundai Santa Fe","2007-2-13","40000","1","10"}
+	public String[] listaAtributos(){
+		String[] res = new String[] {id.toString(), patente, modelo,fechaDeCompra.toString(),kmRecorridos.toString(), costoPorKm.toString(), costoPorHora.toString()};
+		return res;
+		
+	}
 
 	public String getPatente() {
 		return patente;
@@ -75,7 +87,7 @@ public class Camion {
 	public LocalDate getFechaDeCompra() {
 		return fechaDeCompra;
 	}
-	public void setFechaDeCompra(LocalDateTime fechaDeCompra) {
+	public void setFechaDeCompra(LocalDate fechaDeCompra) {
 		this.fechaDeCompra = fechaDeCompra;
 	}
 	public ArrayList<Envio> getEnvios() {
@@ -85,10 +97,10 @@ public class Camion {
 		this.envios = envios;
 	}
 	public Integer getPlanta() {
-		return planta.getId();
+		return idPlanta;
 	}
-	public void setPlanta(Planta planta) {
-		this.planta = planta;
+	public void setPlanta(int i) {
+		this.idPlanta = i;
 	}
 	
 }

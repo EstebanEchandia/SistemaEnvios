@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
+
 public class Grafo<T> {
 	private List<Arista<T>> aristas;
 	private List<Vertice<T>> vertices;
@@ -66,6 +67,16 @@ public class Grafo<T> {
 		List<Vertice<T>> salida = new ArrayList<Vertice<T>>();
 		for(Arista<T> enlace : this.aristas){
 			if( enlace.getInicio().equals(unNodo)){
+				salida.add(enlace.getFin());
+			}
+		}
+		return salida;
+	}
+	
+	private List<Vertice<T>> getAdyacentesMayorCero(Vertice<T> unNodo){ 
+		List<Vertice<T>> salida = new ArrayList<Vertice<T>>();
+		for(Arista<T> enlace : this.aristas){
+			if((int) (enlace.getValor())>0 && enlace.getInicio().equals(unNodo)){
 				salida.add(enlace.getFin());
 			}
 		}
@@ -187,4 +198,161 @@ public class Grafo<T> {
     	return false;
     }
     
+    public Boolean hayCaminoMayorCero(Vertice<T> v1,Vertice<T> v2) {
+    	List<Vertice<T>> adyacentes = getAdyacentesMayorCero(v1);
+    	for(Vertice<T> vAdy : adyacentes) {
+    		if(vAdy.equals(v2)) {
+    			return true;
+    		} else {
+    			return hayCaminoMayorCero(vAdy, v2);
+    		}
+    	}
+    	return false;
+    }
+    
+    public List<Arista<T>> caminoEntreVertices(Vertice<T> v1,Vertice<T> v2, List<Arista<T>> aux) {
+    	List<Arista<T>> aux2 = aux;
+    	List<Vertice<T>> adyacentes = getAdyacentesMayorCero(v1);
+    	for(Vertice<T> vAdy : adyacentes) {
+    		if(vAdy.equals(v2)) {
+    			return aux2;
+    		} else {
+    			for(Arista<T> enlace : this.aristas){
+    				if(enlace.getInicio().equals(v1) && enlace.getFin().equals(vAdy))
+    					aux2.add(enlace);
+    				return caminoEntreVertices(vAdy, v2,aux2);
+    			}
+    		}
+    	}
+		return null;
+    }    
+    
+    
+	/**
+     * Implementacion de flujo maximo
+     *
+     * @return El flujo maximo entre la fuente y el sumidero de la red.
+     * @throws IllegalStateException En caso de no ser valida la red.
+     */
+    public Double flujoMaximo(Vertice<T> origen, Vertice<T> destino) throws IllegalStateException{
+	
+    	Grafo aux = this;
+    	
+        // Validamos que haya un camino desde el origen al destino
+        if(!aux.hayCamino(origen, destino))
+            throw new IllegalStateException("Red invalida");
+
+        // Flujo maximo de la red
+        Double flujoMaximo = 0.0;
+        
+        // Creo una lista de aristas para guardar el camino de aristas que puede recorrer el flujo y un caminoVacio como varAux
+        List<Arista<T>> camino;
+        List<Arista<T>> caminoVacio = new ArrayList<Arista<T>>();
+        
+        // Mientras haya caminos donde pueda pasar flujo
+        while ((hayCaminoMayorCero(origen, destino))){
+        	
+        	// Le asigno a "camino" un camino entre los vertices origen y destino
+        	camino = caminoEntreVertices(origen,destino,caminoVacio);
+            
+            Double flujoMenor = camino.stream()
+                    				.mapToDouble(e-> (Double) e.getValor())
+                    				.min() 
+                    				.getAsDouble();
+
+            camino.forEach(e -> e.setValor((Double) e.getValor() - flujoMenor));
+            flujoMaximo += flujoMenor;
+        }
+
+        return flujoMaximo;
+    }
+    
+    public Double [] pageRank(){
+    	int tamanio = this.aristas.size();
+    	List<Vertice<T>> listaVerticesPageRank = new ArrayList<Vertice<T>>();
+		Double [] listaValoresPageRank = new Double[tamanio] ;
+    	
+    	for(int i=0;i<tamanio;i++)
+    		listaValoresPageRank[i] = 1.0;
+    	
+    	for(int i=0;i<30;i++) {
+    		int indice = 0;
+    		for(Vertice<T> aux:listaVerticesPageRank) {
+    			this.pageRank(aux);
+    			listaValoresPageRank[indice] = this.pageRank(aux);
+    		}
+    	}
+    	return listaValoresPageRank;
+    }
+    
+    public Double pageRank(Vertice<T> nodo) {
+    	Double d = 0.5;
+    	Double pr = 0.0;
+    	Double prAux = (1-d) + d;
+    	for(Vertice<T> aux:this.getAdyacentes(nodo)) {
+    		pr += (pageRank(aux))/this.gradoSalida(aux);
+    	};
+    	
+    	return pr*prAux;
+    }
+    /* Floyd-Warshall  */
+    static int[][] P;
+	static final int N = 4;
+/*
+	public static void main(String[] args) {
+		int[][] M = { { 0, 5, 999, 999 }, { 50, 0, 15, 5 }, { 30, 999, 0, 15 },
+				{ 15, 999, 5, 0 } };
+		P = new int[N][N];
+		System.out.println("Matrix to find the shortest path of.");
+		printMatrix(M);
+		System.out.println("Shortest Path Matrix.");
+		printMatrix(FloydAlgo(M));
+		System.out.println("Path Matrix");
+		printMatrix(P);
+	}
+*/
+	public static int[][] FloydAlgo(int[][] M) {
+		for (int k = 0; k < N; k++) {
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					// to keep track.;
+					if (M[i][k] + M[k][j] < M[i][j]) {
+						M[i][j] = M[i][k] + M[k][j];
+						P[i][j] = k;
+					}
+				}
+			}
+		}
+		return M;
+	}
+
+	public static int min(int i, int j) {
+		if (i > j) {
+			return j;
+		}
+		return i;
+	}
+
+	public static void printMatrix(int[][] Matrix) {
+		System.out.print("\n\t");
+		for (int j = 0; j < N; j++) {
+			System.out.print(j + "\t");
+		}
+		System.out.println();
+		for (int j = 0; j < 35; j++) {
+			System.out.print("-");
+		}
+		System.out.println();
+		for (int i = 0; i < N; i++) {
+			System.out.print(i + " |\t");
+			for (int j = 0; j < N; j++) {
+				System.out.print(Matrix[i][j]);
+				System.out.print("\t");
+			}
+			System.out.println("\n");
+		}
+		System.out.println("\n");
+	}
 }
+    
+

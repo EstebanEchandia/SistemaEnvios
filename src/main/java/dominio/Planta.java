@@ -16,6 +16,22 @@ public class Planta {
 	private ArrayList<Pedido> listaPedidosSalientes = new ArrayList<Pedido>();
 	
 	
+	public Planta(Integer id) {
+		super();
+		this.id=id;
+	}
+	
+	
+	public Planta(Integer id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	public String[] listaAtributos(){
+		String[] res = new String[] {id.toString(), nombre};
+		return res;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -45,4 +61,16 @@ public class Planta {
 	public Integer getId() {
 			return id;
 	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
 }
