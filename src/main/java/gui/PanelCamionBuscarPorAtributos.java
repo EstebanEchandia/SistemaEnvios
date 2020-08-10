@@ -56,7 +56,6 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	
 	private JTable tblAtributos;
 	private DefaultTableModel modeloTablaAtributos = new DefaultTableModel();
-	
 	private JScrollPane scroll;
 	
 	private JLabel imagenCamion;

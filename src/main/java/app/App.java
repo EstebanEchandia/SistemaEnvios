@@ -29,8 +29,10 @@ public class App extends JFrame{
 	JMenu menuCamion;
 	JMenu menuPlanta;
 	JMenu menuInsumo;
+	JMenu menuOrdenPedido;
 	JMenu menuEnvio;
 	JMenu menuAyuda;
+	
 	JMenuItem menuItemAyuda;
 	
 	JMenuItem menuItemCamionAlta;
@@ -47,7 +49,10 @@ public class App extends JFrame{
 	JMenuItem menuItemPlantaAniadirPlanta;
 	JMenuItem menuItemPlantaRegistrarRuta;
 	JMenuItem menuItemPlantaBuscarPlanta;
-	JMenuItem menuItemPlantaRegistrarOrdenPedido;
+	
+	JMenuItem menuItemRegistrarOrdenPedido;
+	JMenuItem menuItemOrdenPedidoProcesada;
+	JMenuItem menuItemOrdenPedidoCreada;
 	
 	JButton inicio;
 	
@@ -131,15 +136,6 @@ public class App extends JFrame{
 
 		this.menuPlanta.add(menuItemPlantaBuscarPlanta);
 		
-		/*  Panel BuscarPlantas  */
-		this.menuItemPlantaRegistrarOrdenPedido = new JMenuItem("Registrar Orden de Pedido");
-		this.menuItemPlantaRegistrarOrdenPedido.addActionListener( e -> {
-			PanelRegistroOrdenDePedido a = new PanelRegistroOrdenDePedido();
-			a.armarPanel(this);
-		});
-
-		this.menuPlanta.add(menuItemPlantaRegistrarOrdenPedido);
-		
 	}
 	private void armarMenuInsumo() {
 		
@@ -201,6 +197,35 @@ public class App extends JFrame{
 
 		this.menuInsumo.add(menuItemInsumoVisualizarInsumos);
 	}
+	private void armarMenuOrdenPedido() {
+		
+		/*  Panel RegistrarOrdenPedido  */
+		this.menuItemRegistrarOrdenPedido = new JMenuItem("Registrar Orden Pedido");
+		this.menuItemRegistrarOrdenPedido.addActionListener( e -> {
+			PanelRegistroOrdenDePedido a = new PanelRegistroOrdenDePedido();
+			a.armarPanel(this);
+		});
+
+		this.menuOrdenPedido.add(menuItemRegistrarOrdenPedido);
+		
+		/*  Panel BuscarOrdenesCreadas  */
+		this.menuItemRegistrarOrdenPedido = new JMenuItem("Buscar Ordenes creadas");
+		this.menuItemRegistrarOrdenPedido.addActionListener( e -> {
+			PanelBuscarOrdenesCreadas a = new PanelBuscarOrdenesCreadas();
+			a.armarPanel(this);
+		});
+
+		this.menuOrdenPedido.add(menuItemRegistrarOrdenPedido);
+		
+		/*  Panel BuscarOrdenesProcesadas  */
+		this.menuItemRegistrarOrdenPedido = new JMenuItem("Buscar Ordenes procesadas");
+		this.menuItemRegistrarOrdenPedido.addActionListener( e -> {
+			PanelBuscarOrdenesProcesadas a = new PanelBuscarOrdenesProcesadas();
+			a.armarPanel(this);
+		});
+
+		this.menuOrdenPedido.add(menuItemRegistrarOrdenPedido);
+	}
 	private void armarMenuEnvio() {
 		
 	}
@@ -224,6 +249,7 @@ public class App extends JFrame{
 		this.menuCamion = new JMenu("Camion");
 		this.menuPlanta = new JMenu("Planta");
 		this.menuInsumo = new JMenu("Insumo");
+		this.menuOrdenPedido = new JMenu("Orden de Pedido");
 		this.menuEnvio = new JMenu("Envio");
 		this.menuAyuda = new JMenu("Ayuda");
 		
@@ -240,6 +266,7 @@ public class App extends JFrame{
 		armarMenuCamion();
 		armarMenuPlanta();
 		armarMenuInsumo();
+		armarMenuOrdenPedido();
 		armarMenuEnvio();
 		armarMenuAyuda();
 		
@@ -249,6 +276,7 @@ public class App extends JFrame{
 		menuBar.add(this.menuCamion);
 		menuBar.add(this.menuPlanta);
 		menuBar.add(this.menuInsumo);
+		menuBar.add(this.menuOrdenPedido);
 		menuBar.add(this.menuEnvio);
 		menuBar.add(this.menuAyuda);
 		

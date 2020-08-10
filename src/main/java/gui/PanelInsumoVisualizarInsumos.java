@@ -41,16 +41,9 @@ public class PanelInsumoVisualizarInsumos extends JPanel {
 		this.modeloTablaAtributos.addColumn("Densidad");
 		this.modeloTablaAtributos.addColumn("Stock");
 		
-
-		this.mostrarTodosInsumos();
-
-//		String[] p1 = {"Carton duro","cm3","13","50","","10"};
-//		String[] p2 = {"Tornillo Phillips","cm","5","3","","600"};
-//		String[] p3 = {"Tornillo tipo Allen","cm","6","4","","465"};
-//		
-//		this.modeloTablaAtributos.addRow(p1);
-//		this.modeloTablaAtributos.addRow(p2);
-//		this.modeloTablaAtributos.addRow(p3);		
+		
+		this.mostrarTodosInsumos();	
+		
 		
 		this.tblInsumos = new JTable(modeloTablaAtributos);
 		this.tblInsumos.setBounds(120, 20, 630,430);
