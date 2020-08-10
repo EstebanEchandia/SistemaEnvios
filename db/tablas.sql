@@ -14,7 +14,7 @@ CREATE SCHEMA trabajoPractico
 			
 			id SERIAL,
 			
-			patente varchar(20),
+			patente varchar(20) UNIQUE,
 			modelo varchar(100),
 			kmRecorridos numeic(20,2),
 			costoPorKm numeric(20,2),
@@ -162,5 +162,6 @@ CREATE SCHEMA trabajoPractico
 
 			CONSTRAINT fk_plantaDestinoRuta FOREIGN KEY (plantaDestino)
 			REFERENCES trabajoPractico.planta(id)
+			)
 	
 	

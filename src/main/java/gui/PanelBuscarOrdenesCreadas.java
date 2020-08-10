@@ -1,6 +1,17 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import app.App;
 
 public class PanelBuscarOrdenesCreadas extends JPanel{
 	/* 
@@ -17,4 +28,78 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 				o Costo por KM del camión asignado por cantidad de KM a recorrer
 				o Costo por HORA del camión asignado por cantidad de horas que lleva el recorrido.
 */
+	
+	private JTable tblOrdenesCreadas;
+	private DefaultTableModel modeloTablaAtributos = new DefaultTableModel();
+	private JScrollPane scroll;
+	
+	private JButton btnVerDetalle = new JButton("Ver detalle");
+	
+	private Object [] atributos = {-1,0,0,0,0,0,0};
+	
+	public void armarPanel(App app) {
+		
+		this.setLayout(null);
+		this.setBackground(new Color(43,167,194));
+		
+		this.modeloTablaAtributos.addColumn("Numero de Orden");
+		this.modeloTablaAtributos.addColumn("Fecha Solicitud");
+		this.modeloTablaAtributos.addColumn("Fecha Entrega");
+		this.modeloTablaAtributos.addColumn("Estado");
+		this.modeloTablaAtributos.addColumn("Planta Destino");
+		this.modeloTablaAtributos.addColumn("Planta Origen");
+		this.modeloTablaAtributos.addColumn("Envio");
+		
+	
+		this.insertarElementosTabla();
+		
+		this.tblOrdenesCreadas = new JTable(modeloTablaAtributos);
+		this.tblOrdenesCreadas.setBounds(120, 20, 630,430);
+		
+		this.scroll = new JScrollPane(this.tblOrdenesCreadas);
+		
+		this.scroll.setBounds(120, 20, 630,400);
+		this.add(scroll);
+		
+		this.btnVerDetalle.setBounds(370,450,120,20);
+		this.add(btnVerDetalle);
+		
+		this.btnVerDetalle.addActionListener( e-> {
+			if(atributos[0].equals(-1))
+				JOptionPane.showMessageDialog(this,"Seleccione un pedido", "Error", JOptionPane.ERROR_MESSAGE);	
+			else {
+				
+			}
+		});
+		
+		this.tblOrdenesCreadas.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e) 
+			    {
+			       int fila = tblOrdenesCreadas.rowAtPoint(e.getPoint());
+			       int columna = tblOrdenesCreadas.columnAtPoint(e.getPoint());
+			      
+					if ((fila > -1) && (columna > -1)) {
+						atributos[0] = tblOrdenesCreadas.getValueAt(fila,0);
+						atributos[1] = tblOrdenesCreadas.getValueAt(fila,1);
+						atributos[2] = tblOrdenesCreadas.getValueAt(fila,2);
+						atributos[3] = tblOrdenesCreadas.getValueAt(fila,3);
+						atributos[4] = tblOrdenesCreadas.getValueAt(fila,4);
+						atributos[5] = tblOrdenesCreadas.getValueAt(fila,5);
+						atributos[6] = tblOrdenesCreadas.getValueAt(fila,6);
+					}
+					
+					System.out.println((String)atributos[0] + atributos[1]+ atributos[2]);
+			    
+			    }
+			 });
+		
+		app.setContentPane(this);
+		app.revalidate();
+		app.pack();
+	}
+	
+	public void insertarElementosTabla() {
+		
+	}
 }

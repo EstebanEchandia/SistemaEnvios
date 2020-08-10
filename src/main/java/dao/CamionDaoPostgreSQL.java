@@ -257,20 +257,23 @@ public class CamionDaoPostgreSQL implements CamionDao{
 					e.printStackTrace();
 				}
 			}	
-			return c;
+			return c;sub
 			}		
 			
 			@Override
-			public Camion recuperarCamionPatente(Camion c) { //Buscar un camion sabiendo solo su id
+			public Camion recuperarCamionPatente(Camion c) { //Buscar un camion sabiendo solo su patente
 				Connection conn = DB.getConnection();
 				PreparedStatement pstmt = null;
+				ResultSet rs = null;
 				try {
 					System.out.println("Buscando Camion por patente");
 					pstmt = conn.prepareStatement(SELECT_CAMION_PATENTE);
 					pstmt.setString(1, c.getPatente());
 					
-					ResultSet rs = pstmt.executeQuery();		
+					rs = pstmt.executeQuery();
+					
 					while(rs.next()) {
+						
 						c.setId(rs.getInt("id"));
 						c.setModelo(rs.getString("modelo"));
 						c.setPatente(rs.getString("patente"));
@@ -279,6 +282,8 @@ public class CamionDaoPostgreSQL implements CamionDao{
 						c.setFechaDeCompra(rs.getDate("fechadecompra").toLocalDate());
 						c.setKmRecorridos(rs.getDouble("kmrecorridos"));
 						c.setPlanta(rs.getInt("idPlanta"));
+				
+						
 					}
 									
 			} catch (SQLException e) {
@@ -291,6 +296,7 @@ public class CamionDaoPostgreSQL implements CamionDao{
 					e.printStackTrace();
 				}
 			}	
+				
 			return c;
 			}		
 

@@ -8,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -22,7 +23,7 @@ public class PanelInsumoDarAlta extends JPanel {
 	private JTextField txtDescripcion;
 	
 	private JLabel lblUnidadDeMedida = new JLabel("Unidad de Medida:");
-	private JTextField txtUnidadDeMedida;
+	private JComboBox cmbUnidad = new JComboBox();
 	
 	private JLabel lblCosto = new JLabel("Costo:");
 	private JTextField txtCosto;
@@ -61,11 +62,17 @@ public class PanelInsumoDarAlta extends JPanel {
 		this.add(lblDescripcion);
 		this.add(txtDescripcion);
 		
-		this.txtUnidadDeMedida = new JTextField(20);
-		this.txtUnidadDeMedida.setBounds(120, 50, 100,20);
+
+		this.cmbUnidad.setBounds(120, 50, 100,20);
+		cmbUnidad.addItem(Unidad.GRAMO);
+		cmbUnidad.addItem(Unidad.KILO);
+		cmbUnidad.addItem(Unidad.LITRO);
+		cmbUnidad.addItem(Unidad.M2);
+		cmbUnidad.addItem(Unidad.M3);
+		cmbUnidad.addItem(Unidad.PIEZA);
 		this.lblUnidadDeMedida.setBounds(10,50,120,20);
 		this.add(lblUnidadDeMedida);
-		this.add(txtUnidadDeMedida);
+		this.add(cmbUnidad);
 		
 		this.txtCosto = new JTextField(20);
 		this.txtCosto.setBounds(55,80,100,20);
@@ -110,7 +117,7 @@ public class PanelInsumoDarAlta extends JPanel {
 			//Creamos el actionListener que vamos a usar
 			this.btnGuardar.addActionListener( f -> gestorInsumo.altaInsumoGeneral(this.getTxtDescripcion().getText(),
 					Double.parseDouble(this.getTxtCosto().getText()),
-					Unidad.valueOf(this.getTxtUnidadDeMedida().getText()),			
+					(Unidad) this.cmbUnidad.getSelectedItem(),			
 					Double.parseDouble(this.getTxtPeso().getText()))
 					);
 		
@@ -131,7 +138,7 @@ public class PanelInsumoDarAlta extends JPanel {
 			
 			this.btnGuardar.addActionListener( f -> gestorInsumo.altaInsumoLiquido(this.getTxtDescripcion().getText(),
 					Double.parseDouble(this.getTxtCosto().getText()),
-					Unidad.valueOf(this.getTxtUnidadDeMedida().getText()),			
+					(Unidad)this.cmbUnidad.getSelectedItem(),			
 					Double.parseDouble(this.getTxtDensidad().getText()))
 					);
 			
@@ -178,13 +185,6 @@ public class PanelInsumoDarAlta extends JPanel {
 		this.txtDescripcion = txtDescripcion;
 	}
 
-	public JTextField getTxtUnidadDeMedida() {
-		return txtUnidadDeMedida;
-	}
-
-	public void setTxtUnidadDeMedida(JTextField txtUnidadDeMedida) {
-		this.txtUnidadDeMedida = txtUnidadDeMedida;
-	}
 
 	public JTextField getTxtCosto() {
 		return txtCosto;
