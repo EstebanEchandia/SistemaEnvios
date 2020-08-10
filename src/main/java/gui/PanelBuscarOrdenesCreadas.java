@@ -33,9 +33,10 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 	private DefaultTableModel modeloTablaAtributos = new DefaultTableModel();
 	private JScrollPane scroll;
 	
-	private JButton btnVerDetalle = new JButton("Ver detalle");
-	
 	private Object [] atributos = {-1,0,0,0,0,0,0};
+	
+	private JButton btnDetalleOrden = new JButton("Detalle de orden");
+	private JButton btnVerPlantasConStock = new JButton("Ver plantas con stock");
 	
 	public void armarPanel(App app) {
 		
@@ -61,10 +62,12 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 		this.scroll.setBounds(120, 20, 630,400);
 		this.add(scroll);
 		
-		this.btnVerDetalle.setBounds(370,450,120,20);
-		this.add(btnVerDetalle);
+		this.btnDetalleOrden.setBounds(280, 430, 130, 30);
+		this.btnVerPlantasConStock.setBounds(430, 430, 160, 30);
+		this.add(btnDetalleOrden);
+		this.add(btnVerPlantasConStock);
 		
-		this.btnVerDetalle.addActionListener( e-> {
+		this.btnDetalleOrden.addActionListener( e-> {
 			if(atributos[0].equals(-1))
 				JOptionPane.showMessageDialog(this,"Seleccione un pedido", "Error", JOptionPane.ERROR_MESSAGE);	
 			else {
