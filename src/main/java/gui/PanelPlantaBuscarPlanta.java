@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import app.App;
 import dominio.Planta;
+import enums.EstadoPedido;
 import gestor.GestorPlanta;
 
 public class PanelPlantaBuscarPlanta extends JPanel {
@@ -124,7 +126,11 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 		JTextField txtCantidadInsumo = new JTextField(20);
 		
 		JLabel lblPtoPedido = new JLabel("Pto Pedido:");
-		JTextField txtPtoPedido = new JTextField(20);
+		JComboBox cmbPtoPedido = new JComboBox();
+		cmbPtoPedido.addItem(EstadoPedido.CREADA);
+		cmbPtoPedido.addItem(EstadoPedido.ENTREGADA);
+		cmbPtoPedido.addItem(EstadoPedido.PROCESADA);
+		cmbPtoPedido.addItem(EstadoPedido.CANCELADO);
 		
 		JButton btnGuardar = new JButton("Guardar");
 		JButton btnCancelar = new JButton("Cancelar");
@@ -148,9 +154,9 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 		panelEditarPlanta.add(txtCantidadInsumo);
 		panelEditarPlanta.add(lblCantidadInsumo);
 		
-		txtPtoPedido.setBounds(90, 140, 100, 20);
+		cmbPtoPedido.setBounds(90, 140, 100, 20);
 		lblPtoPedido.setBounds(10, 140, 100, 20);
-		panelEditarPlanta.add(txtPtoPedido);
+		panelEditarPlanta.add(cmbPtoPedido);
 		panelEditarPlanta.add(lblPtoPedido);
 		
 		
