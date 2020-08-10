@@ -25,7 +25,7 @@ public class PanelPlantaAniadirPlanta extends JPanel{
 		
 		this.setLayout(null);
 		
-		this.setBackground(new Color(184,65,39));
+		this.setBackground(new Color(81,232,60));
 		
 		this.txtNombrePlanta = new JTextField(20);
 		this.txtNombrePlanta.setBounds(110, 20, 100,20);

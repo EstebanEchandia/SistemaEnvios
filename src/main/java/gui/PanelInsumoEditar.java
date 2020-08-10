@@ -32,10 +32,10 @@ public class PanelInsumoEditar extends JPanel {
 	private JLabel lblCosto = new JLabel("Costo:");
 	private JTextField txtCosto;
 	
-	private JLabel lblPeso = new JLabel("Peso:");
+	private JLabel lblPeso = new JLabel("Peso[kg]:");
 	private JTextField txtPeso;
 	
-	private JLabel lblDensidad = new JLabel("Densidad:");
+	private JLabel lblDensidad = new JLabel("Densidad[kg/m3]:");
 	private JTextField txtDensidad;
 	
 	private JButton btnGuardar;
@@ -87,14 +87,14 @@ public class PanelInsumoEditar extends JPanel {
 		this.add(txtCosto);
 		
 		this.txtPeso = new JTextField(20);
-		this.txtPeso.setBounds(50,140,100,20);
+		this.txtPeso.setBounds(70,140,100,20);
 		this.lblPeso.setBounds(10,140,100,20);
 		this.add(lblPeso);
 		this.add(txtPeso);
 		
 		this.txtDensidad = new JTextField(20);
-		this.txtDensidad.setBounds(230,140,100,20);
-		this.lblDensidad.setBounds(170,140,100,20);
+		this.txtDensidad.setBounds(285,140,100,20);
+		this.lblDensidad.setBounds(180,140,100,20);
 		this.add(lblDensidad);
 		this.add(txtDensidad);
 		

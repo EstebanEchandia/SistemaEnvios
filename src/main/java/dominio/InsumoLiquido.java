@@ -43,6 +43,10 @@ public class InsumoLiquido extends Insumo {
 		return res;
 		
 	}
+	@Override
+	public Double pesoPorUnidad() {
+		return 0.0;
+	}
 
 	
 }
