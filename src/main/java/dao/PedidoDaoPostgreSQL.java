@@ -5,10 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Statement;import java.util.ArrayList;
 
 import dao.utils.DB;
 import dominio.Pedido;
+import dominio.Planta;
 
 public class PedidoDaoPostgreSQL implements PedidoDao {
 
@@ -19,6 +20,11 @@ public class PedidoDaoPostgreSQL implements PedidoDao {
 					+ " VALUES (NOW(),?,'CREADA'::estados,null,null,?) RETURNING NUMERODEORDEN";
 	
 	private static final String UPDATE_ESTADO_PEDIDO = "UPDATE trabajopractico.pedido set ESTADO = ? WHERE NUMERODEORDEN = ?";
+	
+	private static final String SELECT_PEDIDOS_CREADOS = "SELECT * from trabajopractico.pedido where pedido.estado = 'CREADA'";
+	
+	private static final String SELECT_PEDIDOS_PROCESADOS = "SELECT * from trabajopractico.pedido where pedido.estado = 'PROCESADA'";
+
 	
 	@Override
 	public Integer altaPedido(Pedido p) {
@@ -86,6 +92,86 @@ public class PedidoDaoPostgreSQL implements PedidoDao {
 					e.printStackTrace();
 				}
 			}
+	}
+	
+	@Override
+	public ArrayList<ArrayList<String>> buscarPedidosCreados(){
+			Connection conn = DB.getConnection();
+			PreparedStatement pstmt = null;
+			ArrayList<ArrayList <String>> res = new ArrayList<ArrayList <String>>();
+			
+			try {
+				System.out.println("Buscando pedidos creados");
+				pstmt = conn.prepareStatement(SELECT_PEDIDOS_CREADOS);
+				
+				ResultSet rs = pstmt.executeQuery();	
+				
+				while(rs.next()) {
+					ArrayList<String> fila = new ArrayList<String>();
+					fila.add(rs.getString("numerodeorden"));
+					fila.add(rs.getString("fechasolicitud"));
+					fila.add(rs.getString("fechaentrega"));
+					fila.add(rs.getString("estado"));
+					fila.add(rs.getString("plantadestino"));
+					fila.add(rs.getString("plantaorigen"));
+					fila.add(rs.getString("idenvio"));
+					res.add(fila);
+					
+				}
+								
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt!=null) pstmt.close();
+					if(conn!=null) conn.close();				
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}	
+			
+			return res;
+		
+	}
+	
+	@Override
+	public ArrayList<ArrayList<String>> buscarPedidosProcesados(){
+			Connection conn = DB.getConnection();
+			PreparedStatement pstmt = null;
+			ArrayList<ArrayList <String>> res = new ArrayList<ArrayList <String>>();
+			
+			try {
+				System.out.println("Buscando pedidos creados");
+				pstmt = conn.prepareStatement(SELECT_PEDIDOS_PROCESADOS);
+				
+				ResultSet rs = pstmt.executeQuery();	
+				
+				while(rs.next()) {
+					ArrayList<String> fila = new ArrayList<String>();
+					fila.add(rs.getString("numerodeorden"));
+					fila.add(rs.getString("fechasolicitud"));
+					fila.add(rs.getString("fechaentrega"));
+					fila.add(rs.getString("estado"));
+					fila.add(rs.getString("plantadestino"));
+					fila.add(rs.getString("plantaorigen"));
+					fila.add(rs.getString("idenvio"));
+					res.add(fila);
+					
+				}
+								
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(pstmt!=null) pstmt.close();
+					if(conn!=null) conn.close();				
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}	
+			
+			return res;
+		
 	}
 
 }

@@ -28,6 +28,20 @@ public class PlantaDaoPostgreSQL implements PlantaDao{
 	private static final String SELECT_PLANTA_ALL =
 			"SELECT * FROM trabajopractico.planta ";
 	
+	private static final String SELECT_PLANTA_INSUMO_MENOR_PTO_PEDIDO = 
+	"SELECT p.nombre, i.descripcion, s.cantidad, s.ptominimodepedido, "+
+	"( "+
+	"	SELECT SUM(stock.cantidad) "+
+	"	from trabajopractico.stock, trabajopractico.insumo "+
+	"	where stock.idInsumo = insumo.id  "+
+	"	and insumo.id = i.id "+
+	"	) as stockTotal "+
+
+	"FROM trabajopractico.planta as p, trabajopractico.insumo as i, trabajopractico.stock as s "+
+	"WHERE s.idPlanta = p.id "+
+	"AND s.Idinsumo = i.id "+
+	"AND s.cantidad < s.PtoMinimoDePedido";
+	
 	
 	@Override
 	public Planta altaPlanta(Planta p) {
@@ -145,6 +159,44 @@ public class PlantaDaoPostgreSQL implements PlantaDao{
 				e.printStackTrace();
 			}
 			}	
+		return res;
+	
+	}
+	
+	@Override
+	public ArrayList<ArrayList <String>> recuperarPlantasConInsumoMenorAlPtoPedido() {
+		
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ArrayList<ArrayList <String>> res = new ArrayList<ArrayList <String>>();
+		try {
+			System.out.println("Buscando Plantas con insumo menor al pto de pedido");
+			pstmt = conn.prepareStatement(SELECT_PLANTA_INSUMO_MENOR_PTO_PEDIDO);
+			
+			ResultSet rs = pstmt.executeQuery();	
+			
+			while(rs.next()) {
+				ArrayList<String> fila = new ArrayList<String>();
+				fila.add(rs.getString("nombre"));
+				fila.add(rs.getString("descripcion"));
+				fila.add(rs.getString("cantidad"));
+				fila.add(rs.getString("ptominimodepedido"));
+				fila.add(rs.getString("stocktotal"));
+				res.add(fila);
+				
+			}
+							
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		
 		return res;
 	
 	}

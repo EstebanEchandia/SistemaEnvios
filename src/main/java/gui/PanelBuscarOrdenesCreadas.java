@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -12,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import gestor.GestorPedido;
 
 public class PanelBuscarOrdenesCreadas extends JPanel{
 	/* 
@@ -38,6 +40,10 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 	private JButton btnDetalleOrden = new JButton("Detalle de orden");
 	private JButton btnVerPlantasConStock = new JButton("Ver plantas con stock");
 	
+	private GestorPedido gestorPedido = new GestorPedido();
+	
+	ArrayList<ArrayList<String>> tabla = gestorPedido.buscarPedidosCreados();
+	
 	public void armarPanel(App app) {
 		
 		this.setLayout(null);
@@ -52,7 +58,8 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 		this.modeloTablaAtributos.addColumn("Envio");
 		
 	
-		this.insertarElementosTabla();
+		
+		this.armarTabla();
 		
 		this.tblOrdenesCreadas = new JTable(modeloTablaAtributos);
 		this.tblOrdenesCreadas.setBounds(120, 20, 630,430);
@@ -100,9 +107,13 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 		app.setContentPane(this);
 		app.revalidate();
 		app.pack();
+		
 	}
 	
-	public void insertarElementosTabla() {
-		
+	public void armarTabla() {
+		for(ArrayList<String> fila:  tabla ){			
+				modeloTablaAtributos.addRow(fila.toArray());	
+		}
+
 	}
 }

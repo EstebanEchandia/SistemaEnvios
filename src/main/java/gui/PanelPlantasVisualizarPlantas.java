@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -9,12 +10,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import gestor.GestorPlanta;
 
 public class PanelPlantasVisualizarPlantas extends JPanel {
 	
 	private JTable tblPlantas;
 	private DefaultTableModel modeloTablaAtributos = new DefaultTableModel();
 	private JScrollPane scroll;
+	
+	private GestorPlanta gp = new GestorPlanta();
+	private ArrayList<ArrayList<String>> tabla = gp.recuperarPlantasConInsumoMenorAlPtoPedido();
 
 	public void armarPanel(App app) {
 		
@@ -32,10 +37,19 @@ public class PanelPlantasVisualizarPlantas extends JPanel {
 		
 		this.scroll = new JScrollPane(this.tblPlantas);
 		
+		this.armarTabla();
+		
 		this.scroll.setBounds(120, 20, 630,400);
 		this.add(scroll);
 		
 		app.setContentPane(this);
 		app.pack();
+	}
+	
+	public void armarTabla() {
+		for(ArrayList<String> fila:  tabla ){			
+				modeloTablaAtributos.addRow(fila.toArray());	
+		}
+
 	}
 }

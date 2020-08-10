@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 import dominio.Pedido;
 
 public interface PedidoDao {
@@ -8,5 +10,7 @@ public interface PedidoDao {
 
 	public void modificarEstadoPedido(Pedido p);
 	
-	
+	public ArrayList<ArrayList<String>> buscarPedidosCreados();
+
+	ArrayList<ArrayList<String>> buscarPedidosProcesados();
 }
