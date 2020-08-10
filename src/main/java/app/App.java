@@ -30,10 +30,6 @@ public class App extends JFrame{
 	JMenu menuPlanta;
 	JMenu menuInsumo;
 	JMenu menuOrdenPedido;
-	JMenu menuEnvio;
-	JMenu menuAyuda;
-	
-	JMenuItem menuItemAyuda;
 	
 	JMenuItem menuItemCamionAlta;
 	JMenuItem menuItemCamionEditar;
@@ -184,18 +180,6 @@ public class App extends JFrame{
 		this.menuInsumo.add(menuItemInsumoBaja);
 		
 		
-		/*  Panel StockInsumo  */
-		this.menuItemInsumoStock = new JMenuItem("Cambiar el stock de un insumo en todas las platas");
-		this.menuItemInsumoStock.addActionListener( e -> {
-			PanelStockdeInsumo a = new PanelStockdeInsumo();
-			a.armarPanel();
-			this.setContentPane(a);
-			this.pack();
-		});
-
-		this.menuInsumo.add(menuItemInsumoStock);
-		
-		
 		/*  Panel VisualizarInsumos  */
 		this.menuItemInsumoVisualizarInsumos = new JMenuItem("Visualizar insumos");
 		this.menuItemInsumoVisualizarInsumos.addActionListener( e -> {
@@ -236,21 +220,6 @@ public class App extends JFrame{
 
 		this.menuOrdenPedido.add(menuItemRegistrarOrdenPedido);
 	}
-	private void armarMenuEnvio() {
-		
-	}
-	private void armarMenuAyuda() {
-		/*  Panel Ayuda  */
-		this.menuItemAyuda = new JMenuItem("Manual");
-		this.menuItemAyuda.addActionListener( e -> {
-			PanelAyuda a = new PanelAyuda();
-			a.armarPanel();
-			this.setContentPane(a);
-			this.pack();
-		});
-		this.menuItemAyuda.setMnemonic(KeyEvent.VK_F1);
-		this.menuAyuda.add(menuItemAyuda);
-	}
 
 	private void armarApp() {
 		
@@ -260,8 +229,7 @@ public class App extends JFrame{
 		this.menuPlanta = new JMenu("Planta");
 		this.menuInsumo = new JMenu("Insumo");
 		this.menuOrdenPedido = new JMenu("Orden de Pedido");
-		this.menuEnvio = new JMenu("Envio");
-		this.menuAyuda = new JMenu("Ayuda");
+	
 		
 		this.inicio = new JButton("Inicio");
 		this.inicio.addActionListener( e -> {
@@ -277,8 +245,7 @@ public class App extends JFrame{
 		armarMenuPlanta();
 		armarMenuInsumo();
 		armarMenuOrdenPedido();
-		armarMenuEnvio();
-		armarMenuAyuda();
+	
 		
 
 		/*  Añadimos los menus a la barra de menus   */
@@ -287,8 +254,6 @@ public class App extends JFrame{
 		menuBar.add(this.menuPlanta);
 		menuBar.add(this.menuInsumo);
 		menuBar.add(this.menuOrdenPedido);
-		menuBar.add(this.menuEnvio);
-		menuBar.add(this.menuAyuda);
 		
 		
 		this.setJMenuBar(menuBar);
