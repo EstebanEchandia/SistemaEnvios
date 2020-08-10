@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Color;
+import java.time.LocalDate;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,6 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import dominio.ItemPedido;
+import gestor.GestorItemPedido;
+import gestor.GestorPedido;
 
 public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 	
@@ -40,6 +45,9 @@ public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 	private JButton btnCancelar = new JButton("Cancelar");
 	private JButton btnEliminarItems = new JButton("Eliminar Items");
 	
+	private GestorPedido gestorPedido = new GestorPedido();
+	private GestorItemPedido gestorItemPedido = new GestorItemPedido();
+
 
 	public void crearPanel(App app, Object [] atributos) {
 		
@@ -67,6 +75,8 @@ public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 		
 		
 		this.btnGuardar.setBounds(290, 400, 120, 40);
+		this.btnGuardar.addActionListener( e -> cargarDatos());
+		
 		this.add(btnGuardar);
 		
 		this.btnCancelar.setBounds(420, 400, 120, 40);
@@ -120,6 +130,62 @@ public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 		app.pack();
 	}
 	
+	public void cargarDatos() {
+		
+		Integer nroOrden = gestorPedido.altaPedido(LocalDate.parse(this.getTxtFechaMaxEntrega().getText()), Integer.parseInt(this.getTxtIdPlanta().getText()));
+		
+		while(this.modeloTablaAtributos.getRowCount()>0) {
+			Double cantidad = Double.parseDouble((String) this.tblInsumos.getValueAt(0,1));
+			Integer idInsumo = Integer.parseInt((String) this.tblInsumos.getValueAt(0,0));
+			
+			gestorItemPedido.altaItemPedido(cantidad, nroOrden, idInsumo);
+			
+			this.modeloTablaAtributos.removeRow(0);
+		}
+		
+		
+	}
+	
+	public JTextField getTxtIdPlanta() {
+		return txtIdPlanta;
+	}
+
+	public void setTxtIdPlanta(JTextField txtIdPlanta) {
+		this.txtIdPlanta = txtIdPlanta;
+	}
+
+	public JTextField getTxtFechaMaxEntrega() {
+		return txtFechaMaxEntrega;
+	}
+
+	public void setTxtFechaMaxEntrega(JTextField txtFechaMaxEntrega) {
+		this.txtFechaMaxEntrega = txtFechaMaxEntrega;
+	}
+
+	public JTextField getTxtInsumo() {
+		return txtInsumo;
+	}
+
+	public void setTxtInsumo(JTextField txtInsumo) {
+		this.txtInsumo = txtInsumo;
+	}
+
+	public JTextField getTxtCantidad() {
+		return txtCantidad;
+	}
+
+	public void setTxtCantidad(JTextField txtCantidad) {
+		this.txtCantidad = txtCantidad;
+	}
+
+	public JTextField getTxtPrecio() {
+		return txtPrecio;
+	}
+
+	public void setTxtPrecio(JTextField txtPrecio) {
+		this.txtPrecio = txtPrecio;
+	}
+
 	public void addFila(String [] a) {
 		this.modeloTablaAtributos.addRow(a);
 	}

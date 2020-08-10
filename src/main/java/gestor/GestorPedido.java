@@ -9,13 +9,11 @@ public class GestorPedido {
 	
 	private PedidoServicio pedidoServicio = new PedidoServicio();
 	
-	public void altaPedido(Integer numeroDeOrden, LocalDate fechaSolicitud, LocalDate fechaEntrega, EstadoPedido estado,
-			Integer plantaDestino, Integer plantaOrigen, Integer envio) {
+	public Integer altaPedido(LocalDate fechaEntrega, Integer plantaDestino) {
 		
-		Pedido p = new Pedido(1,  fechaSolicitud,  fechaEntrega,  estado,
-				 plantaDestino,  plantaOrigen,  envio);
+		Pedido p = new Pedido(fechaEntrega,  plantaDestino);
 		
-		pedidoServicio.altaPedido(p);
+		return pedidoServicio.altaPedido(p);
 		
 		
 	}

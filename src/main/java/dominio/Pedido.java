@@ -15,17 +15,11 @@ public class Pedido {
 	
 	
 	
-	public Pedido(Integer numeroDeOrden, LocalDate fechaSolicitud, LocalDate fechaEntrega, EstadoPedido estado,
-			Integer plantaDestino, Integer plantaOrigen, Integer envio) {
+	public Pedido(LocalDate fechaEntrega, Integer plantaDestino) {
 		
-		super();
-		this.numeroDeOrden = numeroDeOrden;
-		this.fechaSolicitud = fechaSolicitud;
-		this.fechaEntrega = fechaEntrega;
-		this.estado = estado;
-		this.plantaDestino = plantaDestino;
-		this.plantaOrigen = plantaOrigen;
-		this.envio = envio;
+			super();
+			this.fechaEntrega = fechaEntrega;
+			this.plantaDestino = plantaDestino;
 	}
 	
 	

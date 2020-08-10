@@ -292,11 +292,6 @@ public class App extends JFrame{
 		
 		
 		this.setJMenuBar(menuBar);
-		this.addWindowListener( new WindowAdapter() {
-			public void windowIconified(WindowEvent e) {
-				System.out.println("AHORA SI");
-			};
-		});
 		
 		
 		PanelInicio a = new PanelInicio();

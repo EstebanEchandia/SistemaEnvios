@@ -3,7 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import dao.utils.DB;
 import dominio.Pedido;
 
@@ -13,26 +16,31 @@ public class PedidoDaoPostgreSQL implements PedidoDao {
 
 	private static final String INSERT_PEDIDO =
 			"INSERT INTO trabajopractico.pedido(FECHASOLICITUD,FECHAENTREGA,ESTADO,IDENVIO,PLANTAORIGEN,PLANTADESTINO)"+""
-					+ " VALUES (?,?,?::EstadoPedido,null,?,?)";
+					+ " VALUES (NOW(),?,'CREADA'::estados,null,null,?) RETURNING NUMERODEORDEN";
 	
 	private static final String UPDATE_ESTADO_PEDIDO = "UPDATE trabajopractico.pedido set ESTADO = ? WHERE NUMERODEORDEN = ?";
 	
 	@Override
-	public void altaPedido(Pedido p) {
+	public Integer altaPedido(Pedido p) {
 		
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
 		System.out.println("Creando pedido");
+		Integer id= 0;
 		try {
 			
-			pstmt = conn.prepareStatement(INSERT_PEDIDO);
-			pstmt.setDate(1, Date.valueOf(p.getFechaSolicitud()));
-			pstmt.setDate(2, Date.valueOf(p.getFechaSolicitud()));
-			pstmt.setObject(3, p.getEstado().toString());
-			pstmt.setInt(4,p.getPlantaOrigen());
-			pstmt.setInt(5,p.getPlantaDestino());
+			pstmt = conn.prepareStatement(INSERT_PEDIDO, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setDate(1, Date.valueOf(p.getFechaEntrega().toString()));
+			pstmt.setInt(2,p.getPlantaDestino());
 			
 			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			
+			while(rs.next()){
+				id = rs.getInt(1);
+			}
+			System.out.println(id);
 			System.out.println("Termine de crear");
 		
 		} catch (SQLException e) {
@@ -46,6 +54,7 @@ public class PedidoDaoPostgreSQL implements PedidoDao {
 					e.printStackTrace();
 				}
 			}
+		return id;
 	}
 
 	
