@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import dao.InsumoDao;
 import dao.InsumoDaoPostgreSQL;
-import dominio.Camion;
 import dominio.Insumo;
 import dominio.InsumoGeneral;
 import dominio.InsumoLiquido;

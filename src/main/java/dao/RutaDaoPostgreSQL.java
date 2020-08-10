@@ -1,12 +1,9 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import dao.utils.DB;
-import dominio.Planta;
 import dominio.Ruta;
 
 public class RutaDaoPostgreSQL implements RutaDao{

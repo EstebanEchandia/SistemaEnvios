@@ -30,7 +30,7 @@ public class GestorStock {
 	
 	Stock modificarStock() {
 		
-		return new Stock();
+		return null;
 	}
 
 }

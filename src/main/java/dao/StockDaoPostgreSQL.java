@@ -4,19 +4,12 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
 import dao.utils.DB;
-import dominio.Insumo;
-import dominio.InsumoGeneral;
-import dominio.InsumoLiquido;
 import dominio.Stock;
-import enums.Unidad;
 
 /**
  * @author esteb
@@ -102,7 +95,7 @@ public class StockDaoPostgreSQL implements StockDao{
 	@Override
 	public Stock modificarStock(Stock s) {
 		
-		return new Stock();
+		return null;
 	}
 
 

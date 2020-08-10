@@ -3,19 +3,13 @@
  */
 package dao;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import dao.utils.DB;
-import dominio.Camion;
 import dominio.Insumo;
 import dominio.InsumoGeneral;
 import dominio.InsumoLiquido;

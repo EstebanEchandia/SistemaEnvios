@@ -3,7 +3,10 @@ package dao;
 import dominio.Pedido;
 
 public interface PedidoDao {
-	public Pedido altaPedido();
-	public Pedido bajaPedido();
-	public Pedido modificarPedido();
+	
+	public void altaPedido(Pedido p);
+
+	public void modificarEstadoPedido(Pedido p);
+	
+	
 }
