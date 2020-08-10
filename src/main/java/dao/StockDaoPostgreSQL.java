@@ -41,7 +41,7 @@ public class StockDaoPostgreSQL implements StockDao{
 			pstmt.setDouble(1, s.getCantidad());
 			pstmt.setDouble(2, s.getPtoMinimoDePedido());
 			pstmt.setInt(3, s.getInsumoAsociado());
-			pstmt.setInt(3, s.getIdPlanta());
+			pstmt.setInt(4, s.getIdPlanta());
 			pstmt.executeUpdate();
 			
 			System.out.println("Termine de crear");

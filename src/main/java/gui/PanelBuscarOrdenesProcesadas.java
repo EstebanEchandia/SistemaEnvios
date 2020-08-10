@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import gestor.GestorPedido;
 
 public class PanelBuscarOrdenesProcesadas extends JPanel {
 	
@@ -26,6 +28,11 @@ public class PanelBuscarOrdenesProcesadas extends JPanel {
 	private JButton btnMarcarComoEntregada = new JButton("Marcar como entregada");
 	
 	private Object [] atributos = {-1,0,0,0,0,0,0};
+	
+	private GestorPedido gestorPedido = new GestorPedido();
+	
+	ArrayList<ArrayList<String>> tabla = gestorPedido.buscarPedidosProcesados();
+	
 	
 	public void armarPanel(App app) {
 		
@@ -41,7 +48,7 @@ public class PanelBuscarOrdenesProcesadas extends JPanel {
 		this.modeloTablaAtributos.addColumn("Envio");
 		
 	
-		this.insertarElementosTabla();
+		this.armarTabla();
 		
 		this.tblOrdenesProcesadas = new JTable(modeloTablaAtributos);
 		this.tblOrdenesProcesadas.setBounds(120, 20, 630,430);
@@ -89,8 +96,10 @@ public class PanelBuscarOrdenesProcesadas extends JPanel {
 		app.pack();
 	}
 	
-	public void insertarElementosTabla() {
-		
-		
+	public void armarTabla() {
+		for(ArrayList<String> fila:  tabla ){			
+				modeloTablaAtributos.addRow(fila.toArray());	
+		}
+
 	}
 }

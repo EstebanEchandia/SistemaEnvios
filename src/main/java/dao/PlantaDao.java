@@ -13,6 +13,8 @@ public interface PlantaDao {
 	
 	public ArrayList<Planta> recuperarPlantasTodas();
 	
+	public ArrayList<ArrayList<String>> recuperarPlantasConInsumoMenorAlPtoPedido();
+	
 	
 
 }

@@ -17,6 +17,10 @@ public class PlantaServicio {
 	public ArrayList<Planta> recuperarPlantasTodas() {
 		return this.pd.recuperarPlantasTodas();
 	}
+	
+	public ArrayList<ArrayList<String>> recuperarPlantasConInsumoMenorAlPtoPedido(){
+		return pd.recuperarPlantasConInsumoMenorAlPtoPedido();
 
+	}
 
 }

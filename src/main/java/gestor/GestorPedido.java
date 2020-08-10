@@ -1,6 +1,8 @@
 package gestor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 import dominio.Pedido;
 import enums.EstadoPedido;
 import servicios.PedidoServicio;
@@ -23,4 +25,11 @@ public class GestorPedido {
 		pedidoServicio.modificarEstadoPedido(p);
 	
 	}
+	
+	public ArrayList<ArrayList<String>> buscarPedidosCreados(){
+		return pedidoServicio.buscarPedidosCreados();
+	}
+	public ArrayList<ArrayList <String>> buscarPedidosProcesados(){
+		return pedidoServicio.buscarPedidosProcesados();
+		}
 }

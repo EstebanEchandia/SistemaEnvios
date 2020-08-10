@@ -19,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
 import app.App;
 import dominio.Planta;
 import enums.EstadoPedido;
+import enums.Unidad;
 import gestor.GestorPlanta;
+import gestor.GestorStock;
 
 public class PanelPlantaBuscarPlanta extends JPanel {
 	
@@ -32,6 +34,8 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 	private GestorPlanta gestorPlanta = new GestorPlanta();
 	
 	private App app;
+	
+	private GestorStock gestorStock = new GestorStock();
 	
 	public void armarPanel(App aux) {
 		Object [] atributos = {-1,0};
@@ -125,14 +129,21 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 		JLabel lblCantidadInsumo = new JLabel("Cantidad:");
 		JTextField txtCantidadInsumo = new JTextField(20);
 		
-		JLabel lblPtoPedido = new JLabel("Pto Pedido:");
-		JComboBox cmbPtoPedido = new JComboBox();
-		cmbPtoPedido.addItem(EstadoPedido.CREADA);
-		cmbPtoPedido.addItem(EstadoPedido.ENTREGADA);
-		cmbPtoPedido.addItem(EstadoPedido.PROCESADA);
-		cmbPtoPedido.addItem(EstadoPedido.CANCELADO);
+		JLabel lblPtoPedido = new JLabel("Pto edido:");
+		JTextField txtPtoMinPedido = new JTextField(20);
+
 		
 		JButton btnGuardar = new JButton("Guardar");
+		
+		btnGuardar.addActionListener( e -> gestorStock.altaStock(Double.parseDouble(txtCantidadInsumo.getText()), 
+				Double.parseDouble(txtPtoMinPedido.getText()), 
+				Integer.parseInt(txtIdInsumo.getText()), 
+				Integer.parseInt(txtIdPlanta.getText())
+				)
+			);
+		
+		System.out.println(txtIdPlanta.getText());
+		
 		JButton btnCancelar = new JButton("Cancelar");
 		
 		panelEditarPlanta.setLayout(null);
@@ -154,9 +165,9 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 		panelEditarPlanta.add(txtCantidadInsumo);
 		panelEditarPlanta.add(lblCantidadInsumo);
 		
-		cmbPtoPedido.setBounds(90, 140, 100, 20);
+		txtPtoMinPedido.setBounds(90, 140, 100, 20);
 		lblPtoPedido.setBounds(10, 140, 100, 20);
-		panelEditarPlanta.add(cmbPtoPedido);
+		panelEditarPlanta.add(txtPtoMinPedido);
 		panelEditarPlanta.add(lblPtoPedido);
 		
 		

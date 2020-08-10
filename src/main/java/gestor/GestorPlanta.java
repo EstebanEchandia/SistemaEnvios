@@ -42,5 +42,10 @@ public class GestorPlanta {
 		return this.ps.recuperarPlantasTodas();
 	}
 	
+	
+	public ArrayList<ArrayList<String>> recuperarPlantasConInsumoMenorAlPtoPedido(){
+		return ps.recuperarPlantasConInsumoMenorAlPtoPedido();
+	}
+	
 
 }
