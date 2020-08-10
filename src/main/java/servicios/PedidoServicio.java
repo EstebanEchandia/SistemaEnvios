@@ -29,4 +29,7 @@ public class PedidoServicio {
 		
 		return pd.buscarPedidosProcesados();
 	}
+	public ArrayList<ArrayList<String>> verDetalleOrden(Integer nroOrden){
+		return pd.verDetalleOrden(nroOrden);
+	}
 }

@@ -22,6 +22,10 @@ public class Pedido {
 			this.plantaDestino = plantaDestino;
 	}
 	
+	public Pedido(Integer id) {
+		this.numeroDeOrden = id;
+		
+	}
 	
 	
 	public Integer getNumeroDeOrden() {

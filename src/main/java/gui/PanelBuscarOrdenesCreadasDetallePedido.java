@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -9,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import gestor.GestorPedido;
 
 public class PanelBuscarOrdenesCreadasDetallePedido extends JPanel {
 	
@@ -18,7 +20,10 @@ public class PanelBuscarOrdenesCreadasDetallePedido extends JPanel {
 	
 	private JButton btnAtras = new JButton("Atras");
 	
-	public void armarPanel(App app,PanelBuscarOrdenesCreadas panel) {
+	GestorPedido gestorPedido = new GestorPedido();
+
+	
+	public void armarPanel(App app,PanelBuscarOrdenesCreadas panel,Integer  nroOrden) {
 		
 		this.setLayout(null);
 		this.setBackground(new Color(43,167,194));
@@ -28,7 +33,9 @@ public class PanelBuscarOrdenesCreadasDetallePedido extends JPanel {
 		this.modeloTablaAtributos.addColumn("Id Insumo");
 		
 	
-		this.insertarElementosTabla();
+		ArrayList<ArrayList<String>> tabla = gestorPedido.verDetalleOrden(nroOrden);
+		
+		this.armarTabla(tabla);
 		
 		this.tblDetallePedido = new JTable(modeloTablaAtributos);
 		this.tblDetallePedido.setBounds(120, 20, 630,430);
@@ -50,7 +57,10 @@ public class PanelBuscarOrdenesCreadasDetallePedido extends JPanel {
 		app.pack();
 	}
 	
-	public void insertarElementosTabla() {
-		
+	public void armarTabla(ArrayList<ArrayList<String>> tabla) {
+		for(ArrayList<String> fila:  tabla){			
+				modeloTablaAtributos.addRow(fila.toArray());	
+		}
+
 	}
 }

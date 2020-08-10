@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import dominio.Pedido;
+import enums.EstadoPedido;
 import gestor.GestorPedido;
 
 public class PanelBuscarOrdenesProcesadas extends JPanel {
@@ -33,6 +35,8 @@ public class PanelBuscarOrdenesProcesadas extends JPanel {
 	
 	ArrayList<ArrayList<String>> tabla = gestorPedido.buscarPedidosProcesados();
 	
+	int fila;
+	int columna;
 	
 	public void armarPanel(App app) {
 		
@@ -65,7 +69,8 @@ public class PanelBuscarOrdenesProcesadas extends JPanel {
 			if(atributos[0].equals(-1))
 				JOptionPane.showMessageDialog(this,"Seleccione un pedido", "Error", JOptionPane.ERROR_MESSAGE);	
 			else {
-				
+				gestorPedido.modificarEstadoPedido(new Pedido(Integer.parseInt((String)atributos[0])), EstadoPedido.ENTREGADA);
+				this.modeloTablaAtributos.removeRow(fila);
 			}
 		});
 		
@@ -73,8 +78,8 @@ public class PanelBuscarOrdenesProcesadas extends JPanel {
 			
 			public void mouseClicked(MouseEvent e) 
 			    {
-			       int fila = tblOrdenesProcesadas.rowAtPoint(e.getPoint());
-			       int columna = tblOrdenesProcesadas.columnAtPoint(e.getPoint());
+			       fila = tblOrdenesProcesadas.rowAtPoint(e.getPoint());
+			       columna = tblOrdenesProcesadas.columnAtPoint(e.getPoint());
 			      
 					if ((fila > -1) && (columna > -1)) {
 						atributos[0] = tblOrdenesProcesadas.getValueAt(fila,0);

@@ -32,4 +32,8 @@ public class GestorPedido {
 	public ArrayList<ArrayList <String>> buscarPedidosProcesados(){
 		return pedidoServicio.buscarPedidosProcesados();
 		}
+	
+	public ArrayList<ArrayList <String>> verDetalleOrden(Integer nroOrden){
+		return pedidoServicio.verDetalleOrden(nroOrden);
+		}
 }

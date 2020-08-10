@@ -3,7 +3,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dao.utils.DB;
 import dominio.ItemPedido;
@@ -12,6 +14,7 @@ public class ItemPedidoPostgreSQL implements ItemPedidoDao{
 
 	
 	private static final String INSERT_ITEM_PEDIDO = "INSERT INTO trabajopractico.itempedido (CANTIDAD,NUMERODEORDEN,IDINSUMO) values (?,?,?)";
+	
 	
 	
 	@Override
@@ -45,6 +48,8 @@ public class ItemPedidoPostgreSQL implements ItemPedidoDao{
 			}
 		
 	}
+	
+	
 	
 	
 }

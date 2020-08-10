@@ -12,5 +12,7 @@ public interface PedidoDao {
 	
 	public ArrayList<ArrayList<String>> buscarPedidosCreados();
 
-	ArrayList<ArrayList<String>> buscarPedidosProcesados();
+	public ArrayList<ArrayList<String>> buscarPedidosProcesados();
+
+	public ArrayList<ArrayList<String>> verDetalleOrden(Integer nroOrden);
 }

@@ -9,7 +9,6 @@ import java.sql.Statement;import java.util.ArrayList;
 
 import dao.utils.DB;
 import dominio.Pedido;
-import dominio.Planta;
 
 public class PedidoDaoPostgreSQL implements PedidoDao {
 
@@ -19,12 +18,17 @@ public class PedidoDaoPostgreSQL implements PedidoDao {
 			"INSERT INTO trabajopractico.pedido(FECHASOLICITUD,FECHAENTREGA,ESTADO,IDENVIO,PLANTAORIGEN,PLANTADESTINO)"+""
 					+ " VALUES (NOW(),?,'CREADA'::estados,null,null,?) RETURNING NUMERODEORDEN";
 	
-	private static final String UPDATE_ESTADO_PEDIDO = "UPDATE trabajopractico.pedido set ESTADO = ? WHERE NUMERODEORDEN = ?";
+	private static final String UPDATE_ESTADO_PEDIDO = "UPDATE trabajopractico.pedido set ESTADO = ?::estados WHERE NUMERODEORDEN = ?";
 	
 	private static final String SELECT_PEDIDOS_CREADOS = "SELECT * from trabajopractico.pedido where pedido.estado = 'CREADA'";
 	
 	private static final String SELECT_PEDIDOS_PROCESADOS = "SELECT * from trabajopractico.pedido where pedido.estado = 'PROCESADA'";
-
+	
+	private static final String BUSCAR_DETALLE_ORDEN = 
+			"SELECT itempedido.id, itempedido.cantidad, itempedido.idinsumo "+
+			"from trabajopractico.pedido, trabajopractico.itempedido "+
+			"where pedido.numerodeorden = ? "+
+			"and itempedido.numeroDeOrden = pedido.numeroDeOrden ";
 	
 	@Override
 	public Integer altaPedido(Pedido p) {
@@ -173,5 +177,45 @@ public class PedidoDaoPostgreSQL implements PedidoDao {
 			return res;
 		
 	}
+	
+	@Override
+	public ArrayList<ArrayList <String>> verDetalleOrden(Integer nroOrden) {
+		
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		
+		ArrayList<ArrayList <String>> res = new ArrayList<ArrayList <String>>();
+		
+		System.out.println("Buscando detalles del orden");
+		
+		try {
 
+			pstmt = conn.prepareStatement(BUSCAR_DETALLE_ORDEN);
+			pstmt.setDouble(1, nroOrden);
+		
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ArrayList<String> fila = new ArrayList<String>();
+				fila.add(rs.getString("id"));
+				fila.add(rs.getString("cantidad"));
+				fila.add(rs.getString("idinsumo"));
+				res.add(fila);
+			}
+			
+			System.out.println("Termine de crear item pedido");
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		
+		}finally {
+				try {
+					if(pstmt!=null) pstmt.close();
+					if(conn!=null) conn.close();				
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		return res;
+	}
 }
