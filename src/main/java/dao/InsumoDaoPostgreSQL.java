@@ -33,11 +33,9 @@ public class InsumoDaoPostgreSQL implements InsumoDao{
 			"INSERT INTO trabajopractico.INSUMOliquido(ID,DENSIDAD)"
 					+ " VALUES (?,?)";
 	
-	
 	private static final String UPDATE_INSUMO =
 			" UPDATE trabajopractico.insumo SET DESCRIPCION = ?,UNIDADDEMEDIDA = ?::unidad, COSTO = ?"
 			+ " WHERE ID = ?";
-	
 	
 	private static final String UPDATE_INSUMO_GENERAL =
 			" UPDATE trabajopractico.INSUMOGENERAL SET PESO = ?"

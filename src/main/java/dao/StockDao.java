@@ -18,7 +18,7 @@ public interface StockDao {
 	public Integer getStockDeUnInsumo(Integer idInsumo);
 
 	
-	public ArrayList<Stock> recuperarTodosStock(Integer idPlanta);
-	
+	public ArrayList<Stock> recuperarTodosStockDePlanta(Integer idPlanta);
+	public Stock recuperarStockDeUnInsumoEnUnaPlanta(Integer idPlanta, Integer idInsumo);
 	
 }

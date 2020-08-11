@@ -26,4 +26,8 @@ public class StockServicio {
 		return stockDao.recuperarTodosStockDePlanta(idPlanta);
 		
 	}
+	
+	public Stock recuperarStockDeUnInsumoEnUnaPlanta(Integer idPlanta, Integer idInsumo) {
+		return stockDao.recuperarStockDeUnInsumoEnUnaPlanta(idPlanta, idInsumo);
+	}
 }
