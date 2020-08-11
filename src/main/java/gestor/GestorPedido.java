@@ -14,7 +14,6 @@ public class GestorPedido {
 	public Integer altaPedido(LocalDate fechaEntrega, Integer plantaDestino) {
 		
 		Pedido p = new Pedido(fechaEntrega,  plantaDestino);
-		
 		return pedidoServicio.altaPedido(p);
 		
 		

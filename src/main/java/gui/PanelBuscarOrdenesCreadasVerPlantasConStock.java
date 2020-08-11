@@ -34,6 +34,7 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 	
 	
 	
+	
 	public void armarPanel(App app,Object[] atributos, ArrayList<Planta> plantas) {
 		
 		this.setLayout(null);
@@ -47,6 +48,7 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 		this.modeloTablaAtributos.addColumn("Nombre");
 		
 		this.recuperarPlantasConStock();
+		
 	
 		
 		this.tblPlantas = new JTable(modeloTablaAtributos);
@@ -78,8 +80,18 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 			    }
 			 });
 		
+		
+		
 		app.setContentPane(this);
 		app.pack();
+		
+		if(tblPlantas.getRowCount() == 0) {
+			PanelBuscarOrdenesCreadas panel = new PanelBuscarOrdenesCreadas();
+			panel.armarPanel(app);
+		}
+		
+		
+		
 		
 	}
 
@@ -97,5 +109,7 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 			this.modeloTablaAtributos.addRow(p1);
 		}		
 	}
+	
+	
 
 }

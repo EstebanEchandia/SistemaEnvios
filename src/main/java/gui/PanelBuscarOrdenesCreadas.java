@@ -100,10 +100,13 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 				Integer nroOrden = Integer.parseInt((String) tblOrdenesCreadas.getValueAt(fila,0));
 				
 				items = this.parsear(gestorPedido.verDetalleOrden(nroOrden));
-				listaPlantas = this.gestorPlanta.listarPlantasConStockDeItems(items);
+				listaPlantas = this.gestorPlanta.listarPlantasConStockDeItems(items,Integer.parseInt((String)atributos[0]));
+			
 				
 				PanelBuscarOrdenesCreadasVerPlantasConStock panelPlantasConStock = new PanelBuscarOrdenesCreadasVerPlantasConStock();
 				panelPlantasConStock.armarPanel(app,atributos,listaPlantas);
+				
+				
 			}
 		});
 		

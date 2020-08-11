@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import dominio.GrafoPlantas;
 import dominio.ItemPedido;
+import dominio.Pedido;
 import dominio.Planta;
 import dominio.Stock;
+import enums.EstadoPedido;
 import servicios.PlantaServicio;
 
 public class GestorPlanta {
@@ -14,7 +16,7 @@ public class GestorPlanta {
 	private Planta p;
 	private GrafoPlantas grafo;
 	private PlantaServicio ps = new PlantaServicio();
-	
+	private GestorPedido gp = new GestorPedido();
 	private GestorStock gs = new GestorStock();
 	
 	
@@ -51,7 +53,8 @@ public class GestorPlanta {
 		return ps.recuperarPlantasConInsumoMenorAlPtoPedido();
 	}
 	
-	public ArrayList<Planta> listarPlantasConStockDeItems(ArrayList<ItemPedido> items){
+	public ArrayList<Planta> listarPlantasConStockDeItems(ArrayList<ItemPedido> items, Integer nroOrden){
+		
 		ArrayList<Planta> listaTodasPlantas = this.recuperarPlantasTodas();// recuperar todas las plantas
 		ArrayList<Planta> listaPlantasSinStock = new ArrayList<Planta>();
 		
@@ -63,12 +66,16 @@ public class GestorPlanta {
 				Stock stockAux = this.gs.recuperarStockDeUnInsumoEnUnaPlanta(plantaActual.getId(), items.get(i).getIdInsumo());
 				
 				if(stockAux==null || stockAux.getCantidad()<items.get(i).getCantidad()){
-					tieneTodosLosItemsConStock = false;
+					
+					tieneTodosLosItemsConStock = false;			
 					listaPlantasSinStock.add(plantaActual);
 				}
 			}				
 		}
 		listaTodasPlantas.removeAll(listaPlantasSinStock);
+		if(listaTodasPlantas.isEmpty()) gp.modificarEstadoPedido(new Pedido(nroOrden), EstadoPedido.CANCELADO);
+		
+		
 		return listaTodasPlantas;
 	}
 	
