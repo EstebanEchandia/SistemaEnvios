@@ -13,119 +13,113 @@ import estructuras.Arista;
 import estructuras.Grafo;
 import estructuras.Vertice;
 
-public class Dijkstra {
+public class Dijkstra {	
+    private final List<Vertice> nodes;
+    private final List<Arista> Aristas;
+    private Set<Vertice> settledNodes;
+    private Set<Vertice> unSettledNodes;
+    private Map<Vertice, Vertice> predecessors;
+    private Map<Vertice, Double> distance;
+
 	
-	
-	 	private final List<Vertice> nodos;
-	    private final List<Arista> aristas;
-	    private Set<Vertice> nodosSeteados;
-	    private Set<Vertice> nodosNoSeteados;
-	    private Map<Vertice, Vertice> predecesores;
-	    private Map<Vertice, Double> distancia;
-	
-	    public Dijkstra(Grafo grafo) {
-	    	this.nodos = new ArrayList<Vertice>(grafo.getVertices());
-	    	this.aristas =  new ArrayList<Arista>(grafo.getAristas());
-	    }
-	    
-	    public void ejecutar(Vertice inicio) { //test
-	    	nodosSeteados = new HashSet<Vertice>();
-	    	nodosNoSeteados = new HashSet<Vertice>();
-	    	distancia = new HashMap<Vertice, Double>();
-	    	
-	    	distancia.put(inicio, 0d);
-	    	nodosNoSeteados.add(inicio);
-	    	
-	    	while(nodosNoSeteados.size()>0) {
-	    		
-	    		Vertice nodo = getMinimo(nodosNoSeteados);
-	    		nodosSeteados.add(nodo);
-	    		nodosNoSeteados.remove(nodo);
-	    		
-	    		encontrarDistanciaMasCorta(nodo); 
-	    	}   
-	    }
-	    
-	    private void encontrarDistanciaMasCorta(Vertice nodo) { //test
-	    	List<Vertice> nodosAdyacentes = getAdyacentes(nodo);
-	    	for(Vertice target: nodosAdyacentes) {
-	    		if(getDistanciaMasCorta(target) > getDistanciaMasCorta(nodo) + getDistancia(nodo,target)) {
-	    			distancia.put(target, getDistanciaMasCorta(nodo)+getDistancia(nodo,target));
-	    			
-	    			
-	    			predecesores.put(target, nodo);//ACA RIPEA
-	    			
-	    			nodosNoSeteados.add(target);
-	    		}
-	    	}
-	    }
-	    
-	 
-	  
-	        
-	    
-	    
-	    private Double getDistancia(Vertice nodo, Vertice target) { //test
-	    	for(Arista a: aristas) {
-	    		if(a.getInicio().equals(nodo) && a.getFin().equals(target)) return (Double) a.getValor();
-	    	}
-	    	throw new RuntimeException("No deberia pasar nunca, el equals ta roto");
-	    }
-	    
-	    private List<Vertice> getAdyacentes(Vertice nodo){ //test
-	    	List<Vertice> adyacentes = new ArrayList<Vertice>();
-	    	for(Arista a: aristas) {
-	    		if(a.getInicio().equals(nodo) && !estaSeteado(a.getFin())) {
-	    			adyacentes.add(a.getFin());
-	    		}
-	    	}
-	    	return adyacentes;
-	    }
-	    
-	    
-	    private boolean estaSeteado(Vertice nodo) { 
-	    	return nodosSeteados.contains(nodo);
-	    }
-	    
-	    
-	    private Double getDistanciaMasCorta(Vertice direccion) { //test
-	    	Double d = distancia.get(direccion);
-	    	if(d == null) {
-	    		return  Double.MAX_VALUE;
-	    	}else {
-	    		return d;
-	    	}
-	    }
-	    
-	    
-	    private Vertice getMinimo(Set<Vertice> vertices) { //test
-	    	Vertice minimo = null;
-	    	for(Vertice v: vertices) {
-	    		if(minimo == null) {
-	    			minimo = v;
-	    		}
-	    		else {
-	    			if(getDistanciaMasCorta(v) < getDistanciaMasCorta(minimo)) {
-	    				minimo = v;
-	    			}
-	    		}
-	    	}
-	    	return minimo;
-	    }
-	    
-	    public LinkedList<Vertice> getCamino(Vertice target){
-	    	LinkedList<Vertice> camino = new LinkedList<Vertice>();
-	    	Vertice paso = target;
-	    	if(predecesores.get(paso) == null) {
-	    		return null;
-	    	}
-	    	camino.add(paso);
-	    	while(predecesores.get(paso) != null) {
-	    		paso = predecesores.get(paso);
-	    		camino.add(paso);
-	    	}
-	    	Collections.reverse(camino);
-	    	return camino;
-	    }
-	    
+    public Dijkstra(Grafo graph) {
+        // create a copy of the array so that we can operate on this array
+        this.nodes = new ArrayList<Vertice>(graph.getVertices());
+        this.Aristas = new ArrayList<Arista>(graph.getAristas());
+    }
+
+    public void execute(Vertice source) {
+        settledNodes = new HashSet<Vertice>();
+        unSettledNodes = new HashSet<Vertice>();
+        distance = new HashMap<Vertice, Double>();
+        predecessors = new HashMap<Vertice, Vertice>();
+        distance.put(source, 0d);
+        unSettledNodes.add(source);
+        while (unSettledNodes.size() > 0) {
+            Vertice node = getMinimum(unSettledNodes);
+            settledNodes.add(node);
+            unSettledNodes.remove(node);
+            findMinimalDistances(node);
+        }
+    }
+
+    private void findMinimalDistances(Vertice node) {
+        List<Vertice> adjacentNodes = getNeighbors(node);
+        for (Vertice target : adjacentNodes) {
+            if (getShortestDistance(target) > getShortestDistance(node)
+                    + getDistance(node, target)) {
+                distance.put(target, getShortestDistance(node)
+                        + getDistance(node, target));
+                predecessors.put(target, node);
+                unSettledNodes.add(target);
+            }
+        }
+
+    }
+
+    private Double getDistance(Vertice node, Vertice target) {
+        for (Arista Arista : Aristas) {
+            if (Arista.getInicio().equals(node)
+                    && Arista.getFin().equals(target)) {
+                return (Double) Arista.getValor();
+            }
+        }
+        throw new RuntimeException("Should not happen");
+    }
+
+    private List<Vertice> getNeighbors(Vertice node) {
+        List<Vertice> neighbors = new ArrayList<Vertice>();
+        for (Arista Arista : Aristas) {
+            if (Arista.getInicio().equals(node)
+                    && !isSettled(Arista.getFin())) {
+                neighbors.add(Arista.getFin());
+            }
+        }
+        return neighbors;
+    }
+
+    private Vertice getMinimum(Set<Vertice> Verticees) {
+        Vertice minimum = null;
+        for (Vertice Vertice : Verticees) {
+            if (minimum == null) {
+                minimum = Vertice;
+            } else {
+                if (getShortestDistance(Vertice) < getShortestDistance(minimum)) {
+                    minimum = Vertice;
+                }
+            }
+        }
+        return minimum;
+    }
+
+    private boolean isSettled(Vertice Vertice) {
+        return settledNodes.contains(Vertice);
+    }
+
+    private Double getShortestDistance(Vertice destination) {
+        Double d = distance.get(destination);
+        if (d == null) {
+            return Double.MAX_VALUE;
+        } else {
+            return d;
+        }
+    }
+    
+    public LinkedList<Vertice> getPath(Vertice target) {
+        LinkedList<Vertice> path = new LinkedList<Vertice>();
+        Vertice step = target;
+        // check if a path exists
+        if (predecessors.get(step) == null) {
+            return null;
+        }
+        path.add(step);
+        while (predecessors.get(step) != null) {
+            step = predecessors.get(step);
+            path.add(step);
+        }
+        // Put it into the correct order
+        Collections.reverse(path);
+        return path;
+    }
+    
 }

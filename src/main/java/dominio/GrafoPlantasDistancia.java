@@ -38,21 +38,19 @@ public class GrafoPlantasDistancia extends Grafo<Planta>{
 			this.conectar(gestorPlanta.recuperarPlantaId(r.getPlantaOrigen()), gestorPlanta.recuperarPlantaId(r.getPlantaDestino()), r.getDistanciaEnKm());
 			
 		}
-		System.out.println(this.getVertices());
-		this.aplicarDijkstra();
 	}
 	
 	
-	public void aplicarDijkstra() {
+	public void aplicarDijkstra(Integer idPlantaOrigen, Integer idPlantaFin) {
 		
 		Dijkstra algoritmo = new Dijkstra(this);
 		
-		algoritmo.ejecutar( getNodo(gestorPlanta.recuperarPlantaId(19)) );
+		algoritmo.execute( getNodo(gestorPlanta.recuperarPlantaId(idPlantaOrigen)) );
 		
-		LinkedList<Vertice> res = algoritmo.getCamino( getNodo(gestorPlanta.recuperarPlantaId(25)) );
-		System.out.println(res);
+		LinkedList<Vertice> res = algoritmo.getPath(getNodo(gestorPlanta.recuperarPlantaId(idPlantaFin)));
 		
-		
+		System.out.println("RUTA ES EN DURACION" + res);
+
 	}
 	
 	

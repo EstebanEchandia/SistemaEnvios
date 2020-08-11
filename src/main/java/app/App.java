@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
 import dominio.GrafoPlantasDistancia;
+import dominio.GrafoPlantasDuracion;
 import dominio.Planta;
 import gui.*;
 
@@ -268,9 +269,9 @@ public class App extends JFrame{
 		app.setIconImage(new ImageIcon(app.getClass().getResource("/imagenes/COVID19.png")).getImage());
 		app.setResizable(false);
 		app.setVisible(true);
-		GrafoPlantasDistancia gpd = new GrafoPlantasDistancia();
-		System.out.println(gpd.recorridoAnchura(gpd.getNodo(new Planta(19,"Concordia"))));
 		
-		
-	}
+	}	
+	
+	
+	
 }
