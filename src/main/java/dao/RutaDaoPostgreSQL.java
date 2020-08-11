@@ -12,6 +12,7 @@ public class RutaDaoPostgreSQL implements RutaDao{
 			"INSERT INTO trabajopractico.ruta(SIGLA,DISTANCIAENKM,DURACIONENHORAS,CANTMAXATRANSPORTARENKG,PLANTAORIGEN,PLANTADESTINO)"+""
 					+ " VALUES (?,?,?,?,?,?)";
 	
+	private static final String SELECT_RUTA = "select * from trabajopractico.ruta";
 
 	
 	@Override
