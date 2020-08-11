@@ -75,7 +75,12 @@ public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 		
 		
 		this.btnGuardar.setBounds(290, 400, 120, 40);
-		this.btnGuardar.addActionListener( e -> cargarDatos());
+		this.btnGuardar.addActionListener( e -> {
+			cargarDatos();
+			PanelRegistroOrdenDePedido panelRegistroDePedido = new PanelRegistroOrdenDePedido();
+			panelRegistroDePedido.armarPanel(app);
+
+		});
 		
 		this.add(btnGuardar);
 		

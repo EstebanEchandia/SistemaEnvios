@@ -46,6 +46,7 @@ public class PanelCamionEditarEdicion  extends JPanel{
 	private JTextField txtCostoPorHora;
 	
 	private JButton btnGuardar;
+	private JButton btnCancelar;
 
 	private JTextArea txtAreaExplicacion = new JTextArea("Para modificar un camion el usuario modificar los campos que desee. \n\n La fecha debe ser ingresada en el formato: aaaa-mm-dd");
 	
@@ -53,7 +54,7 @@ public class PanelCamionEditarEdicion  extends JPanel{
 	
 	private JLabel imagenCamion;
 	
-	public void armarPanel(App app, PanelCamionEditar panel,Object[] atributos) {
+	public void armarPanel(App app,Object[] atributos) {
 		
 		
 		this.setLayout(null);
@@ -108,17 +109,30 @@ public class PanelCamionEditarEdicion  extends JPanel{
 		this.add(txtCostoPorHora);
 		
 		btnGuardar = new JButton("Editar");
-		btnGuardar.setBounds(370, 400, 100, 40);
+		btnGuardar.setBounds(310, 400, 100, 40);
 		
-		btnGuardar.addActionListener( e -> gestorCamion.updateCamion(Integer.parseInt(txtId.getText()), 
-				txtPatente.getText(), 
-				txtModelo.getText(), 
-				Double.parseDouble(txtKmRecorridos.getText()), 
-				Double.parseDouble(txtCostoPorHora.getText()), 
-				Double.parseDouble(txtCostoPorHora.getText()), 
-				LocalDate.parse(txtFechaCompra.getText())));
+		btnGuardar.addActionListener( e -> {
+			gestorCamion.updateCamion(Integer.parseInt(txtId.getText()), 
+					txtPatente.getText(), 
+					txtModelo.getText(), 
+					Double.parseDouble(txtKmRecorridos.getText()), 
+					Double.parseDouble(txtCostoPorKm.getText()), 
+					Double.parseDouble(txtCostoPorHora.getText()), 
+					LocalDate.parse(txtFechaCompra.getText()));
+			PanelCamionEditar panelCamionEditar = new PanelCamionEditar();
+			panelCamionEditar.armarPanel(app);
+		});
 		
-		this.add(btnGuardar);		
+		this.add(btnGuardar);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(420, 400, 100, 40);
+		btnCancelar.addActionListener( e -> {
+			PanelCamionEditar panelCamionEditar = new PanelCamionEditar();
+			panelCamionEditar.armarPanel(app);
+		});
+		
+		this.add(btnCancelar);
 		
 		txtAreaExplicacion.setBounds(500,60,250,250);
 		txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));

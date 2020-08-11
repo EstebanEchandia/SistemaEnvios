@@ -55,6 +55,8 @@ public class PanelInsumoEditarEdicion extends JPanel {
 	
 	private GestorInsumo gestorInsumo = new GestorInsumo();
 	
+	private JTextArea txtAreaExplicacion = new JTextArea("Para que se edite correctamente debe seleccionar el tipo de Insumo");
+	
 
 	
 public void armarPanel(App app,PanelInsumoEditar panel,Object[] atributos) {
@@ -141,7 +143,7 @@ public void armarPanel(App app,PanelInsumoEditar panel,Object[] atributos) {
 					Integer.parseInt(this.getTxtId().getText()),
 					this.getTxtDescripcion().getText(),
 					Double.parseDouble(this.getTxtCosto().getText()),
-					Unidad.valueOf(this.getTxtUnidadDeMedida().getText()),			
+					(Unidad)this.cmbUnidad.getSelectedItem(),	
 					Double.parseDouble(this.getTxtPeso().getText()))
 					);
 			
@@ -166,7 +168,7 @@ public void armarPanel(App app,PanelInsumoEditar panel,Object[] atributos) {
 					Integer.parseInt(this.getTxtId().getText()),
 					this.getTxtDescripcion().getText(),
 					Double.parseDouble(this.getTxtCosto().getText()),
-					Unidad.valueOf(this.getTxtUnidadDeMedida().getText()),			
+					(Unidad)this.cmbUnidad.getSelectedItem(),			
 					Double.parseDouble(this.getTxtDensidad().getText()))
 					);
 			
@@ -198,6 +200,14 @@ public void armarPanel(App app,PanelInsumoEditar panel,Object[] atributos) {
 		Icon icono3 = new ImageIcon(imagen3.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH)); 
 		this.imagenInsumo3.setIcon(icono3);
 		this.add(imagenInsumo3);
+		
+		this.txtAreaExplicacion.setBounds(500,80,250,250);
+		this.txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
+		this.txtAreaExplicacion.setLineWrap(true);
+		this.txtAreaExplicacion.setWrapStyleWord(true);
+		this.txtAreaExplicacion.setOpaque(false);
+		this.txtAreaExplicacion.setEditable(false);
+		this.add(txtAreaExplicacion);
 		
 		app.setContentPane(this);
 		app.pack();
