@@ -70,7 +70,7 @@ public class RutaDaoPostgreSQL implements RutaDao{
 				ArrayList<String> fila = new ArrayList<String>();
 				fila.add(rs.getString("sigla"));
 				fila.add(rs.getString("distanciaenkm"));
-				fila.add(rs.getString("duracionenhs"));
+				fila.add(rs.getString("duracionenhoras"));
 				fila.add(rs.getString("cantmaxatransportarenkg"));
 				fila.add(rs.getString("plantaorigen"));
 				fila.add(rs.getString("plantadestino"));

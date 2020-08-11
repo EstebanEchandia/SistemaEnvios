@@ -19,7 +19,20 @@ public class GestorRuta {
 		
 	}
 	
-	ArrayList<ArrayList<String>> recuperarRutas(){
-		return rs.recuperarRutas();
+	public ArrayList<Ruta> recuperarRutas(){ 
+		ArrayList<Ruta> res = new ArrayList<Ruta>();
+		ArrayList<ArrayList<String>> stringRutas =  rs.recuperarRutas();
+		
+		for(ArrayList<String> fila: stringRutas) {
+			res.add(new Ruta(fila.get(0),
+					Double.parseDouble(fila.get(1)),
+					Double.parseDouble(fila.get(2)),
+					Double.parseDouble(fila.get(3)),
+					Integer.parseInt(fila.get(4)),
+					Integer.parseInt(fila.get(5)))
+					);
+			
+		}
+		return res;
 	}
 }

@@ -67,5 +67,9 @@ public class Planta {
 		this.nombre = nombre;
 	}
 	
+	public String toString() {
+		return nombre;
+	}
+	
 	
 }

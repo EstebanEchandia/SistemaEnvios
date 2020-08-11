@@ -13,7 +13,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
-
+import dominio.GrafoPlantasDistancia;
+import dominio.GrafoPlantasDuracion;
+import dominio.Planta;
 import gui.*;
 
 @SuppressWarnings("serial")
@@ -267,5 +269,9 @@ public class App extends JFrame{
 		app.setIconImage(new ImageIcon(app.getClass().getResource("/imagenes/COVID19.png")).getImage());
 		app.setResizable(false);
 		app.setVisible(true);
-	}
+		
+	}	
+	
+	
+	
 }

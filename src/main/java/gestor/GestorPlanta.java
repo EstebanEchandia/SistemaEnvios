@@ -2,7 +2,6 @@ package gestor;
 
 import java.util.ArrayList;
 
-import dominio.GrafoPlantas;
 import dominio.ItemPedido;
 import dominio.Pedido;
 import dominio.Planta;
@@ -14,7 +13,6 @@ public class GestorPlanta {
 	
 	
 	private Planta p;
-	private GrafoPlantas grafo;
 	private PlantaServicio ps = new PlantaServicio();
 	private GestorPedido gp = new GestorPedido();
 	private GestorStock gs = new GestorStock();
@@ -30,12 +28,11 @@ public class GestorPlanta {
 	}
 	
 	Planta buscarPlanta(String id) {
-	
 		return p;
 	}
 	
 	Double getFlujoMaximo(Planta pA, Planta pB) {
-		
+
 			return 0.0;
 	}
 	
@@ -77,6 +74,10 @@ public class GestorPlanta {
 		
 		
 		return listaTodasPlantas;
+	}
+	
+	public Planta recuperarPlantaId(Integer id) {
+		return ps.recuperarPlantaId(id);
 	}
 	
 
