@@ -23,7 +23,7 @@ import enums.Unidad;
 import gestor.GestorPlanta;
 import gestor.GestorStock;
 
-public class PanelPlantaBuscarPlanta extends JPanel {
+public class PanelPlantaAniadirStock extends JPanel {
 	
 	private JTable tblPlantas;
 	private DefaultTableModel modeloTablaAtributos;
@@ -89,7 +89,7 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 			if(atributos[0].equals(-1))
 				JOptionPane.showMessageDialog(this,"Seleccione una planta", "Error", JOptionPane.ERROR_MESSAGE);	
 			else 				
-				this.crearPanelEditarPlanta(app,atributos);
+				this.crearPanelEditarStock(app,atributos);
 		});
 		
 		
@@ -113,7 +113,7 @@ public class PanelPlantaBuscarPlanta extends JPanel {
 		}		
 	}
 	
-	public void crearPanelEditarPlanta(App aux, Object [] atributos) {
+	public void crearPanelEditarStock(App aux, Object [] atributos) {
 		
 		JPanel panelEditarPlanta = new JPanel();
 		
