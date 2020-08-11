@@ -51,7 +51,7 @@ public class GestorPlanta {
 	}
 	
 	public ArrayList<Planta> listarPlantasConStockDeItems(ArrayList<ItemPedido> items){
-		ArrayList<Planta> listaTodasPlantas =this.recuperarPlantasTodas();// recuperar todas las plantas
+		ArrayList<Planta> listaTodasPlantas = this.recuperarPlantasTodas();// recuperar todas las plantas
 		ArrayList<Planta> listaPlantasSinStock = new ArrayList<Planta>();
 		
 		
@@ -60,7 +60,7 @@ public class GestorPlanta {
 		for(Planta plantaActual:listaTodasPlantas) {
 			Boolean tieneTodosLosItemsConStock = true;
 			for(int i=0; i<cantItems && tieneTodosLosItemsConStock;i++) {
-				Stock stockAux = this.gs// recuperar un stock (plantaActual.getId(),items.get(i).getIdInsumo)
+				Stock stockAux = this.gs.recuperarStockDeUnInsumoEnUnaPlanta(plantaActual.getId(), items.get(i).getIdInsumo());// recuperar un stock (plantaActual.getId(),items.get(i).getIdInsumo)
 				if(stockAux.getCantidad()<items.get(i).getCantidad()) {
 					tieneTodosLosItemsConStock = false;
 				}
