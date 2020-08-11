@@ -60,13 +60,13 @@ public class PanelCamionDarAlta extends JPanel {
 		this.setBackground(Color.yellow);
 		
 		this.txtPatente = new JTextField(20);
-		this.txtPatente.setBounds(60, 20, 100,20);
+		this.txtPatente.setBounds(130, 20, 100,20);
 		this.lblPatente.setBounds(10,20,100,20);
 		this.add(lblPatente);
 		this.add(txtPatente);
 		
 		this.txtModelo = new JTextField(50);
-		this.txtModelo.setBounds(60, 50, 100, 20);
+		this.txtModelo.setBounds(130, 50, 100, 20);
 		this.lblModelo.setBounds(10, 50, 100, 20);
 		this.add(lblModelo);
 		this.add(txtModelo);

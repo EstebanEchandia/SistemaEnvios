@@ -57,7 +57,7 @@ public class PanelInsumoDarAlta extends JPanel {
 		this.setBackground(Color.orange);
 		
 		this.txtDescripcion = new JTextField(20);
-		this.txtDescripcion.setBounds(90, 20, 100,20);
+		this.txtDescripcion.setBounds(120, 20, 100,20);
 		this.lblDescripcion.setBounds(10,20,100,20);
 		this.add(lblDescripcion);
 		this.add(txtDescripcion);
@@ -75,7 +75,7 @@ public class PanelInsumoDarAlta extends JPanel {
 		this.add(cmbUnidad);
 		
 		this.txtCosto = new JTextField(20);
-		this.txtCosto.setBounds(55,80,100,20);
+		this.txtCosto.setBounds(120,80,100,20);
 		this.lblCosto.setBounds(10,80,100,20);
 		this.add(lblCosto);
 		this.add(txtCosto);

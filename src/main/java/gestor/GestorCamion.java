@@ -81,8 +81,6 @@ public class GestorCamion {
 		
 		Camion c = new Camion();
 		c.setPatente(pat);
-
-
 		return cs.recuperarCamionPatente(c);
 		
 		
