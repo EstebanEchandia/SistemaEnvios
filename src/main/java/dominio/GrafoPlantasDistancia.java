@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import dominio.utils.Dijkstra;
+import estructuras.Arista;
 import estructuras.Grafo;
 import estructuras.Vertice;
 import gestor.GestorPlanta;
@@ -41,23 +42,16 @@ public class GrafoPlantasDistancia extends Grafo<Planta>{
 	}
 	
 	
-	public void aplicarDijkstra(Integer idPlantaOrigen, Integer idPlantaFin) {
+	public LinkedList<Vertice> aplicarDijkstra(Integer idPlantaOrigen, Integer idPlantaFin) {
 		
 		Dijkstra algoritmo = new Dijkstra(this);
 		
 		algoritmo.execute( getNodo(gestorPlanta.recuperarPlantaId(idPlantaOrigen)) );
 		
-		LinkedList<Vertice> res = algoritmo.getPath(getNodo(gestorPlanta.recuperarPlantaId(idPlantaFin)));
+		return algoritmo.getPath(getNodo(gestorPlanta.recuperarPlantaId(idPlantaFin)));
 		
-		System.out.println("RUTA ES EN DURACION" + res);
+	
 
 	}
-	
-	
-	
-	
-	
-
-	
 	
 }

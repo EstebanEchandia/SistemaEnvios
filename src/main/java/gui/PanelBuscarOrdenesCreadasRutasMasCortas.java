@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,8 +17,13 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import dominio.Camion;
+import dominio.GrafoPlantasDistancia;
+import dominio.GrafoPlantasDuracion;
 import dominio.ItemPedido;
 import dominio.Planta;
+import dominio.Ruta;
+import estructuras.Vertice;
 import gestor.GestorPedido;
 import gestor.GestorPlanta;
 
@@ -37,6 +43,9 @@ public class PanelBuscarOrdenesCreadasRutasMasCortas extends JPanel {
 	private GestorPedido gestorPedido = new GestorPedido();
 	
 	private GestorPlanta gestorPlanta = new GestorPlanta();
+	
+	private GrafoPlantasDistancia grafoPlantasDistancias = new GrafoPlantasDistancia();
+	//private GrafoPlantasDuracion grafoPlantasDuracion = new GrafoPlantasDuracion();
 	
 	private int fila;
 	private int columna;
@@ -115,7 +124,8 @@ public class PanelBuscarOrdenesCreadasRutasMasCortas extends JPanel {
 			    }
 			 });
 		
-		System.out.println((String) idPlantaOrigen + "    " +  idPlantaDestino);
+		
+		refrescarTabla(Integer.parseInt((String) idPlantaOrigen) , Integer.parseInt((String) idPlantaDestino) );
 		
 		app.setContentPane(this);
 		app.revalidate();
@@ -123,7 +133,20 @@ public class PanelBuscarOrdenesCreadasRutasMasCortas extends JPanel {
 		
 	}
 	
-	public void refrescarTabla() {
+	public void refrescarTabla(Integer idOrigen, Integer idDestino) {
+
+		while(this.modeloTablaAtributos.getRowCount()>0) {
+			this.modeloTablaAtributos.removeRow(0);
+		}
+		
+		LinkedList<Vertice> res = this.grafoPlantasDistancias.aplicarDijkstra(idOrigen, idDestino);
+		System.out.println(res);
+
+		for(Vertice<Planta> v: res) {
+			String[] p1 = {v.getValor().getNombre()};
+			this.modeloTablaAtributos.addRow(p1);
+		}		
+		
 		
 	}
 }
