@@ -3,13 +3,7 @@ package app;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,8 +15,8 @@ import javax.swing.WindowConstants;
 
 
 import gui.*;
-import dao.utils.DB;
 
+@SuppressWarnings("serial")
 public class App extends JFrame{
 	
 	JMenuBar menuBar;

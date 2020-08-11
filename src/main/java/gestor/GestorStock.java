@@ -29,8 +29,9 @@ public class GestorStock {
 		
 	}
 	
-	public ArrayList<Stock> buscarStockInsuficiente(){
-		return stockServicio.buscarStockInsuficiente();
+	public ArrayList<Stock> recuperarTodosStockDePlanta(Integer idPlanta){
+		return stockServicio.recuperarTodosStockDePlanta(idPlanta);
+		
 	}
 	
 	Stock modificarStock() {

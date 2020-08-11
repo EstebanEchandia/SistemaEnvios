@@ -1,7 +1,6 @@
 
 package dominio;
 
-import java.util.ArrayList;
 
 /**
  * @author esteb
@@ -11,10 +10,6 @@ public class Planta {
 	
 	private Integer id;
 	private String nombre;
-	private ArrayList<Insumo> listaInsumos = new ArrayList<Insumo>();
-	private ArrayList<Pedido> listaPedidosEntrantes = new ArrayList<Pedido>();
-	private ArrayList<Pedido> listaPedidosSalientes = new ArrayList<Pedido>();
-	
 	
 	public Planta(Integer id) {
 		super();

@@ -22,7 +22,7 @@ public class CamionServicio {
 	
 	public Camion updateKmCamion(Camion c) {
 		
-		return this.camionDao.updateKmCamion(c);
+		return this.camionDao.updateCamion(c);
 	}
 	
 	public Camion bajaCamion(Camion c) {
