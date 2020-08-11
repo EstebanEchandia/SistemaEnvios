@@ -161,9 +161,7 @@ public class App extends JFrame{
 		this.menuItemInsumoEditar = new JMenuItem("Editar Insumo");
 		this.menuItemInsumoEditar.addActionListener( e -> {
 			PanelInsumoEditar a = new PanelInsumoEditar();
-			a.armarPanel();
-			this.setContentPane(a);
-			this.pack();
+			a.armarPanel(this);
 		});
 
 		this.menuInsumo.add(menuItemInsumoEditar);

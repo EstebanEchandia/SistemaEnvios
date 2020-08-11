@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import gestor.GestorCamion;
@@ -44,6 +46,8 @@ public class PanelCamionDarAlta extends JPanel {
 	private GestorCamion gestorCamion = new GestorCamion();
 	
 	private JLabel imagenCamion;
+	
+	private JTextArea txtAreaExplicacion = new JTextArea("La fecha debe ser ingresada en el formato: aaaa-mm-dd");
 	
 	public void PanelCamionDarAlta(){
 	}
@@ -90,6 +94,14 @@ public class PanelCamionDarAlta extends JPanel {
 		this.lblCostoPorHora.setBounds(10, 170, 100, 20);
 		this.add(lblCostoPorHora);
 		this.add(txtCostoPorHora);
+		
+		this.txtAreaExplicacion.setBounds(500,60,250,250);
+		this.txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
+		this.txtAreaExplicacion.setLineWrap(true);
+		this.txtAreaExplicacion.setWrapStyleWord(true);
+		this.txtAreaExplicacion.setOpaque(false);
+		this.txtAreaExplicacion.setEditable(false);
+		this.add(txtAreaExplicacion);
 		
 		this.btnGuardar = new JButton("Dar Alta");
 		this.btnGuardar.addActionListener( e -> gestorCamion.altaCamion(this.getTxtPatente().getText(),

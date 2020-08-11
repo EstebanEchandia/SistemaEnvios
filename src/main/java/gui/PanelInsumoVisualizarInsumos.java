@@ -33,7 +33,6 @@ public class PanelInsumoVisualizarInsumos extends JPanel {
 		
 
 		this.modeloTablaAtributos.addColumn("id");
-
 		this.modeloTablaAtributos.addColumn("Descripcion");
 		this.modeloTablaAtributos.addColumn("Costo");
 		this.modeloTablaAtributos.addColumn("Unidad de Medida");

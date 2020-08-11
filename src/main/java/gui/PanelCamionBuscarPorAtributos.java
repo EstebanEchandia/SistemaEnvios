@@ -33,24 +33,11 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 	private JLabel lblPatente = new JLabel("Patente:");
 	private JTextField txtPatente;
 	
-	private JLabel lblModelo = new JLabel("Modelo:");
-	private JTextField txtModelo;
-	
-	private JLabel lblFechaDeCompra = new JLabel("Fecha de  compra:");
-	private DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-	private JFormattedTextField txtFechaCompra = new JFormattedTextField(df);	
-	
-	private JLabel lblKmRecorridos = new JLabel("KMs recorridos:");
-	private JTextField txtKmRecorridos;
-	
-	private JLabel lblCostoPorKm = new JLabel("Costo por Km:");
-	private JTextField txtCostoPorKm;
-	
-	private JLabel lblCostoPorHora = new JLabel("Costo por hora:");
-	private JTextField txtCostoPorHora;
-	
 	private JButton btnGuardar;
 	private JButton btnMostrarTodos;
+	
+	private JButton btnBuscarPorId;
+	private JButton btnBuscarPorPatente;
 	
 	private GestorCamion gestorCamion = new GestorCamion();
 	
@@ -70,62 +57,31 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		this.setBackground(Color.yellow);
 		
 		this.txtId = new JTextField(20);
-		this.txtId.setBounds(30, 20, 100,20);
-		this.lblId.setBounds(10,20,100,20);
+		this.txtId.setBounds(95, 370, 100,20);
+		this.lblId.setBounds(75,370,100,20);
 		this.add(lblId);
 		this.add(txtId);
 		
 		this.txtPatente = new JTextField(20);
-		this.txtPatente.setBounds(60, 50, 100,20);
-		this.lblPatente.setBounds(10,50,100,20);
+		this.txtPatente.setBounds(400, 370, 100,20);
+		this.lblPatente.setBounds(350,370,100,20);
 		this.add(lblPatente);
 		this.add(txtPatente);
 		
-		this.txtModelo = new JTextField(50);
-		this.txtModelo.setBounds(60, 80, 100, 20);
-		this.lblModelo.setBounds(10, 80, 100, 20);
-		this.add(lblModelo);
-		this.add(txtModelo);
-		
-		this.txtFechaCompra = new JFormattedTextField();
-		this.txtFechaCompra.setBounds(130, 110, 100, 20);
-		this.lblFechaDeCompra.setBounds(10, 110, 120, 20);
-		this.add(lblFechaDeCompra);
-		this.add(txtFechaCompra);
-		
-		this.txtKmRecorridos = new JTextField(30);
-		this.txtKmRecorridos.setBounds(130, 140, 100, 20);
-		this.lblKmRecorridos.setBounds(10, 140, 100, 20);
-		this.add(lblKmRecorridos);
-		this.add(txtKmRecorridos);
-		
-		this.txtCostoPorKm = new JTextField(30);
-		this.txtCostoPorKm.setBounds(130, 170, 100, 20);
-		this.lblCostoPorKm.setBounds(10, 170, 100, 20);
-		this.add(lblCostoPorKm);
-		this.add(txtCostoPorKm);  
-		
-		this.txtCostoPorHora = new JTextField(30);
-		this.txtCostoPorHora.setBounds(130, 200, 100, 20);
-		this.lblCostoPorHora.setBounds(10, 200, 100, 20);
-		this.add(lblCostoPorHora);
-		this.add(txtCostoPorHora);
-		
 		this.btnMostrarTodos = new JButton("Mostrar todos");
-		this.btnMostrarTodos.setBounds(410, 400, 120, 40);
+		this.btnMostrarTodos.setBounds(630, 400, 120, 20);
 		this.btnMostrarTodos.addActionListener(e -> this.mostrarTodosCamiones());
 		this.add(btnMostrarTodos);
 		
-		this.btnGuardar = new JButton("Buscar");
-
-		this.btnGuardar.setBounds(300, 400, 100, 40);
-
+		this.btnBuscarPorId = new JButton("Buscar por Id");
+		this.btnBuscarPorId.setBounds(80, 400, 110, 20);
+		this.btnBuscarPorId.addActionListener(e -> this.buscarCamion());
+		this.add(btnBuscarPorId);
 		
-		
-
-		this.btnGuardar.addActionListener(e -> this.buscarCamion());
-
-		this.add(btnGuardar);
+		this.btnBuscarPorPatente = new JButton("Buscar por Patente");
+		this.btnBuscarPorPatente.setBounds(350, 400, 150, 20);
+		this.btnBuscarPorPatente.addActionListener(e -> this.buscarCamion());
+		this.add(btnBuscarPorPatente);
 
 		this.modeloTablaAtributos.addColumn("Id");
 		this.modeloTablaAtributos.addColumn("Patente");
@@ -136,23 +92,21 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		this.modeloTablaAtributos.addColumn("Costo por hora");
 		
 	
-		
-		
 		this.tblAtributos = new JTable(modeloTablaAtributos);
-		this.tblAtributos.setBounds(280, 20, 550,300);
+		this.tblAtributos.setBounds(220, 20, 550,300);
 		
 		this.scroll = new JScrollPane(this.tblAtributos);
 		
-		this.scroll.setBounds(280, 20, 550,300);
+		this.scroll.setBounds(180, 20, 550,300);
 		this.add(scroll);
 		
 
 		
 		this.imagenCamion = new JLabel();
-		this.imagenCamion.setBounds(60,300,140,140);
+		this.imagenCamion.setBounds(20,100,140,140);
 		
 		ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/camion.png"));	
-		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(140,140,Image.SCALE_SMOOTH)); 
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(130,130,Image.SCALE_SMOOTH)); 
 		this.imagenCamion.setIcon(icono);
 		this.add(imagenCamion);
 
@@ -197,94 +151,6 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 
 	public void setTxtPatente(JTextField txtPatente) {
 		this.txtPatente = txtPatente;
-	}
-
-	public JLabel getLblModelo() {
-		return lblModelo;
-	}
-
-	public void setLblModelo(JLabel lblModelo) {
-		this.lblModelo = lblModelo;
-	}
-
-	public JTextField getTxtModelo() {
-		return txtModelo;
-	}
-
-	public void setTxtModelo(JTextField txtModelo) {
-		this.txtModelo = txtModelo;
-	}
-
-	public JLabel getLblFechaDeCompra() {
-		return lblFechaDeCompra;
-	}
-
-	public void setLblFechaDeCompra(JLabel lblFechaDeCompra) {
-		this.lblFechaDeCompra = lblFechaDeCompra;
-	}
-
-	public DateFormat getDf() {
-		return df;
-	}
-
-	public void setDf(DateFormat df) {
-		this.df = df;
-	}
-
-	public JFormattedTextField getTxtFechaCompra() {
-		return txtFechaCompra;
-	}
-
-	public void setTxtFechaCompra(JFormattedTextField txtFechaCompra) {
-		this.txtFechaCompra = txtFechaCompra;
-	}
-
-	public JLabel getLblKmRecorridos() {
-		return lblKmRecorridos;
-	}
-
-	public void setLblKmRecorridos(JLabel lblKmRecorridos) {
-		this.lblKmRecorridos = lblKmRecorridos;
-	}
-
-	public JTextField getTxtKmRecorridos() {
-		return txtKmRecorridos;
-	}
-
-	public void setTxtKmRecorridos(JTextField txtKmRecorridos) {
-		this.txtKmRecorridos = txtKmRecorridos;
-	}
-
-	public JLabel getLblCostoPorKm() {
-		return lblCostoPorKm;
-	}
-
-	public void setLblCostoPorKm(JLabel lblCostoPorKm) {
-		this.lblCostoPorKm = lblCostoPorKm;
-	}
-
-	public JTextField getTxtCostoPorKm() {
-		return txtCostoPorKm;
-	}
-
-	public void setTxtCostoPorKm(JTextField txtCostoPorKm) {
-		this.txtCostoPorKm = txtCostoPorKm;
-	}
-
-	public JLabel getLblCostoPorHora() {
-		return lblCostoPorHora;
-	}
-
-	public void setLblCostoPorHora(JLabel lblCostoPorHora) {
-		this.lblCostoPorHora = lblCostoPorHora;
-	}
-
-	public JTextField getTxtCostoPorHora() {
-		return txtCostoPorHora;
-	}
-
-	public void setTxtCostoPorHora(JTextField txtCostoPorHora) {
-		this.txtCostoPorHora = txtCostoPorHora;
 	}
 
 	public JButton getBtnGuardar() {
