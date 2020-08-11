@@ -48,8 +48,9 @@ public class PanelInsumoVisualizarInsumos extends JPanel {
 		this.tblInsumos.setBounds(120, 20, 630,430);
 		
 		this.scroll = new JScrollPane(this.tblInsumos);
-		
 		this.scroll.setBounds(120, 20, 630,430);
+		this.scroll.setBorder(javax.swing.BorderFactory.createTitledBorder("Insumos"));
+		this.scroll.setBackground(Color.orange);
 		this.add(scroll);
 
 

@@ -29,6 +29,8 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 	private GestorPedido gestorPedido = new GestorPedido();
 	
 	private JButton btnAtras = new JButton("Atras");
+	private JButton btnElegirRuta = new JButton("Elegir ruta");
+	
 	
 	private ArrayList<Planta> todasLasPlantasConStock;
 	
@@ -59,12 +61,19 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 		this.scroll.setBounds(120, 20, 630,300);
 		this.add(scroll);
 		
-		this.btnAtras.setBounds(350, 430, 130, 30);
+		this.btnAtras.setBounds(290, 430, 130, 30);
 		this.btnAtras.addActionListener(e->{
 			PanelBuscarOrdenesCreadas panel = new PanelBuscarOrdenesCreadas();
 			panel.armarPanel(app);
 		});
 		this.add(btnAtras);
+		
+		this.btnElegirRuta.setBounds(430, 430, 130, 30);
+		this.btnElegirRuta.addActionListener(e->{
+			PanelBuscarOrdenesCreadasRutasMasCortas panel = new PanelBuscarOrdenesCreadasRutasMasCortas();
+			panel.armarPanel(app,this);
+		});
+		this.add(btnElegirRuta);
 		
 		this.tblPlantas.addMouseListener(new MouseAdapter() {
 			

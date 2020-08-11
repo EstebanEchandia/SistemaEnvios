@@ -96,8 +96,9 @@ public class PanelCamionBuscarPorAtributos extends JPanel {
 		this.tblAtributos.setBounds(220, 20, 550,300);
 		
 		this.scroll = new JScrollPane(this.tblAtributos);
-		
 		this.scroll.setBounds(180, 20, 550,300);
+		this.scroll.setBorder(javax.swing.BorderFactory.createTitledBorder("Camiones"));
+		this.scroll.setBackground(Color.yellow);
 		this.add(scroll);
 		
 

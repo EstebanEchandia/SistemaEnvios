@@ -61,8 +61,9 @@ public class PanelRegistroOrdenDePedidoTodosInsumos extends JPanel {
 		this.tblTodosInsumos.setBounds(10, 10, 380,250);
 		
 		this.scrollTodosInsumos = new JScrollPane(tblTodosInsumos);
-		
 		this.scrollTodosInsumos.setBounds(10, 10, 380,250);
+		this.scrollTodosInsumos.setBorder(javax.swing.BorderFactory.createTitledBorder("Todos los insumos"));
+		this.scrollTodosInsumos.setBackground(new Color(100,167,194));
 		this.add(scrollTodosInsumos);
 		
 		this.btnAgregar.setBounds(155, 280, 90, 30);

@@ -69,8 +69,9 @@ public class PanelCamionEditar extends JPanel {
 		this.tblCamiones.setBounds(120, 20, 630,300);
 		
 		this.scroll = new JScrollPane(this.tblCamiones);
-		
 		this.scroll.setBounds(120, 20, 630,300);
+		this.scroll.setBorder(javax.swing.BorderFactory.createTitledBorder("Camiones"));
+		this.scroll.setBackground(Color.yellow);
 		this.add(scroll);
 		
 		this.btnEditar = new JButton("Editar");

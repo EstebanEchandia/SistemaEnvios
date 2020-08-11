@@ -1,11 +1,15 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -41,13 +45,17 @@ public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 	private JScrollPane scroll;
 	
 	
-	private JButton btnGuardar = new JButton("Guardar");
+	private JButton btnGuardar = new JButton("Crear Pedido");
 	private JButton btnCancelar = new JButton("Cancelar");
 	private JButton btnEliminarItems = new JButton("Eliminar Items");
+	private JButton btnInterrogacion = new JButton();
+	
 	
 	private GestorPedido gestorPedido = new GestorPedido();
 	private GestorItemPedido gestorItemPedido = new GestorItemPedido();
 
+	private ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/informacion.png"));	
+	private Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(20,20,Image.SCALE_SMOOTH)); 
 
 	public void crearPanel(App app, Object [] atributos) {
 		
@@ -74,7 +82,7 @@ public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 		this.add(lblListaItemsPedido);
 		
 		
-		this.btnGuardar.setBounds(290, 400, 120, 40);
+		this.btnGuardar.setBounds(270, 400, 130, 40);
 		this.btnGuardar.addActionListener( e -> {
 			cargarDatos();
 			PanelRegistroOrdenDePedido panelRegistroDePedido = new PanelRegistroOrdenDePedido();
@@ -112,10 +120,18 @@ public class PanelRegistroOrdenDePedidoIntermedio extends JPanel {
 		this.tblInsumos.setBounds(30, 150, 200,200);
 		
 		this.scroll = new JScrollPane(tblInsumos);
-		
 		this.scroll.setBounds(30, 150, 230,230);
+		this.scroll.setBorder(javax.swing.BorderFactory.createTitledBorder("ItemsPedido"));
+		this.scroll.setBackground(new Color(43,167,194));
 		this.add(scroll);
 		
+		this.btnInterrogacion.setBounds(830, 10, 30, 30);
+		this.btnInterrogacion.setIcon(icono);
+		this.btnInterrogacion.addActionListener(e->JOptionPane.showMessageDialog(this," Los pasos para agregar items al pedido son:"
+				+ "\n1)  	Seleccionar un Insumo en la tabla de Insumos mediante el mouse."
+				+ "\n2)  	Digitar la cantidad de dicho insumo que querramos pedir."
+				+ "\n3)  	Apretar el boton 'Crear Pedido' cuando deseemos crearlo con los items mostrados en la tabla de ItemsPedido", "Pasos a seguir", JOptionPane.INFORMATION_MESSAGE));
+		this.add(btnInterrogacion);
 		
 		
 		/*----------------*/
