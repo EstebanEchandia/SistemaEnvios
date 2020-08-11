@@ -166,7 +166,6 @@ public class StockDaoPostgreSQL implements StockDao{
 			ResultSet rs = pstmt.executeQuery();	
 			
 			while(rs.next()) {
-				s.setId(rs.getInt("id"));
 				s = new Stock(rs.getDouble("cantidad"),rs.getDouble("ptominimodepedido"), rs.getInt("idInsumo"), rs.getInt("idPlanta"));
 			}			
 			

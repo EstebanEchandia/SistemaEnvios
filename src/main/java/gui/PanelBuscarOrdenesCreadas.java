@@ -13,7 +13,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
+import dominio.ItemPedido;
+import dominio.Planta;
 import gestor.GestorPedido;
+import gestor.GestorPlanta;
 
 public class PanelBuscarOrdenesCreadas extends JPanel{
 	/* 
@@ -42,7 +45,12 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 	
 	private GestorPedido gestorPedido = new GestorPedido();
 	
+	private GestorPlanta gestorPlanta = new GestorPlanta();
+	
 	ArrayList<ArrayList<String>> tabla = gestorPedido.buscarPedidosCreados();
+	
+	private int fila;
+	private int columna;
 	
 	public void armarPanel(App app) {
 		
@@ -87,8 +95,15 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 			if(atributos[0].equals(-1))
 				JOptionPane.showMessageDialog(this,"Seleccione un pedido", "Error", JOptionPane.ERROR_MESSAGE);	
 			else {
+				ArrayList<Planta> listaPlantas = new ArrayList<Planta>();
+				ArrayList<ItemPedido> items = new ArrayList<ItemPedido>();
+				Integer nroOrden = Integer.parseInt((String) tblOrdenesCreadas.getValueAt(fila,0));
+				
+				items = this.parsear(gestorPedido.verDetalleOrden(nroOrden));
+				listaPlantas = this.gestorPlanta.listarPlantasConStockDeItems(items);
+				
 				PanelBuscarOrdenesCreadasVerPlantasConStock panelPlantasConStock = new PanelBuscarOrdenesCreadasVerPlantasConStock();
-				panelPlantasConStock.armarPanel(app,atributos);
+				panelPlantasConStock.armarPanel(app,atributos,listaPlantas);
 			}
 		});
 		
@@ -96,8 +111,8 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 			
 			public void mouseClicked(MouseEvent e) 
 			    {
-			       int fila = tblOrdenesCreadas.rowAtPoint(e.getPoint());
-			       int columna = tblOrdenesCreadas.columnAtPoint(e.getPoint());
+			       fila = tblOrdenesCreadas.rowAtPoint(e.getPoint());
+			       columna = tblOrdenesCreadas.columnAtPoint(e.getPoint());
 			      
 					if ((fila > -1) && (columna > -1)) {
 						atributos[0] = tblOrdenesCreadas.getValueAt(fila,0);
@@ -125,5 +140,15 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 				modeloTablaAtributos.addRow(fila.toArray());	
 		}
 
+	}
+	
+	public ArrayList<ItemPedido> parsear(ArrayList<ArrayList<String>> tabla){
+		ArrayList<ItemPedido> listaItemsPedidos = new ArrayList<ItemPedido>();
+		for(ArrayList<String> arreglo: tabla){
+			ItemPedido item = new ItemPedido(Double.parseDouble(arreglo.get(1)), Integer.parseInt(arreglo.get(0)), Integer.parseInt(arreglo.get(2)));
+			listaItemsPedidos.add(item);
+		}
+		
+		return listaItemsPedidos;
 	}
 }

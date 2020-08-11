@@ -21,6 +21,7 @@ public class PanelBuscarOrdenesCreadasDetallePedido extends JPanel {
 	private JButton btnAtras = new JButton("Atras");
 	
 	GestorPedido gestorPedido = new GestorPedido();
+	
 
 	
 	public void armarPanel(App app,PanelBuscarOrdenesCreadas panel,Integer  nroOrden) {

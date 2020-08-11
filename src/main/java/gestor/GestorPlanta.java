@@ -55,19 +55,18 @@ public class GestorPlanta {
 		ArrayList<Planta> listaTodasPlantas = this.recuperarPlantasTodas();// recuperar todas las plantas
 		ArrayList<Planta> listaPlantasSinStock = new ArrayList<Planta>();
 		
-		
-		
 		Integer cantItems = items.size();
 		for(Planta plantaActual:listaTodasPlantas) {
 			Boolean tieneTodosLosItemsConStock = true;
 			for(int i=0; i<cantItems && tieneTodosLosItemsConStock;i++) {
-				Stock stockAux = this.gs.recuperarStockDeUnInsumoEnUnaPlanta(plantaActual.getId(), items.get(i).getIdInsumo());// recuperar un stock (plantaActual.getId(),items.get(i).getIdInsumo)
-				if(stockAux.getCantidad()<items.get(i).getCantidad()) {
+				
+				Stock stockAux = this.gs.recuperarStockDeUnInsumoEnUnaPlanta(plantaActual.getId(), items.get(i).getIdInsumo());
+				
+				if(stockAux==null || stockAux.getCantidad()<items.get(i).getCantidad()){
 					tieneTodosLosItemsConStock = false;
+					listaPlantasSinStock.add(plantaActual);
 				}
-			}
-			if(!tieneTodosLosItemsConStock)
-				listaPlantasSinStock.add(plantaActual);
+			}				
 		}
 		listaTodasPlantas.removeAll(listaPlantasSinStock);
 		return listaTodasPlantas;
