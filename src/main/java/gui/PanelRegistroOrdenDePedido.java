@@ -68,12 +68,13 @@ public class PanelRegistroOrdenDePedido extends JPanel{
 		this.tblPlantas.setBounds(120, 20, 630,300);
 		
 		this.scroll = new JScrollPane(this.tblPlantas);
-		
 		this.scroll.setBounds(120, 20, 630,300);
+		this.scroll.setBorder(javax.swing.BorderFactory.createTitledBorder("Plantas"));
+		this.scroll.setBackground(new Color(43,167,194));
 		this.add(scroll);
 		
-		this.btnEditar = new JButton("Editar");
-		this.btnEditar.setBounds(370, 400, 100, 40);
+		this.btnEditar = new JButton("Seleccionar Planta");
+		this.btnEditar.setBounds(350, 390, 150, 30);
 		this.add(btnEditar);
 		
 		

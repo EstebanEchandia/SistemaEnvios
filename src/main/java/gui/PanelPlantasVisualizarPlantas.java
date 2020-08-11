@@ -36,11 +36,12 @@ public class PanelPlantasVisualizarPlantas extends JPanel {
 		this.tblPlantas.setBounds(120, 20, 630,430);
 		
 		this.scroll = new JScrollPane(this.tblPlantas);
-		
-		this.armarTabla();
-		
 		this.scroll.setBounds(120, 20, 630,400);
+		this.scroll.setBorder(javax.swing.BorderFactory.createTitledBorder("Plantas con algun stock menor al punto de pedido"));
+		this.scroll.setBackground(new Color(81,232,60));
 		this.add(scroll);
+		this.armarTabla();
+
 		
 		app.setContentPane(this);
 		app.pack();
