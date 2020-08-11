@@ -34,6 +34,10 @@ public class GestorStock {
 		
 	}
 	
+	public Stock recuperarStockDeUnInsumoEnUnaPlanta(Integer idPlanta, Integer idInsumo) {
+		return stockServicio.recuperarStockDeUnInsumoEnUnaPlanta(idPlanta, idInsumo);
+	}
+	
 	Stock modificarStock() {
 		
 		return null;

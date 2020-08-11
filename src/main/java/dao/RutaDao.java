@@ -8,7 +8,7 @@ public interface RutaDao {
 	
 	public Ruta altaRuta(Ruta r);
 
-	ArrayList<ArrayList<String>> recuperarRutas();
+	public ArrayList<ArrayList<String>> recuperarRutas();
 
 
 
