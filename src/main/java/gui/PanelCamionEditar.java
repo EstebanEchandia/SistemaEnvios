@@ -104,7 +104,7 @@ public class PanelCamionEditar extends JPanel {
 				JOptionPane.showMessageDialog(this,"Seleccione un camion", "Error", JOptionPane.ERROR_MESSAGE);	
 			else {
 				PanelCamionEditarEdicion panelEdicion = new PanelCamionEditarEdicion();
-				panelEdicion.armarPanel(app, this, atributos);
+				panelEdicion.armarPanel(app, atributos);
 			}
 				
 		});

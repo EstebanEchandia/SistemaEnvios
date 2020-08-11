@@ -64,8 +64,8 @@ public class PanelPlantaAniadirStock extends JPanel {
 		this.scroll.setBounds(120, 20, 630,300);
 		this.add(scroll);
 		
-		this.btnEditar = new JButton("Editar");
-		this.btnEditar.setBounds(370, 400, 100, 40);
+		this.btnEditar = new JButton("Añadir Stock");
+		this.btnEditar.setBounds(360, 400, 120, 40);
 		this.add(btnEditar);
 		
 		
@@ -129,18 +129,21 @@ public class PanelPlantaAniadirStock extends JPanel {
 		JLabel lblCantidadInsumo = new JLabel("Cantidad:");
 		JTextField txtCantidadInsumo = new JTextField(20);
 		
-		JLabel lblPtoPedido = new JLabel("Pto edido:");
+		JLabel lblPtoPedido = new JLabel("Pto Pedido:");
 		JTextField txtPtoMinPedido = new JTextField(20);
 
 		
 		JButton btnGuardar = new JButton("Guardar");
 		
-		btnGuardar.addActionListener( e -> gestorStock.altaStock(Double.parseDouble(txtCantidadInsumo.getText()), 
-				Double.parseDouble(txtPtoMinPedido.getText()), 
-				Integer.parseInt(txtIdInsumo.getText()), 
-				Integer.parseInt(txtIdPlanta.getText())
-				)
-			);
+		btnGuardar.addActionListener( e -> {
+			gestorStock.altaStock(Double.parseDouble(txtCantidadInsumo.getText()), 
+					Double.parseDouble(txtPtoMinPedido.getText()), 
+					Integer.parseInt(txtIdInsumo.getText()), 
+					Integer.parseInt(txtIdPlanta.getText())
+					);
+			this.armarPanel(aux);
+			
+		});
 		
 		System.out.println(txtIdPlanta.getText());
 		

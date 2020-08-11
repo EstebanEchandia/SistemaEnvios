@@ -95,7 +95,7 @@ public class PanelInsumoEditar extends JPanel {
 		
 		btnEditar.addActionListener( e-> {
 			if(atributos[0].equals(-1))
-				JOptionPane.showMessageDialog(this,"Seleccione una planta", "Error", JOptionPane.ERROR_MESSAGE);	
+				JOptionPane.showMessageDialog(this,"Seleccione un insumo", "Error", JOptionPane.ERROR_MESSAGE);	
 			else {
 				PanelInsumoEditarEdicion panelEdicion = new PanelInsumoEditarEdicion();
 				panelEdicion.armarPanel(app,this,atributos);
