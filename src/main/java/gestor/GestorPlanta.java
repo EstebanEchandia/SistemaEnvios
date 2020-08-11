@@ -3,7 +3,9 @@ package gestor;
 import java.util.ArrayList;
 
 import dominio.GrafoPlantas;
+import dominio.ItemPedido;
 import dominio.Planta;
+import dominio.Stock;
 import servicios.PlantaServicio;
 
 public class GestorPlanta {
@@ -45,6 +47,26 @@ public class GestorPlanta {
 	
 	public ArrayList<ArrayList<String>> recuperarPlantasConInsumoMenorAlPtoPedido(){
 		return ps.recuperarPlantasConInsumoMenorAlPtoPedido();
+	}
+	
+	public ArrayList<Planta> listarPlantasConStockDeItems(ArrayList<ItemPedido> items){
+		ArrayList<Planta> listaTodasPlantas = new ArrayList<Planta>();// recuperar todas las plantas
+		ArrayList<Planta> listaPlantasSinStock = new ArrayList<Planta>();
+		
+		Integer cantItems = items.size();
+		for(Planta plantaActual:listaTodasPlantas) {
+			Boolean tieneTodosLosItemsConStock = true;
+			for(int i=0; i<cantItems && tieneTodosLosItemsConStock;i++) {
+				Stock stockAux = new Stock(1.0,1.0,1,1);// recuperar un stock (plantaActual.getId(),items.get(i).getIdInsumo)
+				if(stockAux.getCantidad()<items.get(i).getCantidad()) {
+					tieneTodosLosItemsConStock = false;
+				}
+			}
+			if(!tieneTodosLosItemsConStock)
+				listaPlantasSinStock.add(plantaActual);
+		}
+		listaTodasPlantas.removeAll(listaPlantasSinStock);
+		return listaTodasPlantas;
 	}
 	
 
