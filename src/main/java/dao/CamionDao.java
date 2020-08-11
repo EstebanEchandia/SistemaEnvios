@@ -12,6 +12,7 @@ public interface CamionDao {
 	public Camion altaCamion(Camion c);
 	public Camion bajaCamion(Camion c);
 	public ArrayList<Camion> recuperarCamionTodos();
+	public Camion updateKmCamion(Camion c);
 	
 
 

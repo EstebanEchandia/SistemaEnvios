@@ -1,5 +1,7 @@
 package gestor;
 
+import java.util.ArrayList;
+
 import dominio.Ruta;
 import servicios.RutaServicio;
 
@@ -15,5 +17,9 @@ public class GestorRuta {
 		
 		rs.altaRuta(r);
 		
+	}
+	
+	ArrayList<ArrayList<String>> recuperarRutas(){
+		return rs.recuperarRutas();
 	}
 }

@@ -20,6 +20,11 @@ public class CamionServicio {
 		return this.camionDao.updateCamion(c);
 	}
 	
+	public Camion updateKmCamion(Camion c) {
+		
+		return this.camionDao.updateKmCamion(c);
+	}
+	
 	public Camion bajaCamion(Camion c) {
 		 
 		return this.camionDao.bajaCamion(c);
