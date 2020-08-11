@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import dao.utils.DB;
 import dominio.Stock;
 
@@ -27,6 +29,12 @@ public class StockDaoPostgreSQL implements StockDao{
 							"from trabajopractico.stock, trabajopractico.insumo "+
 								"where stock.idInsumo = insumo.id and insumo.id = ?";
 					
+	private static final String BUSCAR_STOCK_INSUFICIENTE =
+			"SELECT * "+
+			"FROM trabajopractico.insumo "+
+			"RIGHT JOIN(SELECT * FROM trabajopractico.stock where cantidad<ptominimodepedido) as tmp "+
+			"ON insumo.id = tmp.idInsumo ";
+		
 	
 	
 	@Override
@@ -58,6 +66,7 @@ public class StockDaoPostgreSQL implements StockDao{
 				}
 			}
 	}
+	
 	
 	@Override
 	public Integer getStockDeUnInsumo(Integer idInsumo) {
@@ -97,7 +106,44 @@ public class StockDaoPostgreSQL implements StockDao{
 		
 		return null;
 	}
-
-
+	
+	@Override 
+	//Devuelve una lista con todos los insumos que no tienen stock en cada planta
+	
+	public ArrayList<Stock> buscarStockInsuficiente(){
+		
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ArrayList<Stock> res = new ArrayList<Stock>();
+		
+		try {
+					
+			pstmt = conn.prepareStatement(BUSCAR_STOCK_INSUFICIENTE);	
+		
+			ResultSet rs = pstmt.executeQuery();	
+			
+			while(rs.next()) {
+				
+				res.add(new Stock(rs.getDouble("cantidad"), rs.getDouble("ptominimodepedido"), rs.getInt("idinsumo"), rs.getInt("idplanta")));
+			}
+		
+							
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		try {
+			if(pstmt!=null) pstmt.close();
+			if(conn!=null) conn.close();				
+		}catch(SQLException e) {
+			e.printStackTrace();
+			}
+		}	
+	
+		return res;
+	}
+		
+	
+	
+		
 
 }

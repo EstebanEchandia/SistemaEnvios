@@ -8,7 +8,7 @@ import exepciones.CampoVacioException;
 import servicios.CamionServicio;
 
 public class GestorCamion {
-	
+	private CamionServicio cs = new CamionServicio();
 	
 	public void altaCamion(String patente, String modelo, Double kmrecorridos, Double costoporkm, 
 			Double costoporhora, LocalDate fechadecompra) {
@@ -21,8 +21,7 @@ public class GestorCamion {
 			} catch (CampoVacioException e) {
 				e.printStackTrace();
 			}
-			CamionServicio cs = new CamionServicio();
-			
+		
 			cs.altaCamion(c);
 		
 		
@@ -37,7 +36,7 @@ public class GestorCamion {
 			} catch (CampoVacioException e) {
 				e.printStackTrace();
 			}
-			CamionServicio cs = new CamionServicio();
+		
 		
 			cs.updateCamion(c);
 	
@@ -45,10 +44,14 @@ public class GestorCamion {
 		 	
 	}
 	
+	public Camion updateKmCamion(Camion c, Double kmRecorridos) {
+		c.setKmRecorridos(kmRecorridos);
+		return cs.updateKmCamion(c);
+	}
+	
 	public void bajaCamion(Integer id) {
 		
 		Camion c = new Camion(id);
-		CamionServicio cs = new CamionServicio();
 
 		cs.bajaCamion(c);
 		
@@ -59,7 +62,6 @@ public class GestorCamion {
 	
 	public ArrayList<Camion> recuperarCamionTodos() {
 		
-		CamionServicio cs = new CamionServicio();
 
 		return cs.recuperarCamionTodos();
 		
@@ -69,7 +71,6 @@ public class GestorCamion {
 	public Camion recuperarCamionId(Integer id) {
 		
 		Camion c = new Camion(id);
-		CamionServicio cs = new CamionServicio();
 
 		return cs.recuperarCamionId(c);
 		
@@ -80,7 +81,7 @@ public class GestorCamion {
 		
 		Camion c = new Camion();
 		c.setPatente(pat);
-		CamionServicio cs = new CamionServicio();
+
 
 		return cs.recuperarCamionPatente(c);
 		

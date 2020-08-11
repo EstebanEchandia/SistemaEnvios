@@ -36,6 +36,10 @@ public class CamionDaoPostgreSQL implements CamionDao{
 					" UPDATE trabajopractico.CAMION SET PATENTE = ?,MODELO = ?, KMRECORRIDOS = ?, COSTOPORKM = ?,COSTOPORHORA = ?,FECHADECOMPRA = ?"
 					+ " WHERE ID = ?";
 			
+			private static final String UPDATE_KM_CAMION =
+					" UPDATE trabajopractico.CAMION SET KMRECORRIDOS = ?"
+					+ " WHERE ID = ?";
+			
 			
 			private static final String DELETE_CAMION =
 					" DELETE FROM trabajopractico.CAMION " + " WHERE ID = ?";
@@ -159,6 +163,37 @@ public class CamionDaoPostgreSQL implements CamionDao{
 					}
 				return c;
 			}
+			
+			@Override
+			public Camion updateKmCamion(Camion c) {
+				
+				Connection conn = DB.getConnection();
+				PreparedStatement pstmt = null;
+				
+				try {
+						System.out.println("updatie");
+						
+						pstmt = conn.prepareStatement(UPDATE_KM_CAMION);
+						
+						pstmt.setDouble(1, c.getKmRecorridos());
+						pstmt.setInt(2, c.getId());
+
+						pstmt.executeUpdate();
+		
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+						try {
+							if(pstmt!=null) pstmt.close();
+							if(conn!=null) conn.close();				
+						}catch(SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				return c;
+			}
+			
 			
 			
 			@Override

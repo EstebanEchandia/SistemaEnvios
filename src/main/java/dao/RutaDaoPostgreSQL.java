@@ -2,7 +2,10 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import dao.utils.DB;
 import dominio.Ruta;
 
@@ -50,6 +53,47 @@ public class RutaDaoPostgreSQL implements RutaDao{
 		return r;
 		
 	}
+	
+	@Override
+	public ArrayList<ArrayList <String>> recuperarRutas() {
+		
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ArrayList<ArrayList <String>> res = new ArrayList<ArrayList <String>>();
+		try {
+			System.out.println("Buscando Plantas con insumo menor al pto de pedido");
+			pstmt = conn.prepareStatement(SELECT_RUTA);
+			
+			ResultSet rs = pstmt.executeQuery();	
+			
+			while(rs.next()) {
+				ArrayList<String> fila = new ArrayList<String>();
+				fila.add(rs.getString("sigla"));
+				fila.add(rs.getString("distanciaenkm"));
+				fila.add(rs.getString("duracionenhs"));
+				fila.add(rs.getString("cantmaxatransportarenkg"));
+				fila.add(rs.getString("plantaorigen"));
+				fila.add(rs.getString("plantadestino"));
+				res.add(fila);
+				
+			}
+							
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		
+		return res;
+	
+	}
+	
+	
 
 
 }

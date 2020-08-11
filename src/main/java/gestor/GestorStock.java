@@ -3,6 +3,8 @@
  */
 package gestor;
 
+import java.util.ArrayList;
+
 import dominio.Stock;
 import servicios.StockServicio;
 
@@ -17,7 +19,6 @@ public class GestorStock {
 	public void altaStock(Double cantidad, Double ptoMinimoDePedido, Integer insumoAsociado, Integer idPlanta) {
 		
 		Stock s = new Stock(cantidad, ptoMinimoDePedido, insumoAsociado, idPlanta);
-		
 		stockServicio.altaStock(s);
 		
 		
@@ -26,6 +27,10 @@ public class GestorStock {
 	public Integer getStockDeUnInsumo(Integer id) {
 		return stockServicio.getStockDeUnInsumo(id);
 		
+	}
+	
+	public ArrayList<Stock> buscarStockInsuficiente(){
+		return stockServicio.buscarStockInsuficiente();
 	}
 	
 	Stock modificarStock() {
