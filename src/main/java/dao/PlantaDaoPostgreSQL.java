@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import dao.utils.DB;
+import dominio.Camion;
 import dominio.Planta;
 
 public class PlantaDaoPostgreSQL implements PlantaDao{
@@ -27,6 +28,9 @@ public class PlantaDaoPostgreSQL implements PlantaDao{
 	
 	private static final String SELECT_PLANTA_ALL =
 			"SELECT * FROM trabajopractico.planta ";
+	
+	private static final String SELECT_PLANTA_ID =
+			"SELECT * FROM trabajopractico.planta WHERE id  = ?";
 	
 	private static final String SELECT_PLANTA_INSUMO_MENOR_PTO_PEDIDO = 
 	"SELECT p.nombre, i.descripcion, s.cantidad, s.ptominimodepedido, "+
@@ -68,9 +72,7 @@ public class PlantaDaoPostgreSQL implements PlantaDao{
 					e.printStackTrace();
 				}
 			}
-		
-		return p;
-		
+		return p;	
 	}
 	
 	
@@ -196,11 +198,40 @@ public class PlantaDaoPostgreSQL implements PlantaDao{
 				e.printStackTrace();
 			}
 		}	
-		
 		return res;
-	
 	}
 	
+	@Override
+	public Planta recuperarPlantaId(Integer id) { //Buscar un camion sabiendo solo su id
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		Planta p = null; 
+		try {
+			
+			System.out.println("Buscando Planta");
+			pstmt = conn.prepareStatement(SELECT_PLANTA_ID);
+			
+			pstmt.setInt(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();	
+			
+			while(rs.next()) {
+				p = new Planta(id, rs.getString("nombre"));
+			}
+							
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		try {
+			if(pstmt!=null) pstmt.close();
+			if(conn!=null) conn.close();				
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}	
+	return p;
+	}		
+
 	
 
 }

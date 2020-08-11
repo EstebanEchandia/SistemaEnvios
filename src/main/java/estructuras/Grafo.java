@@ -26,6 +26,36 @@ public class Grafo<T> {
 		this.vertices = new ArrayList<Vertice<T>>();
 	}
 	
+	
+	
+
+	public List<Arista<T>> getAristas() {
+		return aristas;
+	}
+
+
+
+
+	public void setAristas(List<Arista<T>> aristas) {
+		this.aristas = aristas;
+	}
+
+
+
+
+	public List<Vertice<T>> getVertices() {
+		return vertices;
+	}
+
+
+
+
+	public void setVertices(List<Vertice<T>> vertices) {
+		this.vertices = vertices;
+	}
+
+
+
 
 	public void addNodo(T nodo){
 		this.addNodo(new Vertice<T>(nodo));
@@ -295,6 +325,7 @@ public class Grafo<T> {
     	
     	return pr*prAux;
     }
+    
     /* Floyd-Warshall  */
     static int[][] P;
 	static final int N = 4;

@@ -22,5 +22,9 @@ public class PlantaServicio {
 		return pd.recuperarPlantasConInsumoMenorAlPtoPedido();
 
 	}
-
+	
+	public Planta recuperarPlantaId(Integer id) {
+		return pd.recuperarPlantaId(id);
+	}
+	
 }
