@@ -37,7 +37,7 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 	
 	
 	
-	public void armarPanel(App app,Object[] atributos, ArrayList<Planta> plantas) {
+	public void armarPanel(App app,Object[] atributosPanelAnterior, ArrayList<Planta> plantas) {
 		
 		this.setLayout(null);
 		this.setBackground(new Color(43,167,194));
@@ -71,7 +71,7 @@ public class PanelBuscarOrdenesCreadasVerPlantasConStock extends JPanel {
 		this.btnElegirRuta.setBounds(430, 430, 130, 30);
 		this.btnElegirRuta.addActionListener(e->{
 			PanelBuscarOrdenesCreadasRutasMasCortas panel = new PanelBuscarOrdenesCreadasRutasMasCortas();
-			panel.armarPanel(app,this);
+			panel.armarPanel(app,this,atributosPanelAnterior[4],this.atributos[0]);
 		});
 		this.add(btnElegirRuta);
 		

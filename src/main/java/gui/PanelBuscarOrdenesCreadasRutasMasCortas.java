@@ -45,7 +45,7 @@ public class PanelBuscarOrdenesCreadasRutasMasCortas extends JPanel {
 	
 	private JTextArea txtExplicacion = new JTextArea("Para elegir el trayecto debera seleccionar una a travez de la lista desplegable.\n En la tabla se muestran las siglas de todas las rutas del trayecto.");
 	
-	public void armarPanel(App app,PanelBuscarOrdenesCreadasVerPlantasConStock panel) {
+	public void armarPanel(App app,PanelBuscarOrdenesCreadasVerPlantasConStock panel,Object idPlantaDestino,Object idPlantaOrigen){
 		
 		this.setLayout(null);
 		this.setBackground(new Color(43,167,194));
@@ -114,6 +114,8 @@ public class PanelBuscarOrdenesCreadasRutasMasCortas extends JPanel {
 					}		    
 			    }
 			 });
+		
+		System.out.println((String) idPlantaOrigen + "    " +  idPlantaDestino);
 		
 		app.setContentPane(this);
 		app.revalidate();
