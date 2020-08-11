@@ -39,18 +39,14 @@ public class PanelCamionEditar extends JPanel {
 	
 	private GestorPlanta gestorPlanta = new GestorPlanta();
 	
-	private App app;
-	
 	private GestorCamion gestorCamion = new GestorCamion();
 	
 	public void PanelAyuda(){
 	}
 	
-	public void armarPanel(App aux) {
+	public void armarPanel(App app) {
 		
 		Object [] atributos = {-1,0,0,0,0,0,0};
-
-		this.app = aux;
 		
 		this.setLayout(null);
 		
@@ -106,8 +102,11 @@ public class PanelCamionEditar extends JPanel {
 		btnEditar.addActionListener( e-> {
 			if(atributos[0].equals(-1))
 				JOptionPane.showMessageDialog(this,"Seleccione un camion", "Error", JOptionPane.ERROR_MESSAGE);	
-			else 				
-				this.crearPanelEditarCamion(app,atributos);
+			else {
+				PanelCamionEditarEdicion panelEdicion = new PanelCamionEditarEdicion();
+				panelEdicion.armarPanel(app, this, atributos);
+			}
+				
 		});
 		
 		
@@ -119,124 +118,6 @@ public class PanelCamionEditar extends JPanel {
 
 	}
 	
-	public void crearPanelEditarCamion(App aux, Object [] atributos) {
-		
-		JPanel panelEditarCamion = new JPanel();
-		
-		panelEditarCamion.setBounds(0, 0, 900, 560);
-		panelEditarCamion.setOpaque(true);
-		
-		JLabel lblId = new JLabel("Id:");
-		JTextField txtId;
-		
-		JLabel lblPatente = new JLabel("Patente:");
-		JTextField txtPatente;
-		
-		JLabel lblModelo = new JLabel("Modelo:");
-		JTextField txtModelo;
-		
-		JLabel lblFechaDeCompra = new JLabel("Fecha de  compra:");
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-		JFormattedTextField txtFechaCompra = new JFormattedTextField(df);	
-		
-		JLabel lblKmRecorridos = new JLabel("KMs recorridos:");
-		JTextField txtKmRecorridos;
-		
-		JLabel lblCostoPorKm = new JLabel("Costo por Km:");
-		JTextField txtCostoPorKm;
-		
-		JLabel lblCostoPorHora = new JLabel("Costo por hora:");
-		JTextField txtCostoPorHora;
-		
-		JButton btnGuardar;
-
-		JTextArea txtAreaExplicacion = new JTextArea("Para modificar un camion el usuario modificar los campos que desee. \n\n La fecha debe ser ingresada en el formato: aaaa-mm-dd");
-		
-		GestorCamion gestorCamion = new GestorCamion();
-		
-		JLabel imagenCamion;
-		
-		panelEditarCamion.setLayout(null);
-	
-		panelEditarCamion.setBackground(Color.yellow);
-		
-		txtId = new JTextField((String)atributos[0]);
-		txtId.setBounds(520, 20, 100,20);
-		lblId.setBounds(500,20,100,20);
-		panelEditarCamion.add(lblId);
-		panelEditarCamion.add(txtId);
-		
-		lblId.setEnabled(false);
-		txtId.setEnabled(false);
-		
-		txtPatente = new JTextField((String)atributos[1]);
-		txtPatente.setBounds(60, 20, 100,20);
-		lblPatente.setBounds(10,20,100,20);
-		panelEditarCamion.add(lblPatente);
-		panelEditarCamion.add(txtPatente);
-		
-		txtModelo = new JTextField((String)atributos[2]);
-		txtModelo.setBounds(60, 50, 100, 20);
-		lblModelo.setBounds(10, 50, 100, 20);
-		panelEditarCamion.add(lblModelo);
-		panelEditarCamion.add(txtModelo);
-		
-		txtFechaCompra = new JFormattedTextField((String)atributos[3]);
-		txtFechaCompra.setBounds(130, 80, 100, 20);
-		lblFechaDeCompra.setBounds(10, 80, 120, 20);
-		panelEditarCamion.add(lblFechaDeCompra);
-		panelEditarCamion.add(txtFechaCompra);
-		
-		txtKmRecorridos = new JTextField((String)atributos[4]);
-		txtKmRecorridos.setBounds(130, 110, 100, 20);
-		lblKmRecorridos.setBounds(10, 110, 100, 20);
-		panelEditarCamion.add(lblKmRecorridos);
-		panelEditarCamion.add(txtKmRecorridos);
-		
-		txtCostoPorKm = new JTextField((String)atributos[5]);
-		txtCostoPorKm.setBounds(130, 140, 100, 20);
-		lblCostoPorKm.setBounds(10, 140, 100, 20);
-		panelEditarCamion.add(lblCostoPorKm);
-		panelEditarCamion.add(txtCostoPorKm);  
-		
-		txtCostoPorHora = new JTextField((String)atributos[6]);
-		txtCostoPorHora.setBounds(130, 170, 100, 20);
-		lblCostoPorHora.setBounds(10, 170, 100, 20);
-		panelEditarCamion.add(lblCostoPorHora);
-		panelEditarCamion.add(txtCostoPorHora);
-		
-		btnGuardar = new JButton("Editar");
-		btnGuardar.setBounds(370, 400, 100, 40);
-		
-//		btnGuardar.addActionListener( e -> gestorCamion.updateCamion(Integer.parseInt(txtId.getText()), 
-//				txtPatente.getText(), 
-//				txtModelo.getText(), 
-//				Double.parseDouble(txtKmRecorridos.getText()), 
-//				Double.parseDouble(txtCostoPorHora.getText()), 
-//				Double.parseDouble(txtCostoPorHora.getText()), 
-//				LocalDate.parse(txtFechaCompra.getText())));
-		
-		panelEditarCamion.add(btnGuardar);		
-		
-		txtAreaExplicacion.setBounds(500,60,250,250);
-		txtAreaExplicacion.setFont(new Font("Serif", Font.BOLD, 16));
-		txtAreaExplicacion.setLineWrap(true);
-		txtAreaExplicacion.setWrapStyleWord(true);
-		txtAreaExplicacion.setOpaque(false);
-		txtAreaExplicacion.setEditable(false);
-		panelEditarCamion.add(txtAreaExplicacion);
-		
-		imagenCamion = new JLabel();
-		imagenCamion.setBounds(60,300,140,140);
-		
-		ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/camion.png"));	
-		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(140,140,Image.SCALE_SMOOTH)); 
-		imagenCamion.setIcon(icono);
-		panelEditarCamion.add(imagenCamion);
-		
-		app.setContentPane(panelEditarCamion);
-		app.pack();
-	}
 	
 	public Dimension getPreferredSize() {
         return new Dimension(300, 300);

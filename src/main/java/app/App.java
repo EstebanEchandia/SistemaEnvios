@@ -121,7 +121,7 @@ public class App extends JFrame{
 		/*  Panel BuscarPlantas  */
 		this.menuItemPlantaBuscarPlanta = new JMenuItem("Añadir stock");
 		this.menuItemPlantaBuscarPlanta.addActionListener( e -> {
-			PanelPlantaBuscarPlanta a = new PanelPlantaBuscarPlanta();
+			PanelPlantaAniadirStock a = new PanelPlantaAniadirStock();
 			a.armarPanel(this);
 		});
 
