@@ -15,16 +15,16 @@ public class Envio {
 		this.rutas = rutas;
 		this.idCamion = idCamion;
 		this.idPedido = idPedido;
-		this.costo = this.calcularCosto();
+		//this.costo = this.calcularCosto();
 	}
 	
 	
-	Double calcularCosto() {
-		
-		GestorCamion gc = new GestorCamion();
-		Camion c = gc.recuperarCamionId(idCamion);
-		
-		
-		return c.getCostoPorHora() * Horas + c.getCostoPorKm() * KmEnLaRuta ;
-	}
+//	Double calcularCosto() {
+//		
+//		GestorCamion gc = new GestorCamion();
+//		Camion c = gc.recuperarCamionId(idCamion);
+//		
+//		
+//		return c.getCostoPorHora() * Horas + c.getCostoPorKm() * KmEnLaRuta ;
+//	}
 }

@@ -1,10 +1,7 @@
 package gui;
 
 import java.awt.Color;
-import java.time.LocalDate;
-
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;

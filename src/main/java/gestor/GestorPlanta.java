@@ -17,6 +17,7 @@ public class GestorPlanta {
 	
 	private GestorStock gs = new GestorStock();
 	
+	
 	public void altaPlanta(String nombre) {
 		
 		Planta p = new Planta(1,nombre);
