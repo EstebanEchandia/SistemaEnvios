@@ -214,8 +214,10 @@ public class PanelCamionEditar extends JPanel {
 //				Double.parseDouble(txtKmRecorridos.getText()), 
 //				Double.parseDouble(txtCostoPorHora.getText()), 
 //				Double.parseDouble(txtCostoPorHora.getText()), 
-//				LocalDate.parse(txtFechaCompra.getText())));
-		
+//				LocalDate.parse(txtFechaCompra.getText())
+//				)
+//			);
+//		
 		panelEditarCamion.add(btnGuardar);		
 		
 		txtAreaExplicacion.setBounds(500,60,250,250);

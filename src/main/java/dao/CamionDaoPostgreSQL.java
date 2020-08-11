@@ -121,9 +121,7 @@ public class CamionDaoPostgreSQL implements CamionDao{
 							e.printStackTrace();
 						}
 					}
-				
 				return c;
-				
 			}
 			
 			
