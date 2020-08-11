@@ -45,31 +45,31 @@ public class PanelPlantaRegistrarRuta extends JPanel{
 		this.setBackground(new Color(81,232,60));
 		
 		this.txtSigla = new JTextField(20);
-		this.txtSigla.setBounds(50, 20, 100,20);
+		this.txtSigla.setBounds(200, 20, 100,20);
 		this.lblSigla.setBounds(10,20,100,20);
 		this.add(lblSigla);
 		this.add(txtSigla);
 		
 		this.txtPlantaOrigen = new JTextField(20);
-		this.txtPlantaOrigen.setBounds(100, 50, 100,20);
+		this.txtPlantaOrigen.setBounds(200, 50, 100,20);
 		this.lblPlantaOrigen.setBounds(10,50,100,20);
 		this.add(lblPlantaOrigen);
 		this.add(txtPlantaOrigen);
 		
 		this.txtPlantaDestino = new JTextField(20);
-		this.txtPlantaDestino.setBounds(100, 80, 100,20);
+		this.txtPlantaDestino.setBounds(200, 80, 100,20);
 		this.lblPlantaDestino.setBounds(10,80,100,20);
 		this.add(lblPlantaDestino);
 		this.add(txtPlantaDestino);
 		
 		this.txtDuracionEstimadaEnHoras = new JTextField(20);
-		this.txtDuracionEstimadaEnHoras.setBounds(150, 110, 100,20);
+		this.txtDuracionEstimadaEnHoras.setBounds(200, 110, 100,20);
 		this.lblDuracionEstimadaEnHoras.setBounds(10,110,150,20);
 		this.add(lblDuracionEstimadaEnHoras);
 		this.add(txtDuracionEstimadaEnHoras);
 		
 		this.txtDistanciaEnKm = new JTextField(20);
-		this.txtDistanciaEnKm.setBounds(100, 140, 100,20);
+		this.txtDistanciaEnKm.setBounds(200, 140, 100,20);
 		this.lblDistanciaEnKm.setBounds(10,140,100,20);
 		this.add(lblDistanciaEnKm);
 		this.add(txtDistanciaEnKm);

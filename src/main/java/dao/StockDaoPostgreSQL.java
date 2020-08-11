@@ -24,6 +24,11 @@ public class StockDaoPostgreSQL implements StockDao{
 			"INSERT INTO trabajopractico.stock (CANTIDAD,PTOMINIMODEPEDIDO,IDINSUMO,IDPLANTA)"
 					+ " VALUES (?,?,?,?)";
 	
+	private static final String SELECT_STOCK_PLANTA =
+			"SELECT * " + 
+			"FROM trabajopractico.STOCK " + 
+			"WHERE stock.idplanta = ? ";
+	
 	private static final String SUMAR_STOCK_DE_UN_INSUMO =
 						"SELECT SUM(stock.cantidad) "+
 							"from trabajopractico.stock, trabajopractico.insumo "+
@@ -107,23 +112,23 @@ public class StockDaoPostgreSQL implements StockDao{
 		return null;
 	}
 	
-	@Override 
-	//Devuelve una lista con todos los insumos que no tienen stock en cada planta
-	
-	public ArrayList<Stock> buscarStockInsuficiente(){
+
 		
+	@Override
+	public ArrayList<Stock> recuperarTodosStock(Integer idPlanta){
+
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
 		ArrayList<Stock> res = new ArrayList<Stock>();
 		
 		try {
 					
-			pstmt = conn.prepareStatement(BUSCAR_STOCK_INSUFICIENTE);	
-		
+			pstmt = conn.prepareStatement(SELECT_STOCK_PLANTA);	
+			pstmt.setInt(1, idPlanta);
+			
 			ResultSet rs = pstmt.executeQuery();	
 			
 			while(rs.next()) {
-				
 				res.add(new Stock(rs.getDouble("cantidad"), rs.getDouble("ptominimodepedido"), rs.getInt("idinsumo"), rs.getInt("idplanta")));
 			}
 		
@@ -140,8 +145,11 @@ public class StockDaoPostgreSQL implements StockDao{
 		}	
 	
 		return res;
-	}
 		
+		
+	}
+	
+	
 	
 	
 		

@@ -22,11 +22,8 @@ public class StockServicio {
 		
 	}
 	
-	public ArrayList<Stock> buscarStockInsuficiente(){
-		return stockDao.buscarStockInsuficiente();
-	}
-	
-	public Camion updateKmCamion(Camion c) {
-		return stockDao.updateKmCamion(c);
+	public ArrayList<Stock> recuperarTodosStockDePlanta(Integer idPlanta){
+		return stockDao.recuperarTodosStockDePlanta(idPlanta);
+		
 	}
 }
