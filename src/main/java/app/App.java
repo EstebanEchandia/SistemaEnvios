@@ -125,7 +125,7 @@ public class App extends JFrame{
 		this.menuPlanta.add(menuItemPlantaRegistrarRuta);
 		
 		/*  Panel BuscarPlantas  */
-		this.menuItemPlantaBuscarPlanta = new JMenuItem("Buscar Plantas");
+		this.menuItemPlantaBuscarPlanta = new JMenuItem("Añadir stock");
 		this.menuItemPlantaBuscarPlanta.addActionListener( e -> {
 			PanelPlantaBuscarPlanta a = new PanelPlantaBuscarPlanta();
 			a.armarPanel(this);
@@ -134,7 +134,7 @@ public class App extends JFrame{
 		this.menuPlanta.add(menuItemPlantaBuscarPlanta);
 		
 		/*  Panel  VisualizarPlantas */
-		this.menuItemPlantaVisualizarPlantasConAlgunInsumoConStockMenorAlPuntoDePedido = new JMenuItem("Visualizar plantas...");
+		this.menuItemPlantaVisualizarPlantasConAlgunInsumoConStockMenorAlPuntoDePedido = new JMenuItem("Visualizar plantas con algun insumo con stock menor al punto de pedido");
 		this.menuItemPlantaVisualizarPlantasConAlgunInsumoConStockMenorAlPuntoDePedido.addActionListener( e -> {
 			PanelPlantasVisualizarPlantas a = new PanelPlantasVisualizarPlantas();
 			a.armarPanel(this);
