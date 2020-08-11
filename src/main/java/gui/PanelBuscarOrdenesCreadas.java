@@ -87,7 +87,8 @@ public class PanelBuscarOrdenesCreadas extends JPanel{
 			if(atributos[0].equals(-1))
 				JOptionPane.showMessageDialog(this,"Seleccione un pedido", "Error", JOptionPane.ERROR_MESSAGE);	
 			else {
-				
+				PanelBuscarOrdenesCreadasVerPlantasConStock panelPlantasConStock = new PanelBuscarOrdenesCreadasVerPlantasConStock();
+				panelPlantasConStock.armarPanel(app,atributos);
 			}
 		});
 		
